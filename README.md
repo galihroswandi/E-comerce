@@ -1,70 +1,168 @@
-# Getting Started with Create React App
+# Aplikasi Shopping
+Aplikasi Shopping ini merupakan aplikasi untuk berbelanja online mulai dari login sampai checkout
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com) [![Website cv.lbesson.qc.to](https://img.shields.io/website-up-down-green-red/http/cv.lbesson.qc.to.svg)](http://cv.lbesson.qc.to/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![Generic badge](https://img.shields.io/badge/ReactJS-16.8.6-<COLOR>.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/NPM-8.5.1-<COLOR>.svg)](https://shields.io/)
 
-## Available Scripts
+## Fitur Aplikasi Shopping
+- Melihat barang (Customer)
+- Sopping Cart (Customer)
+- Checkout (Customer)
+- Update Pesanan (Customer)
+- Login (Customer, Admin)
+- Logout (Customer, Admin)
+- CRUD products (Admin)
 
-In the project directory, you can run:
+## Tech
 
-### `npm start`
+Aplikasi ini dibangun menggunakan :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [ReactJS](https://legacy.reactjs.org/docs/getting-started.html) - ReactJS adalah sebuah library javascript untuk membuat halaman website yang berbasis komponent.
+- [ExpressJS](https://expressjs.com/) - ExpressJS adalah sebuah framework javascript untuk nodejs dan framework ini berjalan di sisi server / BackEnd.
+- [MySQL](https://www.mysql.com/) - MySQL adalah sebuah database untuk menyimpan semua data dari aplikasi yang dibuat.
+- [NodeJS](https://nodejs.org/en) - NodeJS adalah sebuah runtime environment untuk menjalankan javascript di luar browser / BackEnd.
+- [Tailwindcss](https://tailwindcss.com/) - Tailwindcss Adalah Sebuah Framework CSS yang berbasis utility class untuk styling halaman website.
+- [Google Chrome](https://www.google.co.id/chrome/?brand=YTUH&gclid=Cj0KCQjwlPWgBhDHARIsAH2xdNef4QCGhz3BBFKkSlHiM0iQEWEg55eTc1pAjTSI_Sb2A8h8X_1ARuIaAtfuEALw_wcB&gclsrc=aw.ds) - Google Chrome Adalah aplikasi browser yang gratis.
+- [Visual Studio Code](https://code.visualstudio.com/) - Visual Studio Adalah Sebuah Text Editor untuk menulis program.
+## Requirement
+- Node JS v18.12.1 or later
+- MySQL v8.0 or later
+- ReactJS v16.8.6 or later
+- Tailwindcss v3.2.7 or later
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+Dillinger requires [Node.js](https://nodejs.org/) v10+ to run.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Install the dependencies and devDependencies and start the server.
 
-### `npm run build`
+```sh
+cd dillinger
+npm i
+node app
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For production environments...
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```sh
+npm install --production
+NODE_ENV=production node app
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Plugins
 
-### `npm run eject`
+Dillinger is currently extended with the following plugins.
+Instructions on how to use them in your own application are linked below.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Plugin | README |
+| ------ | ------ |
+| Dropbox | [plugins/dropbox/README.md][PlDb] |
+| GitHub | [plugins/github/README.md][PlGh] |
+| Google Drive | [plugins/googledrive/README.md][PlGd] |
+| OneDrive | [plugins/onedrive/README.md][PlOd] |
+| Medium | [plugins/medium/README.md][PlMe] |
+| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Development
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Want to contribute? Great!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Dillinger uses Gulp + Webpack for fast developing.
+Make a change in your file and instantaneously see your updates!
 
-## Learn More
+Open your favorite Terminal and run these commands.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+First Tab:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+node app
+```
 
-### Code Splitting
+Second Tab:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```sh
+gulp watch
+```
 
-### Analyzing the Bundle Size
+(optional) Third:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```sh
+karma test
+```
 
-### Making a Progressive Web App
+#### Building for source
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+For production release:
 
-### Advanced Configuration
+```sh
+gulp build --prod
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Generating pre-built zip archives for distribution:
 
-### Deployment
+```sh
+gulp build dist --prod
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Docker
 
-### `npm run build` fails to minify
+Dillinger is very easy to install and deploy in a Docker container.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+By default, the Docker will expose port 8080, so change this within the
+Dockerfile if necessary. When ready, simply use the Dockerfile to
+build the image.
+
+```sh
+cd dillinger
+docker build -t <youruser>/dillinger:${package.json.version} .
+```
+
+This will create the dillinger image and pull in the necessary dependencies.
+Be sure to swap out `${package.json.version}` with the actual
+version of Dillinger.
+
+Once done, run the Docker image and map the port to whatever you wish on
+your host. In this example, we simply map port 8000 of the host to
+port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
+
+```sh
+docker run -d -p 8000:8080 --restart=always --cap-add=SYS_ADMIN --name=dillinger <youruser>/dillinger:${package.json.version}
+```
+
+> Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
+
+Verify the deployment by navigating to your server address in
+your preferred browser.
+
+```sh
+127.0.0.1:8000
+```
+
+## License
+
+MIT
+
+**Free Software, Hell Yeah!**
+
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
+
+   [dill]: <https://github.com/joemccann/dillinger>
+   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
+   [john gruber]: <http://daringfireball.net>
+   [df1]: <http://daringfireball.net/projects/markdown/>
+   [markdown-it]: <https://github.com/markdown-it/markdown-it>
+   [Ace Editor]: <http://ace.ajax.org>
+   [node.js]: <http://nodejs.org>
+   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
+   [jQuery]: <http://jquery.com>
+   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
+   [express]: <http://expressjs.com>
+   [AngularJS]: <http://angularjs.org>
+   [Gulp]: <http://gulpjs.com>
+
+   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
+   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
+   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
+   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
+   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
+   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
