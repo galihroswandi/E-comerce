@@ -8,12 +8,15 @@ import NavLink from "./../../components/molecules/NavLink";
 
 window.onscroll = () => {
   const nav = document.querySelector("nav");
+  const navMenu = document.querySelector("#nav-menu");
   const fix_nav = nav.offsetTop;
 
   if (window.pageYOffset > fix_nav) {
     nav.classList.add("navbar-fixed");
   } else {
-    nav.classList.remove("navbar-fixed");
+    if (navMenu.classList.contains("hidden")) {
+      nav.classList.remove("navbar-fixed");
+    }
   }
 };
 
