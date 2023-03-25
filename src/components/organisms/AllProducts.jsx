@@ -19,7 +19,7 @@ const AllProducts = () => {
         <h1 className="text-2xl text-slate-700 font-medium">All Products</h1>
         <Horizontal width="9rem" />
       </div>
-      <section className="products grid grid-cols-2 sm:grid-cols-1 md:grid-cols-4 gap-3 md:gap-5 justify-center items-center mt-5">
+      <section className="products grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 justify-center items-center mt-5">
         <CardProduct
           id="1"
           image={Product1}
@@ -80,7 +80,7 @@ const AllProducts = () => {
       <div className="button mt-10 flex justify-center">
         <Link
           to="/all-product"
-          className="bg-green-500 py-3 px-5 text-white rounded-3xl font-light"
+          className="bg-green-500 py-3 px-5 text-white rounded-3xl font-light hover:shadow-lg hover:-translate-y-[.1rem] transition duration-200"
         >
           Lebih Banyak Product
         </Link>
