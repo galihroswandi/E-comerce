@@ -16,12 +16,12 @@ const AllProducts = () => {
             <img src={Product1} alt="Product 1" />
           </div>
           <div className="desc">
-            <h3 className="text-sm text-slate-400">Laptop & PC</h3>
-            <h1 className="text-[16px] text-slate-800 my-1">
+            <h3 className="text-sm text-slate-400 mb-[.1rem]">Laptop & PC</h3>
+            <h1 className="text-[16px] text-slate-800">
               Laptop Asus ROG Strix 1Tb Ram 8GB
             </h1>
             <div className="price">
-              <span className="text-md text-pink-700 mt-2">Rp30.000.000</span>
+              <span className="text-md text-pink-700 mt-3">Rp30.000.000</span>
             </div>
           </div>
         </div>
