@@ -1,7 +1,15 @@
 import React from "react";
 
 import Horizontal from "../atoms/Horizontal";
+import CardProduct from "../molecules/CardProduct";
 import Product1 from "./../../assets/img/Product1.svg";
+import Product2 from "./../../assets/img/Product2.svg";
+import Product3 from "./../../assets/img/Product3.svg";
+import Product4 from "./../../assets/img/Product4.svg";
+import Product5 from "./../../assets/img/Product5.svg";
+import Product6 from "./../../assets/img/Product6.svg";
+import Product7 from "./../../assets/img/Product7.svg";
+import Product8 from "./../../assets/img/Product8.svg";
 
 const AllProducts = () => {
   return (
@@ -10,21 +18,63 @@ const AllProducts = () => {
         <h1 className="text-2xl text-slate-700 font-medium">All Products</h1>
         <Horizontal width="9rem" />
       </div>
-      <section className="products grid grid-cols-2 gap-2 mt-5">
-        <div className="card bg-white py-2 px-3 box-border rounded-lg shadow-md">
-          <div className="img mb-1">
-            <img src={Product1} alt="Product 1" />
-          </div>
-          <div className="desc">
-            <h3 className="text-sm text-slate-400 mb-[.1rem]">Laptop & PC</h3>
-            <h1 className="text-[16px] text-slate-800">
-              Laptop Asus ROG Strix 1Tb Ram 8GB
-            </h1>
-            <div className="price mt-2">
-              <span className="text-md text-pink-700">Rp30.000.000</span>
-            </div>
-          </div>
-        </div>
+      <section className="products grid grid-cols-2 gap-3 mt-5">
+        <CardProduct
+          id="1"
+          image={Product1}
+          title="Asus ROG Strix 1tb Ram 8GB"
+          kategori="Laptop & PC"
+          harga="30.000.000"
+        />
+        <CardProduct
+          id="2"
+          image={Product2}
+          title="ASUS ZENBOOK C103"
+          kategori="Laptop & PC"
+          harga="18.000.000"
+        />
+        <CardProduct
+          id="3"
+          image={Product3}
+          title="IPhone 14 PROMAX 256GB"
+          kategori="Hanphone"
+          harga="23.000.000"
+        />
+        <CardProduct
+          id="4"
+          image={Product4}
+          title="SAMSUNG A531 8/256GB"
+          kategori="Handphone"
+          harga="3.000.000"
+        />
+        <CardProduct
+          id="5"
+          image={Product5}
+          title="BAJU WANITA SIMPLE"
+          kategori="Fashion"
+          harga="80.000"
+        />
+        <CardProduct
+          id="6"
+          image={Product6}
+          title="Tas Kece"
+          kategori="Fashion"
+          harga="50.000"
+        />
+        <CardProduct
+          id="7"
+          image={Product7}
+          title="Pembersih Hidung"
+          kategori="Elektronik"
+          harga="15.000"
+        />
+        <CardProduct
+          id="8"
+          image={Product8}
+          title="Kabel Data Type C"
+          kategori="Accessoris"
+          harga="25.000"
+        />
       </section>
     </div>
   );
