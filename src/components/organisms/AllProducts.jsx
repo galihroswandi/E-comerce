@@ -11,7 +11,7 @@ const AllProducts = () => {
         <Horizontal width="9rem" />
       </div>
       <section className="products grid grid-cols-2 gap-2 mt-5">
-        <div className="card bg-white p-2 box-border rounded-lg shadow-md">
+        <div className="card bg-white py-2 px-3 box-border rounded-lg shadow-md">
           <div className="img mb-1">
             <img src={Product1} alt="Product 1" />
           </div>
