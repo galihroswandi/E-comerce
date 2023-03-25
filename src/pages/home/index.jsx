@@ -3,6 +3,7 @@ import Navbar from "./../../components/organisms/Navbar";
 import Banner from "./../../components/organisms/Banner";
 import Categories from "../../components/organisms/Categories";
 import AllProducts from "../../components/organisms/AllProducts";
+import Footer from "../../components/organisms/Footer";
 
 const HomePages = () => {
   return (
@@ -11,6 +12,7 @@ const HomePages = () => {
       <Banner />
       <Categories />
       <AllProducts />
+      <Footer />
     </div>
   );
 };
