@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./../../components/organisms/Navbar";
 import Banner from "./../../components/organisms/Banner";
 import Categories from "../../components/organisms/Categories";
+import AllProducts from "../../components/organisms/AllProducts";
 
 const HomePages = () => {
   return (
@@ -9,6 +10,7 @@ const HomePages = () => {
       <Navbar />
       <Banner />
       <Categories />
+      <AllProducts />
     </div>
   );
 };
