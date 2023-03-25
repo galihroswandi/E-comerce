@@ -20,8 +20,8 @@ const AllProducts = () => {
             <h1 className="text-[16px] text-slate-800">
               Laptop Asus ROG Strix 1Tb Ram 8GB
             </h1>
-            <div className="price">
-              <span className="text-md text-pink-700 mt-3">Rp30.000.000</span>
+            <div className="price mt-2">
+              <span className="text-md text-pink-700">Rp30.000.000</span>
             </div>
           </div>
         </div>
