@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Facebook from "./../../assets/icons/facebook.svg";
 import Instagram from "./../../assets/icons/instagram.svg";
 import Twitter from "./../../assets/icons/twitter.svg";
@@ -24,7 +23,11 @@ const Footer = () => {
       </section>
       <section className="kontak lg:ml-[10rem]">
         <h1 className="text-2xl font-semibold text-green-500 mb-3">Kontak</h1>
-        <LinkFooterKontak to="/facebook.com" img={Facebook} title="Facebook" />
+        <LinkFooterKontak
+          to="https://id-id.facebook.com/"
+          img={Facebook}
+          title="Facebook"
+        />
         <LinkFooterKontak
           to="/instagram.com"
           img={Instagram}
