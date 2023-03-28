@@ -25,12 +25,7 @@ const NavLink = () => {
       </a>
       <NavList link="/about" title="Tentang Kami" click={handleClick} />
       <div className="hidden lg:inline-block">
-        <NavList
-          link="/cart"
-          title={Cart()}
-          css={{ display: "none" }}
-          click={handleClick}
-        />
+        <NavList link="/cart" title={<Cart />} click={handleClick} />
       </div>
       <div className="lg:hidden block">
         <NavList link="/signin" title="Sign In" />
