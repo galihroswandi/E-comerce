@@ -5,7 +5,7 @@ const CardProduct = ({ id, image, title, kategori, harga }) => {
   return (
     <Link to={`/product/${id}`}>
       <div className="card bg-white py-2 px-3 box-border rounded-lg shadow-md">
-        <div className="img mb-1 md:mb-3">
+        <div className="img mb-1 md:mb-3 flex justify-center items-center">
           <img src={image} alt={title} />
         </div>
         <div className="desc">
