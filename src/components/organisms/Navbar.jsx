@@ -32,7 +32,9 @@ const Navbar = () => {
           <NavLink />
         </div>
         <div className="cart justify-self-center ml-10 lg:hidden">
-          <Cart />
+          <Link to="/cart">
+            <Cart />
+          </Link>
         </div>
         <div className="hamburger justify-self-end">
           <Hamburger />
