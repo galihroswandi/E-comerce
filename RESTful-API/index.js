@@ -1,7 +1,6 @@
 require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 const express = require('express');
-const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
 const { fileStorage, fileFilter } = require('./src/middleware/multer');
