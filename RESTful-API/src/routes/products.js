@@ -10,7 +10,7 @@ router.post('/', productController.addProduct);
 // GET products
 router.get('/', productController.getAllProducts);
 
-// GET products WHERE id
+// GET single product
 router.get('/:id_product', productController.getSingleProduct);
 
 // UPDATE - PATCH
