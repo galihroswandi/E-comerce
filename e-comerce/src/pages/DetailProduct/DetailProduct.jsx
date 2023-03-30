@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import Navbar from "../../components/organisms/Navbar";
+import DetailProductOrgs from "./../../components/organisms/DetailProudctOrgs";
 
-const DetailProduct = (props) => {
+const DetailProduct = () => {
   return (
     <Fragment>
       <Navbar />
-      <h1>Detail Product</h1>
+      <DetailProductOrgs />
     </Fragment>
   );
 };

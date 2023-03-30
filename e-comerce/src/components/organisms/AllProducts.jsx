@@ -6,7 +6,7 @@ import { getProducts } from "../../config/products/products";
 import Horizontal from "../atoms/Horizontal";
 import CardProduct from "../molecules/CardProduct";
 
-const AllProducts = () => {
+const AllProducts = ({ title }) => {
   const [products, setProducts] = useState([]);
   const [stateURL, setStateURL] = useState("");
 
@@ -24,7 +24,7 @@ const AllProducts = () => {
   return (
     <div className="container mb-20 px-7">
       <div className="title">
-        <h1 className="text-2xl text-slate-700 font-medium">All Products</h1>
+        <h1 className="text-2xl text-slate-700 font-medium">{title}</h1>
         <Horizontal width="9rem" />
       </div>
       <section className="products grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 justify-center items-center mt-5">
@@ -51,6 +51,10 @@ const AllProducts = () => {
       </div>
     </div>
   );
+};
+
+AllProducts.defaultProps = {
+  title: "All Products",
 };
 
 export default AllProducts;
