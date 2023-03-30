@@ -5,6 +5,7 @@ import { getProducts } from "../../config/products/products";
 
 import Horizontal from "../atoms/Horizontal";
 import CardProduct from "../molecules/CardProduct";
+import Product2 from "./../../assets/img/Product2.svg";
 
 const AllProducts = ({ title }) => {
   const [products, setProducts] = useState([]);
@@ -40,6 +41,13 @@ const AllProducts = ({ title }) => {
             />
           );
         })}
+        <CardProduct
+          id="2"
+          image={Product2}
+          title="ASUS ZENBOOK C103"
+          kategori="Laptop & PC"
+          harga="18.000.000"
+        />
       </section>
       <div className="button mt-10 flex justify-center">
         <Link
