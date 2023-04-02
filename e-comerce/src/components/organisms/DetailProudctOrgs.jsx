@@ -9,14 +9,14 @@ const DetailProductOrgs = () => {
     <div className="relative">
       <div className="card mt-[5.7rem] mx-2 py-5 px-5 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-8 sm:container">
         <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-10 lg:px-20">
-          <div className="img border-b mb-5 sm:border-none">
+          <div className="img border-b mb-5 sm:border-none mt-10">
             <img
-              src="http://127.0.0.1:4000/images/1680099816618-840501158-Product2.png"
+              src="https://source.unsplash.com/500x300?handphone"
               alt="Images"
-              className="w-full -mt-5 sm:w-[20rem] lg:w-[30rem]"
+              className="w-full -mt-5 sm:w-[20rem] lg:w-[30rem] rounded-md border p-1 shadow-md"
             />
           </div>
-          <div className="desc sm:mr-10">
+          <div className="desc sm:mr-20">
             <h1 className="text-xl text-slate-800 mb-8 font-extralight lg:text-4xl">
               ASUS ZENBOOK C103
             </h1>
@@ -27,16 +27,16 @@ const DetailProductOrgs = () => {
                 </h4>
               </div>
               <div className="counterChange flex">
-                <button className="py-[.13rem] px-2 border-t border-b border-l border-slate-500 text-lg text-slate-800">
+                <button className="px-1 py-[0] md:px-2 border-t border-b border-l border-slate-500 text-lg text-slate-800 font-extralight">
                   -
                 </button>
                 <input
                   type="text"
-                  className="border border-slate-500 py-[.13rem] inline-block w-20 text-center text-slate-800"
+                  className="border border-slate-500 sm:py-[0] py-[0] inline-block w-20 text-center text-slate-800 font-extralight max-w-[3rem]"
                   value="1"
                   disabled
                 />
-                <button className="py-[.13rem] px-2 border-r border-t border-b border-slate-500 text-lg text-slate-800">
+                <button className="md:px-2 py-[0] px-1 border-r border-t border-b border-slate-500 text-lg text-slate-800 font-extralight">
                   +
                 </button>
               </div>
@@ -69,7 +69,7 @@ const DetailProductOrgs = () => {
             </div>
           </div>
         </div>
-        <div className="descText hidden sm:block">
+        <div className="descText hidden sm:block sm:mb-5 sm:mx-10">
           <h1 className="leading-3 text-xl text-slate-800 font-extralight">
             Detail
           </h1>
