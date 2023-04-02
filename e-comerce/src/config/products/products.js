@@ -11,3 +11,16 @@ export const getProducts = () => {
             })
     })
 }
+
+export const findProduct = (id) => {
+    return new Promise((resolve, reject) => {
+        axios.get(`${url()}/products/${id}`)
+            .then(res => {
+                let data = [];
+                data.push(res.data.data);
+                resolve(data);
+            }).catch(err => {
+                reject(err);
+            })
+    })
+}

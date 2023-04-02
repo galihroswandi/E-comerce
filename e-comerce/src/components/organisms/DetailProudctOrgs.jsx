@@ -1,24 +1,47 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Horizontal from "../atoms/Horizontal";
 import AllProducts from "./AllProducts";
 import CartIcon from "./../../assets/icons/AddCart.svg";
+import { findProduct } from "../../config/products/products";
+import { url } from "../../config/api/api.config";
 
 const DetailProductOrgs = () => {
+  const { id_product } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [findData, setFindData] = useState([]);
+  const [counter, setCounter] = useState(1);
+
+  useEffect(() => {
+    setLoading(true);
+    findProduct(id_product).then((res) => {
+      setLoading(false);
+      setFindData(res[0]);
+    });
+  }, []);
+
   return (
     <div className="relative">
       <div className="card mt-[5.7rem] mx-2 py-5 px-5 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-8 sm:container">
-        <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-10 lg:px-20">
+        <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-10 lg:px-15">
           <div className="img border-b mb-5 sm:border-none mt-10">
-            <img
-              src="https://source.unsplash.com/500x300?handphone"
-              alt="Images"
-              className="w-full -mt-5 sm:w-[20rem] lg:w-[30rem] rounded-md border p-1 shadow-md"
-            />
+            {loading === true ? (
+              <div className="animate-pulse flex space-x-4">
+                <div className="rounded-md bg-slate-100 w-full -mt-5 sm:w-[20rem] lg:w-[30rem] p-1 h-[15rem]"></div>
+              </div>
+            ) : (
+              <img
+                src={`${url()}/${
+                  findData.length !== 0 ? findData[0].gambar_product : null
+                }`}
+                alt="Images"
+                className="w-full -mt-5 sm:w-[20rem] lg:w-[30rem] rounded-md border p-1 shadow-md"
+              />
+            )}
           </div>
-          <div className="desc sm:mr-20">
+          <div className="desc sm:mr-10 xl:mr-20">
             <h1 className="text-xl text-slate-800 mb-8 font-extralight lg:text-4xl">
-              ASUS ZENBOOK C103
+              {findData.length !== 0 ? findData[0].nama_product : null}
             </h1>
             <div className="counter w-56 grid grid-cols-2 items-center gap-0 mb-8">
               <div className="title">
@@ -27,19 +50,33 @@ const DetailProductOrgs = () => {
                 </h4>
               </div>
               <div className="counterChange flex">
-                <button className="px-1 py-[0] md:px-2 border-t border-b border-l border-slate-500 text-lg text-slate-800 font-extralight">
+                <button
+                  className="px-1 py-[0] md:px-2 border-t border-b border-l border-slate-500 text-lg text-slate-800 font-extralight"
+                  onClick={counter > 0 ? () => setCounter(counter - 1) : null}
+                >
                   -
                 </button>
                 <input
                   type="text"
                   className="border border-slate-500 sm:py-[0] py-[0] inline-block w-20 text-center text-slate-800 font-extralight max-w-[3rem]"
-                  value="1"
+                  value={counter}
                   disabled
                 />
-                <button className="md:px-2 py-[0] px-1 border-r border-t border-b border-slate-500 text-lg text-slate-800 font-extralight">
+                <button
+                  className="md:px-2 py-[0] px-1 border-r border-t border-b border-slate-500 text-lg text-slate-800 font-extralight"
+                  onClick={() => setCounter(counter + 1)}
+                >
                   +
                 </button>
               </div>
+            </div>
+            <div className="message mb-8">
+              <input
+                type="text"
+                placeholder="Pesan Untuk Penjual..."
+                name="pesan"
+                className="text-md font-extralight py-2 px-3 placeholder:text-sm border focus:border-green-500 rounded-md text-slate-600 focus:outline-none"
+              />
             </div>
             <div className="descText sm:hidden">
               <h1 className="leading-3 text-xl text-slate-800 font-extralight">
@@ -47,9 +84,7 @@ const DetailProductOrgs = () => {
               </h1>
               <Horizontal width="4rem" />
               <p className="text-base text-slate-700 mt-3 font-extralight">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Doloribus facere voluptates alias cupiditate est rerum aut
-                distinctio beatae saepe aperiam!
+                {findData.length !== 0 ? findData[0].deskripsi : null}
               </p>
             </div>
             <div className="footer fixed bg-white bg-opacity-5 backdrop-blur-md bottom-0 z-10 left-0 right-0 py-4 px-7 border-t-2 flex justify-between items-center gap-3 sm:static sm:px-0 sm:gap-0 sm:justify-center lg:gap-2">
@@ -75,9 +110,7 @@ const DetailProductOrgs = () => {
           </h1>
           <Horizontal width="4rem" />
           <p className="text-base text-slate-700 mt-3 font-extralight">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus
-            facere voluptates alias cupiditate est rerum aut distinctio beatae
-            saepe aperiam!
+            {findData.length !== 0 ? findData[0].deskripsi : null}
           </p>
         </div>
       </div>

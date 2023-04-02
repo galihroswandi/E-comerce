@@ -33,9 +33,9 @@ const AllProducts = ({ title }) => {
           return (
             <CardProduct
               id={result.id_product}
-              image={`${stateURL}/${result.gambar}`}
+              image={`${stateURL}/${result.gambar_product}`}
               title={result.nama_product}
-              kategori={result.kategori}
+              kategori={result.nama_kategori}
               harga={result.harga}
               key={key}
             />

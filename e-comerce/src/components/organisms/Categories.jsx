@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import CardKategori from "../molecules/CardKategori";
 import Hr from "./../atoms/Horizontal";
 import { useEffect, useState } from "react";
-import { getAllKategoris } from "../../config/products/kategoris";
+import { getAllKategoris } from "../../config/kategoris/kategoris";
 import { url } from "../../config/api/api.config";
 
 const Categories = () => {
@@ -29,7 +29,7 @@ const Categories = () => {
           return (
             <Link key={key} to="/categori/pakaian">
               <CardKategori
-                img={`${URL}/${kategori.gambar}`}
+                img={`${URL}/${kategori.gambar_kategori}`}
                 title={kategori.nama_kategori}
               />
             </Link>
