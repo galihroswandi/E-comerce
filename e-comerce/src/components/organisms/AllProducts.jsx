@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { url } from "../../config/api/api.config";
-import { getProducts } from "../../config/products/products";
 
 import Horizontal from "../atoms/Horizontal";
 import CardProduct from "../molecules/CardProduct";
-import Product2 from "./../../assets/img/Product2.svg";
+// import Product2 from "./../../assets/img/Product2.svg";
+import { GetData } from "../../config/redux/actions/Products";
+import { useDispatch, useSelector } from "react-redux";
 
 const AllProducts = ({ title }) => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.products.data)[0];
   const [stateURL, setStateURL] = useState("");
 
-  const getProductsFromAPI = () => {
-    getProducts().then((res) => {
-      setProducts(res.data.data);
-    });
-  };
-
   useEffect(() => {
-    getProductsFromAPI();
     setStateURL(url());
+    GetData(dispatch);
   }, []);
 
   return (
@@ -29,25 +25,27 @@ const AllProducts = ({ title }) => {
         <Horizontal width="9rem" />
       </div>
       <section className="products grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 justify-center items-center mt-5">
-        {products.map((result, key) => {
-          return (
-            <CardProduct
-              id={result.id_product}
-              image={`${stateURL}/${result.gambar_product}`}
-              title={result.nama_product}
-              kategori={result.nama_kategori}
-              harga={result.harga}
-              key={key}
-            />
-          );
-        })}
-        <CardProduct
+        {data
+          ? data.map((result, key) => {
+              return (
+                <CardProduct
+                  id={result.id_product}
+                  image={`${stateURL}/${result.gambar_product}`}
+                  title={result.nama_product}
+                  kategori={result.nama_kategori}
+                  harga={result.harga}
+                  key={key}
+                />
+              );
+            })
+          : null}
+        {/* <CardProduct
           id="2"
           image={Product2}
           title="ASUS ZENBOOK C103"
           kategori="Laptop & PC"
           harga="18.000.000"
-        />
+        /> */}
       </section>
       <div className="button mt-10 flex justify-center">
         <Link
