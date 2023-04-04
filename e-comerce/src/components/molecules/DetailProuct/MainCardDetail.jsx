@@ -1,21 +1,12 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import CartIcon from "./../../../assets/icons/AddCart.svg";
 import { url } from "../../../config/api/api.config";
-import {
-  incrementByAmont,
-  decrementByAmount,
-} from "../../../config/redux/reducer/counterSlice";
 import DescText from "./DescText";
+import Counter from "./Counter";
 
 const MainCardDetail = ({ loading, findData }) => {
-  const count = useSelector((state) => state.counter.value);
-  const filData = useSelector((state) => state.products.filterData)[0];
-
-  const dispatch = useDispatch();
-
   return (
     <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-10 lg:px-15">
       <div className="img border-b mb-5 sm:border-none mt-10">
@@ -26,7 +17,7 @@ const MainCardDetail = ({ loading, findData }) => {
         ) : (
           <img
             src={`${url()}/${
-              filData.length !== 0 ? filData[0].gambar_product : null
+              findData.length !== 0 ? findData[0].gambar_product : null
             }`}
             alt="Images"
             className="w-full -mt-5 sm:w-[20rem] lg:w-[30rem] rounded-md border p-1 shadow-md"
@@ -34,45 +25,15 @@ const MainCardDetail = ({ loading, findData }) => {
         )}
       </div>
       <div className="desc sm:mr-10 xl:mr-20">
-        <h1 className="text-xl text-slate-800 mb-8 font-extralight lg:text-4xl">
+        <h1 className="text-xl text-slate-800 mb-5 font-extralight lg:text-4xl">
           {findData.length !== 0 ? findData[0].nama_product : null}
         </h1>
-        <div className="counter w-56 grid grid-cols-2 items-center gap-0 mb-8">
-          <div className="title">
-            <h4 className="text-slate-800 text-lg mr-5 font-extralight">
-              Kuantitas
-            </h4>
-          </div>
-          <div className="counterChange flex">
-            <button
-              className="px-1 py-[0] md:px-2 border-t border-b border-l border-slate-500 text-lg text-slate-800 font-extralight"
-              onClick={count > 1 ? () => dispatch(decrementByAmount(1)) : null}
-            >
-              -
-            </button>
-            <input
-              type="text"
-              className="border border-slate-500 sm:py-[0] py-[0] inline-block w-20 text-center text-slate-800 font-extralight max-w-[3rem]"
-              value={count}
-              disabled
-              autoComplete="off"
-            />
-            <button
-              className="md:px-2 py-[0] px-1 border-r border-t border-b border-slate-500 text-lg text-slate-800 font-extralight"
-              onClick={() => dispatch(incrementByAmont(1))}
-            >
-              +
-            </button>
-          </div>
+        <div className="mb-5 lg:mb-7">
+          <h2 className="text-xl lg:text-2xl font-extralight text-green-600">
+            Rp{findData.length !== 0 ? findData[0].harga : null}
+          </h2>
         </div>
-        <div className="message mb-8">
-          <input
-            type="text"
-            placeholder="Pesan Untuk Penjual..."
-            name="pesan"
-            className="text-md font-extralight py-2 px-3 placeholder:text-sm border focus:border-green-500 rounded-md text-slate-600 focus:outline-none"
-          />
-        </div>
+        <Counter />
         <DescText use="lg" />
         <div className="footer fixed bg-white bg-opacity-5 backdrop-blur-md bottom-0 z-10 left-0 right-0 py-4 px-7 border-t-2 flex justify-between items-center gap-3 sm:static sm:px-0 sm:gap-0 sm:justify-center lg:gap-2">
           <Link className="bg-green-500 text-white py-2 px-3 rounded-lg text-md font-extralight text-center leading-5 flex justify-center item sm:rounded-none sm:py-[.4rem]">
