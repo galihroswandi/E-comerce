@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import CardKategori from "../molecules/CardKategori";
 import Hr from "./../atoms/Horizontal";
-import { useEffect, useState } from "react";
 import { getAllKategoris } from "../../config/kategoris/kategoris";
 import { url } from "../../config/api/api.config";
 

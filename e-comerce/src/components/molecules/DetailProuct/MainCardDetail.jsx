@@ -1,20 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import Horizontal from "../../atoms/Horizontal";
 import CartIcon from "./../../../assets/icons/AddCart.svg";
 import { url } from "../../../config/api/api.config";
 import {
   incrementByAmont,
   decrementByAmount,
 } from "../../../config/redux/reducer/counterSlice";
-import { findData } from "../../../config/redux/actions/Products";
+import DescText from "./DescText";
 
 const MainCardDetail = ({ loading, findData }) => {
-  const { id_product } = useParams();
-
   const count = useSelector((state) => state.counter.value);
+  const filData = useSelector((state) => state.products.filterData)[0];
+
   const dispatch = useDispatch();
 
   return (
@@ -27,7 +26,7 @@ const MainCardDetail = ({ loading, findData }) => {
         ) : (
           <img
             src={`${url()}/${
-              findData.length !== 0 ? findData[0].gambar_product : null
+              filData.length !== 0 ? filData[0].gambar_product : null
             }`}
             alt="Images"
             className="w-full -mt-5 sm:w-[20rem] lg:w-[30rem] rounded-md border p-1 shadow-md"
@@ -74,15 +73,7 @@ const MainCardDetail = ({ loading, findData }) => {
             className="text-md font-extralight py-2 px-3 placeholder:text-sm border focus:border-green-500 rounded-md text-slate-600 focus:outline-none"
           />
         </div>
-        <div className="descText sm:hidden">
-          <h1 className="leading-3 text-xl text-slate-800 font-extralight">
-            Detail
-          </h1>
-          <Horizontal width="4rem" />
-          <p className="text-base text-slate-700 mt-3 font-extralight">
-            {findData.length !== 0 ? findData[0].deskripsi : null}
-          </p>
-        </div>
+        <DescText use="lg" />
         <div className="footer fixed bg-white bg-opacity-5 backdrop-blur-md bottom-0 z-10 left-0 right-0 py-4 px-7 border-t-2 flex justify-between items-center gap-3 sm:static sm:px-0 sm:gap-0 sm:justify-center lg:gap-2">
           <Link className="bg-green-500 text-white py-2 px-3 rounded-lg text-md font-extralight text-center leading-5 flex justify-center item sm:rounded-none sm:py-[.4rem]">
             <img

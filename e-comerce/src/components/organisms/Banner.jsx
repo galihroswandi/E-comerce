@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import FlatDesign from "./../../assets/img/flat-design.png";
 
 const Banner = () => {

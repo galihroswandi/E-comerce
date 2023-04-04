@@ -4,9 +4,9 @@ import { url } from "../../config/api/api.config";
 
 import Horizontal from "../atoms/Horizontal";
 import CardProduct from "../molecules/CardProduct";
-// import Product2 from "./../../assets/img/Product2.svg";
-import { GetData } from "../../config/redux/actions/Products";
 import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../../config/products/products";
+import { setDataByAmount } from "../../config/redux/reducer/ProductsSlice";
 
 const AllProducts = ({ title }) => {
   const dispatch = useDispatch();
@@ -15,7 +15,13 @@ const AllProducts = ({ title }) => {
 
   useEffect(() => {
     setStateURL(url());
-    GetData(dispatch);
+    getProducts().then((res) => {
+      try {
+        dispatch(setDataByAmount(res.data.data));
+      } catch (err) {
+        console.log(err);
+      }
+    });
   }, []);
 
   return (
@@ -39,13 +45,6 @@ const AllProducts = ({ title }) => {
               );
             })
           : null}
-        {/* <CardProduct
-          id="2"
-          image={Product2}
-          title="ASUS ZENBOOK C103"
-          kategori="Laptop & PC"
-          harga="18.000.000"
-        /> */}
       </section>
       <div className="button mt-10 flex justify-center">
         <Link
