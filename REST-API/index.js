@@ -11,6 +11,8 @@ var cors = require('cors');
 const usersRoutes = require('./src/routes/users');
 const productsRoutes = require('./src/routes/products');
 const kategorisRoutes = require('./src/routes/kategoris');
+const cartRoutes = require('./src/routes/cart');
+
 app.use(multer({ storage: fileStorage, fileFilter }).single('gambar'));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
@@ -21,6 +23,7 @@ app.use(express.json());
 app.use('/users', usersRoutes);
 app.use('/products', productsRoutes);
 app.use('/kategoris', kategorisRoutes);
+app.use('/cart', cartRoutes);
 
 app.use((err, req, res, next) => {
     res.json({
