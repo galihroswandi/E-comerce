@@ -3,11 +3,12 @@ import React, { Fragment } from "react";
 import Product2 from "./../../../assets/img/Product2.svg";
 import Trash from "./../../../assets/icons/trash.svg";
 import Counter from "../../molecules/DetailProuct/Counter";
+import Ringkasan from "./Ringkasan";
 
 const CartProductsOrgs = () => {
   return (
     <Fragment>
-      <div className="card mt-[5.7rem] mx-2 py-5 px-5 pb-8 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-8 sm:container">
+      <div className="card mt-[5.7rem] mx-2 py-5 px-5 pb-8 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-5 sm:container">
         <h1 className="text-xl text-slate-700">Keranjang</h1>
         <div className="cart-wrapper">
           <div className="desc flex flex-wrap gap-1 justify-between items-center mt-5 border-y-[.1rem] border-green-500 py-5">
@@ -50,6 +51,7 @@ const CartProductsOrgs = () => {
           </div>
         </div>
       </div>
+      <Ringkasan />
     </Fragment>
   );
 };
