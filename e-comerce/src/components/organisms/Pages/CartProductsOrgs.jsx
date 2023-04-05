@@ -6,14 +6,41 @@ import Counter from "../../molecules/DetailProuct/Counter";
 import Ringkasan from "./Ringkasan";
 
 const CartProductsOrgs = () => {
+  const handleChecked = (target) => {
+    const allCheckbox = document.querySelectorAll(".checked");
+    if (target.target.checked === true) {
+      allCheckbox.forEach((e) => (e.checked = true));
+    } else {
+      allCheckbox.forEach((e) => (e.checked = false));
+    }
+  };
+
   return (
     <Fragment>
       <div className="card-wrapper sm:px-5 md:px-9 lg:flex lg:justify-between lg:w-[100%] items-start gap-4 xl:container mb-8">
         <div className="card mt-[5.7rem] mx-2 py-5 px-5 pb-8 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-5 sm:container xl:px-10 xl:box-border">
-          <h1 className="text-xl text-slate-700 font-semibold">Keranjang</h1>
+          <h1 className="text-xl text-slate-700 font-semibold mt-2">
+            Keranjang
+          </h1>
+          <div className="checked flex items-center gap-2 mt-5">
+            <input
+              type="checkbox"
+              name="pilih"
+              id="pilih"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-md focus:ring-blue-500"
+              onChange={(e) => handleChecked(e)}
+            />
+            <label htmlFor="pilih">Pilih Semua</label>
+          </div>
           <div className="cart-wrapper">
             <div className="desc flex flex-wrap gap-1 justify-between items-center mt-5 border-y-[.1rem] border-green-500 py-5 xl:py-3 xl:mt-2">
-              <div className="des1">
+              <div className="des1 flex justify-center items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="pilih"
+                  id="pilih"
+                  className="checked w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-md focus:ring-blue-500"
+                />
                 <img
                   src={Product2}
                   alt="Product 2"
@@ -56,7 +83,13 @@ const CartProductsOrgs = () => {
               </div>
             </div>
             <div className="desc flex flex-wrap gap-1 justify-between items-center mt-5 border-b border-green-500 py-5 xl:py-3 xl:mt-2">
-              <div className="des1">
+              <div className="des1 flex justify-center items-center gap-3">
+                <input
+                  type="checkbox"
+                  name="pilih"
+                  id="pilih"
+                  className="checked w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-md focus:ring-blue-500"
+                />
                 <img
                   src={Product2}
                   alt="Product 2"
