@@ -1,16 +1,15 @@
 # Aplikasi Shopping
+
 Aplikasi Shopping ini merupakan aplikasi untuk berbelanja online mulai dari login sampai checkout
 
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-1f425f.svg)](https://www.javascript.com) [![Website cv.lbesson.qc.to](https://img.shields.io/website-up-down-green-red/http/cv.lbesson.qc.to.svg)](http://cv.lbesson.qc.to/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![Generic badge](https://img.shields.io/badge/ReactJS-16.8.6-<COLOR>.svg)](https://shields.io/)
 [![Generic badge](https://img.shields.io/badge/NPM-8.5.1-<COLOR>.svg)](https://shields.io/)
 
 ## Fitur Aplikasi Shopping
+
 - Melihat barang (Customer)
 - Sopping Cart (Customer)
-- Checkout (Customer)
 - Update Pesanan (Customer)
-- Login (Customer, Admin)
-- Logout (Customer, Admin)
 - CRUD products (Admin)
 
 ## Tech
@@ -24,7 +23,9 @@ Aplikasi ini dibangun menggunakan :
 - [Tailwindcss](https://tailwindcss.com/) - Tailwindcss Adalah Sebuah Framework CSS yang berbasis utility class untuk styling halaman website.
 - [Google Chrome](https://www.google.co.id/chrome/?brand=YTUH&gclid=Cj0KCQjwlPWgBhDHARIsAH2xdNef4QCGhz3BBFKkSlHiM0iQEWEg55eTc1pAjTSI_Sb2A8h8X_1ARuIaAtfuEALw_wcB&gclsrc=aw.ds) - Google Chrome Adalah aplikasi browser yang gratis.
 - [Visual Studio Code](https://code.visualstudio.com/) - Visual Studio Adalah Sebuah Text Editor untuk menulis program.
+
 ## Requirement
+
 - Node JS v18.12.1 or later
 - MySQL v8.0 or later
 - ReactJS v16.8.6 or later
@@ -32,137 +33,44 @@ Aplikasi ini dibangun menggunakan :
 
 ## Installation
 
-Dillinger requires [Node.js](https://nodejs.org/) v10+ to run.
+Aplikasi Shoping membutuhkan [Node.js](https://nodejs.org/) v18+ untuk dijalankan.
 
-Install the dependencies and devDependencies and start the server.
+Instal dependensi dan devDependencies dan mulai server.
+
+Untuk menjalankan aplikasi :
 
 ```sh
-cd dillinger
+cd e-comerce
 npm i
-node app
+npm start
 ```
 
-For production environments...
+Untuk menjalankan server:
 
 ```sh
-npm install --production
-NODE_ENV=production node app
+cd  REST-API
+npm i
+npm start
 ```
 
-## Plugins
+## Roadmap
 
-Dillinger is currently extended with the following plugins.
-Instructions on how to use them in your own application are linked below.
+- Buka xampp buat database baru dengan nama `db_ecomerce`
 
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
+- Kemudian pilih menu `import`
 
-## Development
+- Pilih database yang disediakan di Folder REST-API
 
-Want to contribute? Great!
+## Environment Variables
 
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantaneously see your updates!
+Untuk menjalankan proyek ini, Anda perlu menambahkan variabel lingkungan berikut ke file .env Anda
 
-Open your favorite Terminal and run these commands.
-
-First Tab:
-
-```sh
-node app
-```
-
-Second Tab:
-
-```sh
-gulp watch
-```
-
-(optional) Third:
-
-```sh
-karma test
-```
-
-#### Building for source
-
-For production release:
-
-```sh
-gulp build --prod
-```
-
-Generating pre-built zip archives for distribution:
-
-```sh
-gulp build dist --prod
-```
-
-## Docker
-
-Dillinger is very easy to install and deploy in a Docker container.
-
-By default, the Docker will expose port 8080, so change this within the
-Dockerfile if necessary. When ready, simply use the Dockerfile to
-build the image.
-
-```sh
-cd dillinger
-docker build -t <youruser>/dillinger:${package.json.version} .
-```
-
-This will create the dillinger image and pull in the necessary dependencies.
-Be sure to swap out `${package.json.version}` with the actual
-version of Dillinger.
-
-Once done, run the Docker image and map the port to whatever you wish on
-your host. In this example, we simply map port 8000 of the host to
-port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
-
-```sh
-docker run -d -p 8000:8080 --restart=always --cap-add=SYS_ADMIN --name=dillinger <youruser>/dillinger:${package.json.version}
-```
-
-> Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
-
-Verify the deployment by navigating to your server address in
-your preferred browser.
-
-```sh
-127.0.0.1:8000
-```
+`PORT`
+`DB_HOST`
+`DB_USERNAME`
+`DB_PASSSWORD`
+`DB_NAME`
 
 ## License
 
-MIT
-
-**Free Software, Hell Yeah!**
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
+[MIT](https://choosealicense.com/licenses/mit/)
