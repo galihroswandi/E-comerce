@@ -36,7 +36,7 @@ const CartProductsOrgs = () => {
           </div>
           <div className="cart-wrapper -mt-3">
             <div>
-              <div className="flex justify-end mt-1 -mb-2">
+              <div className="flex justify-end mt-3">
                 <button className="mr-2 md:-translate-x-20 -translate-x-1 lg:-translate-x-2 font-extralight text-xs text-pink-600">
                   Hapus
                 </button>
@@ -89,7 +89,7 @@ const CartProductsOrgs = () => {
               </div>
             </div>
             <div>
-              <div className="flex justify-end mt-1 -mb-2">
+              <div className="flex justify-end mt-3">
                 <button className="mr-2 md:-translate-x-20 -translate-x-1 lg:-translate-x-2 font-extralight text-xs text-pink-600">
                   Hapus
                 </button>
@@ -142,7 +142,7 @@ const CartProductsOrgs = () => {
               </div>
             </div>
             <div>
-              <div className="flex justify-end mt-1 -mb-2">
+              <div className="flex justify-end mt-3">
                 <button className="mr-2 md:-translate-x-20 -translate-x-1 lg:-translate-x-2 font-extralight text-xs text-pink-600">
                   Hapus
                 </button>
