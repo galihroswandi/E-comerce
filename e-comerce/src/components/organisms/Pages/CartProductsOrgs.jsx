@@ -47,7 +47,7 @@ const CartProductsOrgs = () => {
                   className="w-24 border p-0.5 rounded-md"
                 />
               </div>
-              <div className="desc2 -ml-10 lg:ml-10 lg:max-w-[22rem] xl:max-w-full max-w-[10rem] sm:max-w-[22rem]">
+              <div className="desc2 -ml-10 lg:ml-10 lg:max-w-[22rem] xl:max-w-full max-w-[50%] sm:max-w-[22rem]">
                 <h2 className="text-slate-700 sm:text-xl sm:mr-3">
                   Laptop Asus ROG Strix 1 Terabyte RAM 8GB
                 </h2>
@@ -69,7 +69,7 @@ const CartProductsOrgs = () => {
                     className="max-w-[60%] py-2 px-3 border-none outline-none focus:ring-1 focus:ring-green-500 rounded-md text-sm text-slate-700 ring-1 ring-slate-200 md:max-w-full"
                   />
                 </div>
-                <div className="w-20 h-8 flex items-center -ml-10 sm:w-[50%] sm:ml-2 md:ml-2 xl:-ml-7">
+                <div className="w-20 h-8 flex items-center -ml-24 sm:w-[50%] sm:ml-2 md:ml-2 xl:-ml-7">
                   <div className="w-20 h-8 sm:flex sm:items-start sm:gap-6">
                     <h1 className="text-slate-700 hidden sm:inline-block xl:ml-10">
                       Kuantitas
@@ -77,7 +77,7 @@ const CartProductsOrgs = () => {
                     <Counter use="cart" />
                   </div>
                 </div>
-                <button className="mr-2 md:-translate-x-20 translate-x-1 lg:-translate-x-2">
+                <button className="mr-2 md:-translate-x-20 -translate-x-1 lg:-translate-x-2">
                   <img src={Trash} alt="hapus" />
                 </button>
               </div>
