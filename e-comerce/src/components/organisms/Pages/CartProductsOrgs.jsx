@@ -66,10 +66,10 @@ const CartProductsOrgs = () => {
                     id="pesan"
                     autoComplete="off"
                     placeholder="Type here..."
-                    className="max-w-[55%] py-2 px-3 border-none outline-none focus:ring-1 focus:ring-green-500 rounded-md text-sm text-slate-700 ring-1 ring-slate-200 md:max-w-full"
+                    className="max-w-[40%] xs:max-w-[60%] py-2 px-3 border-none outline-none focus:ring-1 focus:ring-green-500 rounded-md text-sm text-slate-700 ring-1 ring-slate-200 md:max-w-full"
                   />
                 </div>
-                <div className="w-20 h-8 flex items-center -ml-28 sm:w-[50%] sm:ml-2 md:ml-2 xl:-ml-7">
+                <div className="w-20 h-8 flex items-center -ml-[60%] sm:w-[50%] sm:ml-2 md:ml-2 xl:-ml-7">
                   <div className="w-20 h-8 sm:flex sm:items-start sm:gap-6">
                     <h1 className="text-slate-700 hidden sm:inline-block xl:ml-10">
                       Kuantitas
