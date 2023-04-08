@@ -30,7 +30,7 @@ const AllProducts = ({ title }) => {
         <h1 className="text-2xl text-slate-700 font-medium">{title}</h1>
         <Hr width="9rem" />
       </div>
-      <section className="products grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 justify-center items-center mt-5">
+      <section className="products grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 justify-center items-center mt-5">
         {data
           ? data.map((result, key) => {
               return (

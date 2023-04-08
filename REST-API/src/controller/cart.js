@@ -1,4 +1,5 @@
 const cartModel = require('./../models/cart');
+const productsModel = require('./../models/products');
 
 const getAllCarts = async (req, res) => {
     try {
@@ -18,18 +19,81 @@ const getAllCarts = async (req, res) => {
 const addCart = async (req, res) => {
     const { body } = req;
 
-    if (!body.id_product || !body.kuantitas) {
+    if (!body.id_product || !body.uid || !body.kuantitas) {
         res.status(400).json({
             message: "Anda mengirim data yang salah!",
             data: body
         })
+        return false;
     }
 
+    // Cek jika yang diinputkan telah ada di keranjang
+    const [findCart] = await cartModel.findCartByIDProduct(body.id_product);
+    if (findCart.length > 0) {
+
+        // hitung ulang totalHarga
+        const totalKuantitas = parseInt(findCart[0].kuantitas) + parseInt(body.kuantitas);
+        const total = parseInt(findCart[0].total_harga) * totalKuantitas;
+
+        // hitung ulang kuantitas
+        const newKuantitas = parseInt(findCart[0].kuantitas) + 1;
+        const id_cart = findCart[0].id_cart;
+
+        try {
+            await cartModel.updateKuantitas(newKuantitas, total, id_cart);
+            res.status(201).json({
+                message: "update kuantitas success",
+                data: body
+            })
+        } catch (err) {
+            res.status(500).json({
+                message: "Internal server error",
+                serverMessage: err
+            })
+        }
+        return false;
+    }
+
+
+    // Calculasi Harga * Kuantitas
+    const [resProduct] = await productsModel.findById(body.id_product);
+    const totalHarga = parseInt(resProduct[0].harga) * parseInt(body.kuantitas);
+
+
     try {
-        await cartModel.addCart(body);
+        await cartModel.addCart(body, totalHarga);
         res.status(201).json({
             message: "create new cart success",
             data: body,
+        })
+    } catch (err) {
+        res.status(500).json({
+            message: "Internal server error",
+            serverMessage: err
+        })
+    }
+}
+
+const updateKuantitas = async (req, res) => {
+    const { body } = req;
+    const { id_cart } = req.params;
+
+    if (!body.kuantitas) {
+        res.status(400).json({
+            message: "Anda mengirim data yang salah!",
+            data: body
+        })
+        return false;
+    }
+
+    // hitung ulang totalHarga
+    const [findCart] = await cartModel.findCart(id_cart);
+
+    try {
+        await cartModel.updateKuantitas(body.kuantitas);
+        res.status(201).json({
+            message: `kuantitas berhasil di update !`,
+            data: body
         })
     } catch (err) {
         res.status(500).json({
@@ -63,4 +127,4 @@ const deleteCart = async (req, res) => {
     }
 }
 
-module.exports = { getAllCarts, addCart, deleteCart };
+module.exports = { getAllCarts, addCart, deleteCart, updateKuantitas };

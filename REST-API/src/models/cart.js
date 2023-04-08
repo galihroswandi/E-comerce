@@ -12,8 +12,20 @@ const findCart = (id_cart) => {
     return dbPool.execute(SQLQuery);
 }
 
-const addCart = (body) => {
-    const SQLQuery = `INSERT INTO cart VALUES(null, '${body.id_product}', '${body.kuantitas}')`;
+const findCartByIDProduct = (id_product) => {
+    const SQLQuery = `SELECT * FROM cart WHERE id_product='${id_product}'`;
+
+    return dbPool.execute(SQLQuery);
+}
+
+const addCart = (body, totalHarga) => {
+    const SQLQuery = `INSERT INTO cart VALUES(null, '${body.uid}', '${body.id_product}', '${body.kuantitas}','${totalHarga}', '1', null)`;
+
+    return dbPool.execute(SQLQuery);
+}
+
+const updateKuantitas = (newKuantitas, totalHarga, id_cart) => {
+    const SQLQuery = `UPDATE cart SET kuantitas='${newKuantitas}', total_harga='${totalHarga}' WHERE id_cart='${id_cart}'`;
 
     return dbPool.execute(SQLQuery);
 }
@@ -24,4 +36,4 @@ const deleteCart = (id_cart) => {
     return dbPool.execute(SQLQuery);
 }
 
-module.exports = { getAllCart, addCart, findCart, deleteCart };
+module.exports = { getAllCart, addCart, findCart, deleteCart, findCartByIDProduct, updateKuantitas };

@@ -9,6 +9,9 @@ router.post('/', cartController.addCart);
 // Menampilkan cart
 router.get('/', cartController.getAllCarts);
 
+// update kuantitas
+router.patch('/:id_cart', cartController.updateKuantitas);
+
 // menghapus cart
 router.delete('/:id_cart', cartController.deleteCart);
 

@@ -6,7 +6,6 @@ import AllProducts from "../AllProducts";
 import { findProduct } from "../../../config/products/products";
 import MainCardDetail from "../../Elements/CardDetailProduct";
 import { filterDataByAmount } from "../../../config/redux/reducer/ProductsSlice";
-import DescText from "../../Elements/CardDetailProduct/DescText";
 
 const DetailProducts = () => {
   const dispatch = useDispatch();
@@ -26,9 +25,8 @@ const DetailProducts = () => {
 
   return (
     <div className="relative">
-      <div className="card mt-[5.7rem] mx-2 py-5 px-5 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-8 sm:container">
+      <div className="card mt-[5.7rem] mx-2 py-5 px-5 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-8 sm:container md:px-0">
         <MainCardDetail findData={findData} loading={loading} />
-        <DescText use="sm" />
       </div>
       <AllProducts title="Rekomendasi" />
     </div>
