@@ -8,7 +8,7 @@ import counterReducer from "../reducer/counterSlice";
 export const store = configureStore({
     reducer: {
         products: productsReducer,
-        cart: cartReducer,
+        cartId: cartReducer,
         loading: loadingReducer,
         counter: counterReducer,
     },

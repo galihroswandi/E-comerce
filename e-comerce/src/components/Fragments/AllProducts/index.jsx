@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { url } from "../../../config/api/api.config";
+import { useDispatch, useSelector } from "react-redux";
 
 import Hr from "./../../Elements/Hr";
 import CardProduct from "../../Elements/CardProduct";
-import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../config/products/products";
 import { setDataByAmount } from "../../../config/redux/reducer/ProductsSlice";
 

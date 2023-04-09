@@ -31,7 +31,7 @@ const CardKeranjang = ({ cartData, getCarts }) => {
       </div>
       <div className="desc flex flex-wrap gap-1 justify-between items-center mt-5 border-y-[.1rem] border-green-500 py-5 xl:py-3 xl:mt-2">
         <div className="desc1 flex justify-center items-center gap-3">
-          <Input />
+          <Input dataId={cartData.id_cart} />
           <img
             src={`${url()}/${cartData.gambar_product}`}
             alt="Product 2"

@@ -1,12 +1,16 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import { setData, setCarts } from "./../../../config/redux/reducer/cartSlice";
 import Ringkasan from "../../Elements/RingkasanCart";
 import { getAllCartByUser } from "../../../config/cart";
 import CardKeranjang from "../../Elements/CardKeranjang";
 
 const CartProductsOrgs = () => {
+  const cartId = useSelector((state) => state.cartId.dataId);
+  const dispacth = useDispatch();
+
   const [dataCart, setDataCart] = useState([]);
-  const [dataRingkas, setDataRingkas] = useState([]);
 
   const handleAllChecked = (target) => {
     const allCheckbox = document.querySelectorAll(".checked");
@@ -15,20 +19,59 @@ const CartProductsOrgs = () => {
     } else {
       allCheckbox.forEach((e) => (e.checked = false));
     }
+    setCartGlobal();
   };
 
   const getAllCarts = (id_user) => {
     getAllCartByUser(1).then((res) => {
       setDataCart(res.data.data);
+      setCartGlobal();
     });
+  };
+
+  const setCartGlobal = () => {
+    const checkedChild = Array.from(
+      document.querySelectorAll(".checked-child")
+    );
+    if (checkedChild !== 0) {
+      const filterChild = checkedChild.filter((e) => e.checked === true);
+      if (filterChild.length > 1) {
+        const idData = filterChild.map((el) => el.dataset.id);
+        getAllCartByUser(1).then((res) => {
+          const newData = [];
+          idData.forEach((id) => {
+            res.data.data.filter((re) => {
+              if (re.id_cart == id) {
+                newData.push(re);
+              }
+            });
+          });
+          dispacth(setCarts(newData));
+        });
+        dispacth(setData({ data: idData }));
+      } else if (filterChild.length == 1) {
+        dispacth(setData(filterChild[0].dataset.id));
+        getAllCartByUser(1).then((res) => {
+          const newData = [];
+          res.data.data.filter((re) => {
+            if (re.id_cart == filterChild[0].dataset.id) {
+              newData.push(re);
+            }
+          });
+          dispacth(setCarts(newData));
+        });
+      } else {
+        dispacth(setCarts([]));
+      }
+    }
   };
 
   useEffect(() => {
     getAllCartByUser(1).then((res) => {
       setDataCart(res.data.data);
-      const allCheckbox = document.querySelectorAll(".checked");
-      allCheckbox.forEach((e) => (e.checked = true));
     });
+
+    setCartGlobal();
   }, []);
 
   return (
