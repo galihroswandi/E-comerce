@@ -88,9 +88,15 @@ const updateKuantitas = async (req, res) => {
 
     // hitung ulang totalHarga
     const [findCart] = await cartModel.findCart(id_cart);
+    const id_product = findCart[0].id_product;
+    const [resProduct] = await productsModel.findById(id_product);
+
+    const hargaAsli = parseInt(resProduct[0].harga);
+    const newKuantitas = parseInt(body.kuantitas);
+    const newHarga = hargaAsli * newKuantitas;
 
     try {
-        await cartModel.updateKuantitas(body.kuantitas);
+        await cartModel.updateKuantitas(body.kuantitas, newHarga, id_cart);
         res.status(201).json({
             message: `kuantitas berhasil di update !`,
             data: body
