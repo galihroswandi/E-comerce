@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
+import toRupiah from "@develoka/angka-rupiah-js";
 
 import Counter from "../../Elements/Counter";
 import Ringkasan from "../../Elements/RingkasanCart";
 import { getAllCartByUser, removeCart } from "../../../config/cart";
 import { url } from "../../../config/api/api.config";
 import { useDispatch } from "react-redux";
-import { addGlobalCart } from "../../../config/redux/reducer/cartSlice";
 
 const CartProductsOrgs = () => {
   const [dataCart, setDataCart] = useState([]);
@@ -93,7 +93,7 @@ const CartProductsOrgs = () => {
                         {cart.nama_product}
                       </h2>
                       <h2 className="font-extralight text-green-600 mt-2 md:text-xl">
-                        Rp{cart.harga}
+                        {toRupiah(cart.harga, { floatingPoint: 0 })}
                       </h2>
                     </div>
                     <div className="desc-3 flex items-center justify-between min-w-full relative">

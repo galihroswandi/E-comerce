@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import toRupiah from "@develoka/angka-rupiah-js";
 
-import CartIcon from "./../../../assets/icons/AddCart.svg";
 import { url } from "../../../config/api/api.config";
 import DescText from "./DescText";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,7 +84,9 @@ const MainCardDetail = ({ loading, findData }) => {
         </h1>
         <div className="mb-5 lg:mb-7">
           <h2 className="text-xl lg:text-2xl font-extralight text-green-600">
-            Rp{findData.length !== 0 ? findData[0].harga : null}
+            {findData.length !== 0
+              ? toRupiah(findData[0].harga, { floatingPoint: 0 })
+              : null}
           </h2>
         </div>
         <DescText use="sm" />

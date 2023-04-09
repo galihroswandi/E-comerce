@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import Button from "./Button";
+import toRupiah from "@develoka/angka-rupiah-js";
 
 const Ringkasan = ({ data_cart }) => {
   const totalHarga = data_cart.reduce(
@@ -17,12 +18,14 @@ const Ringkasan = ({ data_cart }) => {
                 className="text-slate-400 flex justify-between text-base py-3 border-b mb-4"
                 key={index + 1}
               >
-                Total Harga (Barang {index + 1}) <span>Rp{el.total_harga}</span>
+                Total Harga (Barang {index + 1}){" "}
+                <span>{toRupiah(el.total_harga, { floatingPoint: 0 })}</span>
               </p>
             );
           })}
           <p className="text-slate-800 flex justify-between text-lg mb-8 font-medium">
-            Total Bayar <span>Rp{totalHarga}</span>
+            Total Bayar{" "}
+            <span>{toRupiah(totalHarga, { floatingPoint: 0 })}</span>
           </p>
           <Button />
         </div>

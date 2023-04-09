@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import toRupiah from "@develoka/angka-rupiah-js";
 
 const CardProduct = ({ id, image, title, kategori, harga }) => {
   return (
@@ -12,7 +13,9 @@ const CardProduct = ({ id, image, title, kategori, harga }) => {
           <h3 className="text-sm text-slate-400 mb-[.1rem]">{kategori}</h3>
           <h1 className="text-[16px] text-slate-800">{title}</h1>
           <div className="price mt-2">
-            <span className="text-md text-pink-700">Rp{harga}</span>
+            <span className="text-md text-pink-700">
+              {toRupiah(harga, { floatingPoint: 0 })}
+            </span>
           </div>
         </div>
       </div>
