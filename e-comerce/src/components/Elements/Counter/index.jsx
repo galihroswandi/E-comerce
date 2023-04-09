@@ -16,17 +16,19 @@ const Counter = (props) => {
   );
 
   useEffect(() => {
-    if (count !== props.defaultValue) {
-      const id_cart = props.id_cart;
-      const data = {
-        kuantitas: count,
-      };
+    if (!props.global) {
+      if (count !== props.defaultValue) {
+        const id_cart = props.id_cart;
+        const data = {
+          kuantitas: count,
+        };
 
-      setTimeout(() => {
-        updateKuantitas(id_cart, data).then((res) => {
-          props.getAllCart();
-        });
-      }, 2000);
+        setTimeout(() => {
+          updateKuantitas(id_cart, data).then((res) => {
+            props.getAllCart();
+          });
+        }, 2000);
+      }
     }
   });
 

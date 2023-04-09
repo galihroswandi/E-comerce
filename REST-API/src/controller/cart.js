@@ -30,10 +30,11 @@ const addCart = async (req, res) => {
     // Cek jika yang diinputkan telah ada di keranjang
     const [findCart] = await cartModel.findCartByIDProduct(body.id_product);
     if (findCart.length > 0) {
+        const [resProduct] = await productsModel.findById(body.id_product);
 
         // hitung ulang totalHarga
         const totalKuantitas = parseInt(findCart[0].kuantitas) + parseInt(body.kuantitas);
-        const total = parseInt(findCart[0].total_harga) * totalKuantitas;
+        const total = parseInt(resProduct[0].harga) * totalKuantitas;
 
         // hitung ulang kuantitas
         const newKuantitas = parseInt(findCart[0].kuantitas) + 1;
@@ -87,26 +88,36 @@ const updateKuantitas = async (req, res) => {
     }
 
     // hitung ulang totalHarga
-    const [findCart] = await cartModel.findCart(id_cart);
-    const id_product = findCart[0].id_product;
-    const [resProduct] = await productsModel.findById(id_product);
-
-    const hargaAsli = parseInt(resProduct[0].harga);
-    const newKuantitas = parseInt(body.kuantitas);
-    const newHarga = hargaAsli * newKuantitas;
-
     try {
-        await cartModel.updateKuantitas(body.kuantitas, newHarga, id_cart);
-        res.status(201).json({
-            message: `kuantitas berhasil di update !`,
-            data: body
-        })
+        const [findCart] = await cartModel.findCart(id_cart);
+        const id_product = findCart[0].id_product;
+        const [resProduct] = await productsModel.findById(id_product);
+
+        const hargaAsli = parseInt(resProduct[0].harga);
+        const newKuantitas = parseInt(body.kuantitas);
+        let newHarga = hargaAsli * newKuantitas;
+
+        try {
+            await cartModel.updateKuantitas(body.kuantitas, newHarga, id_cart);
+            res.status(201).json({
+                message: `kuantitas berhasil di update !`,
+                data: body
+            })
+        } catch (err) {
+            res.status(500).json({
+                message: "Internal server error",
+                serverMessage: err
+            })
+        }
+
     } catch (err) {
         res.status(500).json({
             message: "Internal server error",
             serverMessage: err
         })
+        return false;
     }
+
 }
 
 const deleteCart = async (req, res) => {
