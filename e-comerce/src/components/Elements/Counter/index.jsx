@@ -5,6 +5,7 @@ import {
   decrementByAmount,
   incrementByAmont,
 } from "./../../../config/redux/reducer/counterSlice";
+import { updateKuantitas } from "../../../config/cart";
 
 const Counter = (props) => {
   const dispatch = useDispatch();
@@ -14,11 +15,20 @@ const Counter = (props) => {
     props.defaultValue ? props.defaultValue : 1
   );
 
-  // if (count !== props.defaultValue) {
-  //   setTimeout(() => {
-  //     alert("Oke");
-  //   }, 3000);
-  // }
+  useEffect(() => {
+    if (count !== props.defaultValue) {
+      const id_cart = props.id_cart;
+      const data = {
+        kuantitas: count,
+      };
+
+      setTimeout(() => {
+        updateKuantitas(id_cart, data).then((res) => {
+          props.getAllCart();
+        });
+      }, 2000);
+    }
+  });
 
   return (
     <div className="counter w-56 grid grid-cols-2 items-center">

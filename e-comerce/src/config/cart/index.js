@@ -39,3 +39,14 @@ export const removeCart = (id_cart) => {
             })
     })
 }
+
+export const updateKuantitas = (id_cart, data) => {
+    return new Promise((resolve, reject) => {
+        axios.patch(`${url()}/cart/${id_cart}`, data)
+            .then(res => {
+                resolve(res);
+            }).catch(err => {
+                reject(err);
+            })
+    })
+}

@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 
 const CartProductsOrgs = () => {
   const [dataCart, setDataCart] = useState([]);
-  const dispatch = useDispatch();
 
   const handleChecked = (target) => {
     const allCheckbox = document.querySelectorAll(".checked");
@@ -115,7 +114,12 @@ const CartProductsOrgs = () => {
                           <h1 className="text-slate-700 hidden sm:inline-block xl:ml-10 text-[.8rem] font-medium leading-3">
                             Kuantitas
                           </h1>
-                          <Counter use="cart" defaultValue={cart.kuantitas} />
+                          <Counter
+                            use="cart"
+                            defaultValue={cart.kuantitas}
+                            id_cart={cart.id_cart}
+                            getAllCart={() => getAllUsers()}
+                          />
                         </div>
                       </div>
                     </div>
