@@ -17,7 +17,7 @@ const Hamburger = () => {
       id="hamburger"
       name="button"
       type="button"
-      className="block absolute. right-4 lg:hidden"
+      className="max-w-xs block absolute. right-4 lg:hidden"
       aria-label="button"
       onClick={hamburgerClick}
     >
