@@ -72,7 +72,7 @@ const CheckoutTemplate = () => {
                 className="w-16 border p-0.5 rounded-md"
               />
               <div className="desc flex flex-col gap-1 text-slate-600">
-                <p className="text-xs">
+                <p className="text-sm">
                   Laptop Asus ROG Strix 1 Terabite Ram 8GB
                 </p>
                 <p className="text-xs">Rp. 30.000.000 (x5)</p>
@@ -151,10 +151,10 @@ const CheckoutTemplate = () => {
               </div>
             </div>
             <div className="submit flex justify-end gap-2 mb-2">
-              <button className="text-xs border border-green-500 px-5 py-[.3rem] rounded-sm text-green-500">
+              <button className="text-xs border border-green-500 px-5 py-[.4rem] rounded-sm text-green-500">
                 Batal
               </button>
-              <button className="text-xs border px-5 py-[.3rem] rounded-sm text-green-100 bg-green-500 leading-4">
+              <button className="text-xs border px-5 py-[.4rem] rounded-sm text-green-100 bg-green-500 leading-4">
                 Buat Pesanan
               </button>
             </div>
