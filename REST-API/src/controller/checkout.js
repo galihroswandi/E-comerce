@@ -2,17 +2,10 @@ const checkoutModel = require('./../models/checkout');
 
 const getAllCheckout = async (req, res) => {
 
-    const { body } = req;
-
-    if (!body.id_user) {
-        res.status(400).json({
-            message: "Anda mengirim data yang salah!",
-            data: body
-        })
-    }
+    const { id_checkout } = req.params;
 
     try {
-        const [data] = await checkoutModel.getAllCheckout(body);
+        const [data] = await checkoutModel.getAllCheckout(id_checkout);
         res.status(200).json({
             message: "Get All Checkout Success",
             data
@@ -26,6 +19,10 @@ const getAllCheckout = async (req, res) => {
 }
 
 const addCheckout = async (req, res) => {
+
+    res.json({
+        status: "Oke"
+    })
 
     const { body } = req;
 

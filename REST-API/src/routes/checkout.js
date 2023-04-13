@@ -3,7 +3,7 @@ const { getAllCheckout, addCheckout, deleteCheckout } = require('../controller/c
 const router = express.Router();
 
 // Get All checkout where id_user
-router.get('/', getAllCheckout);
+router.get('/:id_checkout', getAllCheckout);
 
 // Post checkout
 router.post('/', addCheckout);

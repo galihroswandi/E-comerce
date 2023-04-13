@@ -1,7 +1,7 @@
 const dbPool = require('./../config/database');
 
-const getAllCheckout = (body) => {
-    const SQLQuery = `SELECT * FROM checkout JOIN users ON checkout.id_user=users.id_user JOIN products ON checkout.id_product=products.id_product WHERE checkout.id_user='${body.id_user}'`;
+const getAllCheckout = (id_checkout) => {
+    const SQLQuery = `SELECT * FROM checkout JOIN users ON checkout.id_user=users.id_user JOIN products ON checkout.id_product=products.id_product WHERE checkout.id_user='${id_checkout}'`;
 
     return dbPool.execute(SQLQuery);
 }

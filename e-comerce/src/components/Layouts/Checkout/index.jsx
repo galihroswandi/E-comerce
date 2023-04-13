@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 
 import Navbar from "../../Elements/Navbar";
 import Footer from "../../Elements/Footer";
@@ -6,8 +6,13 @@ import Checkout1 from "./../../../assets/ellipse/Checkout-1.svg";
 import Pensil from "./../../../assets/icons/Pencil.svg";
 import MapIcon from "./../../../assets/icons/map.svg";
 import Product1 from "./../../../assets/img/Product8.svg";
+import { getAllCheckout } from "../../../config/checkout";
 
 const CheckoutTemplate = () => {
+  useEffect(() => {
+    getAllCheckout({ id_user: 1 });
+  }, []);
+
   return (
     <Fragment>
       <Navbar />
