@@ -10,13 +10,6 @@ import Product1 from "./../../../assets/img/Product8.svg";
 import { getAllCheckout } from "../../../config/checkout";
 
 const CheckoutTemplate = () => {
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.checkout.data);
-
-  useEffect(() => {
-    getAllCheckout(1, dispatch);
-  }, []);
-
   return (
     <Fragment>
       <Navbar />
