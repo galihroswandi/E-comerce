@@ -1,14 +1,19 @@
 const checkoutModel = require('./../models/checkout');
+const usersModel = require('./../models/users');
 
 const getAllCheckout = async (req, res) => {
 
-    const { id_checkout } = req.params;
+    const { id_user } = req.params;
 
     try {
-        const [data] = await checkoutModel.getAllCheckout(id_checkout);
+        const [dataCheckout] = await checkoutModel.getAllCheckout(id_user);
+        const [dataUser] = await usersModel.findUser(id_user);
         res.status(200).json({
             message: "Get All Checkout Success",
-            data
+            data: {
+                checkout: dataCheckout,
+                user: dataUser
+            }
         })
     } catch (err) {
         res.status(500).json({
