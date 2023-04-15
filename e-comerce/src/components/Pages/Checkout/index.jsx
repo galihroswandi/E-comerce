@@ -6,6 +6,12 @@ import CheckoutFragment from "./../../Fragments/Checkout";
 import CheckoutTemplate from "./../../Layouts/Checkout";
 
 const Checkout = () => {
-  return <CheckoutTemplate />;
+  return (
+    <>
+      <Navbar />
+      <CheckoutFragment />
+      <Footer />
+    </>
+  );
 };
 export default Checkout;

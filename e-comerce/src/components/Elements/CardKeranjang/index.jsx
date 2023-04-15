@@ -3,16 +3,22 @@ import toRupiah from "@develoka/angka-rupiah-js";
 
 import { url } from "../../../config/api/api.config";
 import Counter from "../Counter";
-import { removeCart } from "../../../config/cart";
+import { getAllCartByUser, removeCart } from "../../../config/cart";
 import Input from "./InputField";
 import Pesan from "./Pesan";
+import { useDispatch } from "react-redux";
+import { setTotalCart } from "../../../config/redux/reducer/cartSlice";
 
 const CardKeranjang = ({ cartData, getCarts }) => {
+  const dispatch = useDispatch();
+
   const handleRemoveCart = async (e) => {
     const id_cart = e.target.dataset.id;
     try {
       await removeCart(id_cart);
       getCarts(1);
+      const res = await getAllCartByUser(1);
+      dispatch(setTotalCart(res.data.data.length));
     } catch (err) {
       console.log(err);
     }

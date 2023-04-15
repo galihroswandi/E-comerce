@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Hr from "./../../Elements/Hr";
 import CardProduct from "../../Elements/CardProduct";
-import { getProducts } from "../../../config/products/products";
+import { findProduct, getProducts } from "../../../config/products/products";
 import { setDataByAmount } from "../../../config/redux/reducer/ProductsSlice";
 
 const AllProducts = ({ title }) => {

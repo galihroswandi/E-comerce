@@ -1,10 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import toRupiah from "@develoka/angka-rupiah-js";
+import { findProduct } from "../../../config/products/products";
+import { useDispatch } from "react-redux";
+import { filterDataByAmount } from "../../../config/redux/reducer/ProductsSlice";
 
 const CardProduct = ({ id, image, title, kategori, harga }) => {
+  const dispatch = useDispatch();
+
+  const handleClickProduct = async () => {
+    try {
+      const res = await findProduct(id);
+      dispatch(filterDataByAmount(res[0][0]));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <Link to={`/product/${id}`}>
+    <Link onClick={() => handleClickProduct()} to={`/product/${id}`}>
       <div className="card bg-white p-3 md:p-4 box-border rounded-lg shadow-md">
         <div className="img mb-1 md:mb-3 flex justify-center items-center">
           <img src={image} alt={title} className="rounded-md border p-1" />

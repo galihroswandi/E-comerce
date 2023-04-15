@@ -11,7 +11,7 @@ const productSlice = createSlice({
             state.data.push(action.payload);
         },
         filterDataByAmount: (state, action) => {
-            state.filterData.push(action.payload);
+            state.filterData = action.payload
         }
     }
 })

@@ -2,16 +2,18 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import toRupiah from "@develoka/angka-rupiah-js";
+import { useDispatch, useSelector } from "react-redux";
 
 import { url } from "../../../config/api/api.config";
 import DescText from "./DescText";
-import { useDispatch, useSelector } from "react-redux";
-import { addCart } from "../../../config/cart";
+import { addCart, getAllCartByUser } from "../../../config/cart";
 import Counter from "../Counter";
+import { setTotalCart } from "./../../../config/redux/reducer/cartSlice";
 
-const MainCardDetail = ({ loading, findData }) => {
+const MainCardDetail = ({ loading }) => {
   const dispatch = useDispatch();
   const globelCounter = useSelector((state) => state.counter.value);
+  const dataDetail = useSelector((state) => state.products.filterData);
   const { id_product } = useParams();
 
   useEffect(() => {
@@ -52,7 +54,14 @@ const MainCardDetail = ({ loading, findData }) => {
       kuantitas: globelCounter,
     };
 
-    addCart(data, dispatch).then((res) => {
+    addCart(data, dispatch).then(async (res) => {
+      try {
+        const res = await getAllCartByUser(1);
+        dispatch(setTotalCart(res.data.data.length));
+      } catch (err) {
+        console.log(err);
+      }
+
       Swal.fire(
         "Success",
         "1 data berhasil ditambahkan ke keranjang",
@@ -71,7 +80,8 @@ const MainCardDetail = ({ loading, findData }) => {
         ) : (
           <img
             src={`${url()}/${
-              findData.length !== 0 ? findData[0].gambar_product : null
+              dataDetail.gambar_product !== "undifined" &&
+              dataDetail.gambar_product
             }`}
             alt="Images"
             className="w-full -mt-5 sm:w-[20rem] lg:w-[30rem] border rounded-md p-2 box-border"
@@ -80,13 +90,12 @@ const MainCardDetail = ({ loading, findData }) => {
       </div>
       <div className="desc sm:mr-10 xl:mr-20">
         <h1 className="text-xl text-slate-800 mb-5 font-extralight lg:text-4xl">
-          {findData.length !== 0 ? findData[0].nama_product : null}
+          {dataDetail.nama_product !== "undefined" && dataDetail.nama_product}
         </h1>
         <div className="mb-5 lg:mb-7">
           <h2 className="text-xl lg:text-2xl font-extralight text-green-600">
-            {findData.length !== 0
-              ? toRupiah(findData[0].harga, { floatingPoint: 0 })
-              : null}
+            {dataDetail.harga !== "undifined" &&
+              toRupiah(parseInt(dataDetail.harga), { floatingPoint: 0 })}
           </h2>
         </div>
         <DescText use="sm" />
