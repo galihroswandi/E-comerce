@@ -7,10 +7,13 @@ import CheckoutTemplate from "./../../Layouts/Checkout";
 
 const Checkout = () => {
   return (
+    // <>
+    //   <Navbar />
+    //   <CheckoutFragment />
+    //   <Footer />
+    // </>
     <>
-      <Navbar />
-      <CheckoutFragment />
-      <Footer />
+      <CheckoutTemplate />
     </>
   );
 };
