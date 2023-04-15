@@ -10,17 +10,14 @@ import { filterDataByAmount } from "../../../config/redux/reducer/ProductsSlice"
 const DetailProducts = () => {
   const dispatch = useDispatch();
   const dataDetail = useSelector((state) => state.products);
-  console.log(dataDetail);
 
   const { id_product } = useParams();
   const [loading, setLoading] = useState(true);
-  const [findData, setFindData] = useState([]);
 
   useEffect(() => {
     setLoading(true);
     findProduct(id_product).then((res) => {
       setLoading(false);
-      setFindData(res[0]);
       dispatch(filterDataByAmount(res[0][0]));
     });
   }, []);

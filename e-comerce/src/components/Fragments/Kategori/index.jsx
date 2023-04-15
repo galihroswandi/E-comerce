@@ -25,7 +25,10 @@ const Categories = () => {
         <h1 className="text-2xl text-slate-700 font-medium">Kategori</h1>
         <Hr />
       </div>
-      <section className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 justify-center items-center gap-3 mt-5">
+      <section
+        className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 justify-center items-center gap-3 mt-5"
+        id="categori-wrapper"
+      >
         {kategoris.map((kategori, key) => {
           return (
             <Link key={key} to="/categori/pakaian">

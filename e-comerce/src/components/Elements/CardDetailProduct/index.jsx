@@ -71,7 +71,7 @@ const MainCardDetail = ({ loading }) => {
   };
 
   return (
-    <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-5 lg:px-[5rem]">
+    <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-5 lg:px-[2rem] xl:px-[5rem] py-5">
       <div className="img mb-5 mt-10">
         {loading === true ? (
           <div className="animate-pulse flex space-x-4">
@@ -102,7 +102,10 @@ const MainCardDetail = ({ loading }) => {
         <div className="mb-5">
           <Counter global={true} />
         </div>
-        <div className="footer fixed bg-white bg-opacity-5 backdrop-blur-md bottom-0 z-10 left-0 right-0 py-4 px-7 border-t-[.1rem] flex justify-between items-center sm:static sm:px-0 sm:gap-0 lg:gap-2">
+        <div
+          className="footer fixed bg-white bg-opacity-5 backdrop-blur-md bottom-0 z-10 left-0 right-0 py-4 px-7 border-t-[.1rem] flex justify-between items-center sm:static sm:px-0 sm:gap-0 lg:gap-2"
+          id="footer-add-cart"
+        >
           <button
             className="bg-green-500 text-white py-2 px-3 text-md font-extralight text-center leading-5 flex justify-center item sm:py-[.4rem] rounded-sm min-w-[45%] sm:min-w-0"
             onClick={() => globelCounter > 0 && handleCartClick()}
