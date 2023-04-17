@@ -30,6 +30,17 @@ body {
   scroll-behavior: smooth;
 }
 
+@media screen and (min-width: 400px) {
+  #cart {
+    display: grid;
+    grid-template-columns: minmax(4rem, 6rem) minmax(10rem, 1fr) minmax(5rem, 1fr);
+  }
+
+  #counter {
+    grid-column-start: auto !important;
+  }
+}
+
 @media screen and (max-width: 330px) {
   #product-wrapper {
     display: grid;

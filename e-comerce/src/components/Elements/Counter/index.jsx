@@ -34,16 +34,9 @@ const Counter = (props) => {
 
   return (
     <div className="counter w-56 grid grid-cols-2 items-center">
-      {props.use !== "cart" ? (
-        <div className="title">
-          <h4 className="text-[.8rem] font-medium leading-3 text-slate-700">
-            Kuantitas
-          </h4>
-        </div>
-      ) : null}
-      <div className="counterChange flex">
+      <div className="counterChange flex max-h-5">
         <button
-          className="px-1 md:px-2 border-t border-b border-l border-slate-300 text-lg text-slate-700 font-extralight"
+          className="text-[.7rem] px-[.17rem] flex justify-center items-center md:px-2 border-t border-b border-l border-slate-300 text-lg text-slate-700 font-extralight"
           onClick={() =>
             props.global
               ? globalCounter > 1 && dispatch(decrementByAmount(1))
@@ -54,13 +47,13 @@ const Counter = (props) => {
         </button>
         <input
           type="text"
-          className="border border-slate-300 inline-block w-20 text-center text-slate-600 font-extralight max-w-[3rem]"
+          className="text-[.8rem] border border-slate-300 inline-block w-8 text-center text-slate-600 font-extralight max-w-[3rem]"
           value={props.global === true ? globalCounter : count}
           disabled
           autoComplete="off"
         />
         <button
-          className="md:px-2 px-1 border-r border-t border-b border-slate-300 text-lg text-slate-700 font-extralight"
+          className="text-[.89rem] px-[.17rem] flex justify-center items-center md:px-2 border-t border-b border-r border-slate-300 text-lg text-slate-700 font-extralight"
           onClick={() =>
             props.global ? dispatch(incrementByAmont(1)) : setCount(count + 1)
           }

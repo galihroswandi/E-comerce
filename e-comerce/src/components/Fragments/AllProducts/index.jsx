@@ -27,7 +27,9 @@ const AllProducts = ({ title }) => {
   return (
     <div className="container mb-20 px-7">
       <div className="title">
-        <h1 className="text-2xl text-slate-700 font-medium">{title}</h1>
+        <h1 className="text-lg md:text-2xl text-slate-700 font-medium">
+          {title}
+        </h1>
         <Hr width="9rem" />
       </div>
       <section
