@@ -1,6 +1,3 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
 import { setData, setCarts } from "./../../../config/redux/reducer/cartSlice";
 import { getAllCartByUser } from "../../../config/cart";
 

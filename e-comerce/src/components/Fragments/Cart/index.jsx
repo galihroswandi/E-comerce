@@ -7,7 +7,6 @@ import { getAllCartByUser } from "../../../config/cart";
 import CardKeranjang from "../../Elements/CardKeranjang";
 
 const CartProductsOrgs = () => {
-  const cartId = useSelector((state) => state.cartId.dataId);
   const dispacth = useDispatch();
 
   const [dataCart, setDataCart] = useState([]);
@@ -96,7 +95,7 @@ const CartProductsOrgs = () => {
           <div className="cart-wrapper -mt-3">
             {dataCart.map((cart, index) => {
               return (
-                <div className="cart-wrapper" key={index}>
+                <div key={index}>
                   <CardKeranjang
                     getCarts={() => getAllCarts()}
                     cartData={cart}

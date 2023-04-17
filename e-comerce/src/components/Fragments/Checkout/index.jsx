@@ -13,7 +13,7 @@ const CheckoutTemplate = () => {
   const data = useSelector((state) => state.checkout.data);
 
   const [ongkir, setOngkir] = useState(0);
-  const [biayaLayanan, setBiayaLayanan] = useState(500);
+  const [biayaLayanan] = useState(500);
 
   const hitungTotal = (floatingPoint) => {
     return data.checkout
