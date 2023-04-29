@@ -13,6 +13,7 @@ export const addCart = (data, dispatch) => {
             const check = res.length > 0 && res.find(el => el.data.id_product === data.id_product);
             if (check) {
                 data.kuantitas += 1;
+                data.totalHarga *= data.kuantitas;
                 const id = check.id;
                 update(ref(db, `keranjang/${id}`), data).then(() => {
                     resolve('Data berhasil ditambahkan!');
