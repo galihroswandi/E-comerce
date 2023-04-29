@@ -11,7 +11,16 @@ export const addCart = (data, dispatch) => {
 
         getAllCartByUser(1).then(res => {
             const check = res.length > 0 && res.find(el => el.data.id_product === data.id_product);
-            if (!check) {
+            if (check) {
+                data.kuantitas += 1;
+                const id = check.id;
+                update(ref(db, `keranjang/${id}`), data).then(() => {
+                    resolve('Data berhasil ditambahkan!');
+                }).catch(err => {
+                    reject(err);
+                })
+                return false;
+            } else {
                 push(cartRef, data)
                     .then(res => {
                         resolve("Data berhasil ditambahkan !");
@@ -20,14 +29,6 @@ export const addCart = (data, dispatch) => {
                         console.log("Error Adding Cart: ", err);
                     })
                 return false;
-            } else {
-                data.kuantitas += 1;
-                const id = check.id;
-                update(ref(db, `keranjang/${id}`), data).then(() => {
-                    resolve('Data berhasil ditambahkan!');
-                }).catch(err => {
-                    reject(err);
-                })
             }
         })
 
