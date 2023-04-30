@@ -12,16 +12,16 @@ const Address = () => {
   return (
     <section className="address bg-white rounded-sm  px-5 py-4 bg-opacity-70 backdrop-blur-[7.5px] flex flex-col gap-2 overflow-hidden mb-5">
       <div className="dashed absolute top-0 right-1 left-1 flex items-center gap-3 w-full">
-        <DashedAmplop type="bg-red" />
-        <DashedAmplop type="bg-sky" />
-        <DashedAmplop type="bg-red" />
-        <DashedAmplop type="bg-sky" />
-        <DashedAmplop type="bg-red" />
-        <DashedAmplop type="bg-sky" />
-        <DashedAmplop type="bg-red" />
-        <DashedAmplop type="bg-sky" />
-        <DashedAmplop type="bg-red" />
-        <DashedAmplop type="bg-sky" />
+        <DashedAmplop variant="bg-red-500" />
+        <DashedAmplop variant="bg-sky-600" />
+        <DashedAmplop variant="bg-red-500" />
+        <DashedAmplop variant="bg-sky-600" />
+        <DashedAmplop variant="bg-red-500" />
+        <DashedAmplop variant="bg-sky-600" />
+        <DashedAmplop variant="bg-red-500" />
+        <DashedAmplop variant="bg-sky-600" />
+        <DashedAmplop variant="bg-red-500" />
+        <DashedAmplop variant="bg-sky-600" />
       </div>
       <h1 className="text-green-500 flex items-center gap-1">
         <img src={MapIcon} alt="Map Icon" className="w-5" />

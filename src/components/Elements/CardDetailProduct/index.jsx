@@ -8,6 +8,7 @@ import DescText from "./DescText";
 import { addCart, getAllCartByUser } from "../../../config/cart";
 import Counter from "../Counter";
 import { setTotalCart } from "./../../../config/redux/reducer/cartSlice";
+import Button from "../Button";
 
 const MainCardDetail = () => {
   const dispatch = useDispatch();
@@ -130,7 +131,7 @@ const MainCardDetail = () => {
           id="footer-add-cart"
         >
           <button
-            className="bg-green-500 text-white py-2 px-3 text-md font-extralight text-center leading-5 flex justify-center item sm:py-[.4rem] rounded-sm min-w-[45%] sm:min-w-0"
+            className="text-center text-md rounded-sm py-2 font-extralight leading-5 bg-green-500 text-white px-3 flex justify-center item sm:py-[.4rem] min-w-[45%] sm:min-w-0"
             onClick={() => globelCounter > 0 && handleCartClick()}
           >
             <p className="lg:inline-block sm:py-[.18rem] lg:py-2 lg:px-2">
@@ -138,7 +139,7 @@ const MainCardDetail = () => {
               <span className="lg:hidden">+</span> Keranjang
             </p>
           </button>
-          <button className="text-center border border-green-500 py-2 rounded-sm px-4 text-md font-extralight text-green-500 leading-5">
+          <button className="text-center text-md rounded-sm py-2 font-extralight leading-5 border border-green-500 px-4 text-green-500">
             <p className="lg:py-[.35rem] lg:px-2">Beli Langsung</p>
           </button>
         </div>
