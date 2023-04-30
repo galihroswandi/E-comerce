@@ -32,10 +32,9 @@ const Categories = () => {
         {kategoris.map((kategori, key) => {
           return (
             <Link key={key} to={`kategori/${kategori.data.nama_kategori}`}>
-              <CardKategori
-                img={`${kategori.data.gambar_kategori.imgUrl}`}
-                title={kategori.data.nama_kategori}
-              />
+              <CardKategori img={`${kategori.data.gambar_kategori.imgUrl}`}>
+                {kategori.data.nama_kategori}
+              </CardKategori>
             </Link>
           );
         })}
