@@ -16,7 +16,7 @@ export const getProducts = (dispatch) => {
 
             resolve(dataArray);
 
-            try {
+            if (dispatch) try {
                 dispatch(setDataByAmount(dataArray));
             } catch (err) {
                 console.log(err);
@@ -25,4 +25,10 @@ export const getProducts = (dispatch) => {
             reject(err);
         });
     })
+}
+
+export const filterProducts = async (id_product) => {
+    const res = await getProducts();
+    const data = res.filter(el => el.id_product === id_product);
+    return data;
 }

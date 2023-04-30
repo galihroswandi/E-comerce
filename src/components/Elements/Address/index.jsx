@@ -29,17 +29,16 @@ const Address = () => {
       </h1>
       <p className="text-slate-600 mt-1 flex justify-between md:justify-start md:gap-5 items-center">
         <span className="flex flex-wrap items-center gap-1 text-sm lg:text-lg">
-          {!dataUser.user ? "Data gagal di load..." : dataUser.user[0].nama}
+          {!dataUser.user ? "Username" : dataUser.user[0].nama}
           <span>
-            +(62){" "}
-            {!dataUser.user ? "Data gagal di load..." : dataUser.user[0].no_hp}
+            +(62) {!dataUser.user ? "12345678" : dataUser.user[0].no_hp}
           </span>
         </span>
         <ImgIcon imgUrl={Pensil} />
       </p>
       <p className="flex gap-1 justify-between md:justify-start md:gap-5 items-center mt-2">
         <span className="text-slate-500 text-sm lg:text-lg">
-          {!dataUser.user ? "Data gagal di load..." : dataUser.user[0].alamat}
+          {!dataUser.user ? "Alamat...." : dataUser.user[0].alamat}
         </span>
         <ImgIcon imgUrl={Pensil} />
       </p>

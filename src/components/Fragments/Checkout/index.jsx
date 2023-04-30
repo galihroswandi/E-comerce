@@ -3,22 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import toRupiah from "@develoka/angka-rupiah-js";
 
 import Checkout1 from "./../../../assets/ellipse/Checkout-1.svg";
-
 import { getAllCheckout } from "../../../config/checkout";
 import Address from "../../Elements/Address";
-import { url } from "../../../config/api/api.config";
 
 const CheckoutTemplate = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.checkout.data);
-  const [dataCheckout] = data;
 
   const [ongkir, setOngkir] = useState(0);
   const [biayaLayanan] = useState(500);
 
   const hitungTotal = (floatingPoint) => {
-    return data.checkout
-      .map((el) => el.subtotal)
+    return data
+      .map((el) => el.data.subtotal)
       .reduce((acc, currentVal) => acc + currentVal);
   };
 
@@ -51,9 +48,9 @@ const CheckoutTemplate = () => {
                 </span>
               </h1>
               <div className="main-products">
-                {!data.checkout
+                {!data
                   ? "Data gagal di load..."
-                  : data.checkout.map((ch, index) => {
+                  : data.map((ch, index) => {
                       return (
                         <div
                           className="border-b border-b-green-500 mb-4"
@@ -61,19 +58,21 @@ const CheckoutTemplate = () => {
                         >
                           <div className="main flex gap-3 mt-1">
                             <img
-                              src={`${url()}/${ch.gambar_product}`}
-                              alt={ch.nama_product}
+                              src={`${ch.product.gambar_product.imgUrl}`}
+                              alt={ch.product.nama_product}
                               className="w-16 lg:w-24 border p-0.5 rounded-md"
                             />
                             <div className="desc flex flex-col gap-1 text-slate-600">
                               <p className="text-sm sm:text-base lg:text-lg">
-                                {ch.nama_product}
+                                {ch.product.nama_product}
                               </p>
-                              <p>{ch.deskripsi}</p>
+                              <p>{ch.product.deskripsi}</p>
                               <p className="text-xs sm:text-sm lg:text-lg text-slate-500">
-                                {toRupiah(ch.harga, { floatingPoint: 0 })}
+                                {toRupiah(ch.product.harga, {
+                                  floatingPoint: 0,
+                                })}
                                 <span className="lg:absolute lg:right-5 lg:-translate-y-5">
-                                  (x{ch.kuantitas})
+                                  (x{ch.data.kuantitas})
                                 </span>
                               </p>
                             </div>
@@ -101,7 +100,7 @@ const CheckoutTemplate = () => {
               </div>
               <div className="total flex justify-between items-center border-t. border-t-green-500. mt-2 lg:mt-5 lg:text-lg text-sm text-slate-700">
                 <h1>Subtotal:</h1>
-                <h1>{data.checkout && toRupiah(hitungTotal())}</h1>
+                <h1>{data && toRupiah(hitungTotal())}</h1>
               </div>
             </div>
             <div className="lg:flex lg:flex-col lg:justify-evenly lg:ml-28">
@@ -153,7 +152,7 @@ const CheckoutTemplate = () => {
             <div className="main py-3 border-y border-y-green-500">
               <div className="rincian1 flex justify-between items-center px-1 text-xs sm:text-sm lg:text-base text-slate-600 font-extralight mb-2">
                 <p className="lg:ml-[65%]">Subtotal Product:</p>
-                <p>{data.checkout && hitungTotal()}</p>
+                <p>{data && toRupiah(hitungTotal(), { floatingPoint: 0 })}</p>
               </div>
               <div className="rincian1 flex justify-between items-center px-1 text-xs sm:text-sm lg:text-base text-slate-600 font-extralight mb-2">
                 <p className="lg:ml-[65%]">Total Ongkos Kirim:</p>
@@ -166,7 +165,7 @@ const CheckoutTemplate = () => {
               <div className="rincian1 flex justify-between items-center px-1 text-xs sm:text-sm lg:text-base text-slate-600 font-extralight mb-2">
                 <p className="lg:ml-[65%]">Total Pembayaran:</p>
                 <p className="text-sm lg:text-2xl text-green-500">
-                  {data.checkout &&
+                  {data &&
                     toRupiah(hitungTotalPembayaran(), { floatingPoint: 0 })}
                 </p>
               </div>
