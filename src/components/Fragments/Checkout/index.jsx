@@ -14,9 +14,11 @@ const CheckoutTemplate = () => {
   const [biayaLayanan] = useState(500);
 
   const hitungTotal = (floatingPoint) => {
-    return data
-      .map((el) => el.data.subtotal)
-      .reduce((acc, currentVal) => acc + currentVal);
+    return data.length === 1
+      ? data
+          .map((el) => el.data.subtotal)
+          .reduce((acc, currentVal) => acc + currentVal)
+      : 0;
   };
 
   const hitungTotalPembayaran = () => {
