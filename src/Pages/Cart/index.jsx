@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 
-import Navbar from "../../Elements/Navbar";
-import Footer from "../../Elements/Footer";
-import AllProducts from "../../Fragments/AllProducts";
-import CartProductsOrgs from "../../Fragments/Cart";
+import Navbar from "../../components/Elements/Navbar";
+import Footer from "../../components/Elements/Footer";
+import AllProducts from "../../components/Fragments/AllProducts";
+import CartProductsOrgs from "../../components/Fragments/Cart";
 
 const CartProducts = () => {
   return (

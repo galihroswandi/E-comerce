@@ -5,3 +5,5 @@
 - organism => Fragments
 
 - templates => Layouts
+
+- pages => pages

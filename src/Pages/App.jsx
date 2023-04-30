@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Home from "./home";
 import ErrorPage from "./ErrorPage/ErrorPage";
-import DetailProduct from "../../components/Pages/DetailProduct";
-import CartProducts from "../../components/Pages/Cart";
+import DetailProduct from "./DetailProduct";
+import CartProducts from "./Cart";
 import Checkout from "./Checkout";
 
 const router = createBrowserRouter([

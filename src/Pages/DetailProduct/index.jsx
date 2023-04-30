@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import Navbar from "../../Elements/Navbar";
-import DetailProductOrgs from "../../Fragments/DetailProducts";
-import Footer from "../../Elements/Footer";
+import Navbar from "../../components/Elements/Navbar";
+import DetailProductOrgs from "../../components/Fragments/DetailProducts";
+import Footer from "../../components/Elements/Footer";
 
 const DetailProduct = () => {
   return (
