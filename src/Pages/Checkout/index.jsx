@@ -7,14 +7,14 @@ import CheckoutTemplate from "./../../components/Layouts/Checkout";
 
 const Checkout = () => {
   return (
-    // <>
-    //   <Navbar />
-    //   <CheckoutFragment />
-    //   <Footer />
-    // </>
     <>
-      <CheckoutTemplate />
+      <Navbar />
+      <CheckoutFragment />
+      <Footer />
     </>
+    // <>
+    //   <CheckoutTemplate />
+    // </>
   );
 };
 export default Checkout;

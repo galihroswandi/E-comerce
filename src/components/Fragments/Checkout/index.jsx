@@ -11,6 +11,7 @@ import { url } from "../../../config/api/api.config";
 const CheckoutTemplate = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.checkout.data);
+  const [dataCheckout] = data;
 
   const [ongkir, setOngkir] = useState(0);
   const [biayaLayanan] = useState(500);
