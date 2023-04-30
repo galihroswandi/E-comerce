@@ -7,11 +7,17 @@ import ErrorPage from "./ErrorPage/ErrorPage";
 import DetailProduct from "./DetailProduct";
 import CartProducts from "./Cart";
 import Checkout from "./Checkout";
+import Login from "./Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <ErrorPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/signin",
+    element: <Login />,
     errorElement: <ErrorPage />,
   },
   {

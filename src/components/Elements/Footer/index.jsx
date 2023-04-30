@@ -11,14 +11,16 @@ const Footer = () => {
     <div className="min-h-[20rem] bg-gradient-to-r from-[#DCFCE7] to-white shadow-[-1rem_0_60px_1rem_rgba(15, 23, 42,0.3)] py-10 px-10 relative box-border overflow-x-hidden grid sm:grid-cols-2 md:grid-cols-3 pb-28 sm:pb-8">
       <section className="brand mb-10 lg:ml-10">
         <h1 className="text-xl sm:text-3xl font-semibold text-green-500 mb-1">
-          Shopping
+          GarudaStore
         </h1>
         <p className="text-base font-ligh text-green-400">
           Copyright &copy; 2023
         </p>
       </section>
       <section className="inform-1 flex flex-col mb-5 lg:ml-72">
-        <h1 className="text-2xl font-semibold text-green-500 mb-3">Shopping</h1>
+        <h1 className="text-2xl font-semibold text-green-500 mb-3">
+          GarudaStore
+        </h1>
         <LinkFooter to="#kategori" title="Kategori" />
         <LinkFooter to="#all-produk" title="Produk" />
         <LinkFooter to="/about" title="Tentang Kami" />
