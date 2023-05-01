@@ -87,11 +87,11 @@ const Navbar = (props) => {
               id="search"
               autoComplete="off"
               placeholder="Cari product..."
-              className="max-w-[78%] py-1 px-2 text-xs rounded-l-md border border-green-500 outline-none text-slate-700"
+              className="max-w-[78%] py-[.30rem] px-2 text-xs rounded-l-md border border-green-500 outline-none text-slate-700"
             />
             <button
               type="submit"
-              className="bg-green-500 py-[.39rem] pt-[.30rem] px-2 rounded-r-md flex justify-center items-center"
+              className="bg-green-500 py-[.44rem] pt-[.30rem] px-2 rounded-r-md flex justify-center items-center"
             >
               <img src={SearchIcon} alt="Search Icon" width="15" />
             </button>
