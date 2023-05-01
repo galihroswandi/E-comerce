@@ -5,6 +5,7 @@ import Cart from "./Cart";
 import Hamburger from "./Hamburger";
 import Brand from "./Brand";
 import NavLink from "./NavLink";
+import SearchIcon from "./../../../assets/icons/Search.svg";
 
 window.onscroll = () => {
   const nav = document.querySelector("nav");
@@ -28,18 +29,18 @@ const Navbar = (props) => {
 
   return (
     <div className="container">
-      <nav className="grid grid-cols-3 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 lg:flex lg:py-3 box-border">
+      <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 lg:flex lg:py-3 lg:flex-wrap box-border">
         {content !== "login" ? (
           <>
             <Brand />
             <div className="nav-link hidden lg:flex">
               <NavLink />
             </div>
-            <div className="cart justify-self-center ml-10 lg:hidden">
+            {/* <div className="cart justify-self-center ml-10 lg:hidden">
               <Link to="/cart">
                 <Cart />
               </Link>
-            </div>
+            </div> */}
             <div className="hamburger justify-self-end">
               <Hamburger />
             </div>
@@ -77,6 +78,28 @@ const Navbar = (props) => {
             </div>
           </>
         )}
+
+        <form className="w-[170%] flex justify-center items-center gap-1 my-[.5rem] mt-[.9rem] mx-2">
+          <div className="search flex justify-center items-center gap-0 max-w-[90%]">
+            <input
+              type="search"
+              name="search"
+              id="search"
+              autoComplete="off"
+              placeholder="Cari product..."
+              className="max-w-[78%] py-1 px-2 text-xs rounded-l-md border border-green-500 outline-none text-slate-700"
+            />
+            <button
+              type="submit"
+              className="bg-green-500 py-[.39rem] pt-[.30rem] px-2 rounded-r-md flex justify-center items-center"
+            >
+              <img src={SearchIcon} alt="Search Icon" width="15" />
+            </button>
+          </div>
+          <Link to="/cart" className="min-w-[1.5rem] ml-3">
+            <Cart />
+          </Link>
+        </form>
       </nav>
     </div>
   );

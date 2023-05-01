@@ -5,7 +5,7 @@ import FlatDesign from "../../../assets/img/flat-design.png";
 
 const Banner = () => {
   return (
-    <div className="mt-[5rem] lg:py-24 py-12 px-4 bg-green-500 lg:px-10">
+    <div className="mt-[7.5rem] lg:py-24 py-12 px-4 bg-green-500 lg:px-10">
       <div className="container flex justify-between items-center">
         <div className="description">
           <h1 className="lg:text-4xl text-3xl font-semibold text-slate-100">
