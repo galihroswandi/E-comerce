@@ -80,18 +80,18 @@ const Navbar = (props) => {
         )}
 
         <form className="w-[170%] flex justify-center items-center gap-1 my-[.5rem] mt-[.9rem] mx-2">
-          <div className="search flex justify-center items-center gap-0 max-w-[90%]">
+          <div className="search flex justify-center gap-0 max-w-[90%]">
             <input
               type="search"
               name="search"
               id="search"
               autoComplete="off"
               placeholder="Cari product..."
-              className="max-w-[78%] py-[.30rem] px-2 text-xs rounded-l-md border border-green-500 outline-none text-slate-700"
+              className="max-w-[78%] py-[.35rem] px-2 text-xs rounded-l-md border border-green-500 outline-none text-slate-700"
             />
             <button
               type="submit"
-              className="bg-green-500 py-[.44rem] pt-[.30rem] px-2 rounded-r-md flex justify-center items-center"
+              className="bg-green-500 py-[.rem] px-2 rounded-r-md flex justify-center items-center"
             >
               <img src={SearchIcon} alt="Search Icon" width="15" />
             </button>
