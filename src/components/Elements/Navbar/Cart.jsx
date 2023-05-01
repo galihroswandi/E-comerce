@@ -22,9 +22,9 @@ const Cart = () => {
   return (
     <div className="relative">
       <img src={CartImage} alt="Cart" width="25" />
-      {totalCarts.cartId.totalCart !== 0 && (
+      {totalCarts.cart.totalCart !== 0 && (
         <span className="absolute -top-2 -right-3 text-sm bg-green-500 rounded-full py-0 px-[.4rem] text-slate-800 text-[.7rem]">
-          {totalCarts.cartId.totalCart}
+          {totalCarts.cart.totalCart}
         </span>
       )}
     </div>

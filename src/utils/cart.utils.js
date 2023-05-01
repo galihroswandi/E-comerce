@@ -10,7 +10,6 @@ export const HandleCheked = (dispacth) => {
         const filterChild = checkedChild.filter((e) => e.checked === true);
         if (filterChild.length > 1) {
             const idData = filterChild.map((el) => el.dataset.id);
-            dispacth(setData({ data: idData }));
 
             getAllCartByUser(1).then((res) => {
                 const newData = [];
@@ -24,7 +23,6 @@ export const HandleCheked = (dispacth) => {
                 dispacth(setCarts(newData));
             });
         } else if (filterChild.length == 1) {
-            dispacth(setData(filterChild[0].dataset.id));
             getAllCartByUser(1).then((res) => {
                 const newData = [];
                 res.filter((re) => {

@@ -10,7 +10,7 @@ import checkoutReducer from "../reducer/checkoutSlice";
 export const store = configureStore({
     reducer: {
         products: productsReducer,
-        cartId: cartReducer,
+        cart: cartReducer,
         loading: loadingReducer,
         counter: counterReducer,
         checkout: checkoutReducer

@@ -13,7 +13,7 @@ const handleClick = () => {
 const NavLink = () => {
   return (
     <ul className="justify-center items-center mt-5 transition-all duration-500 lg:flex lg:gap-5 lg:mt-0 lg:pt-1 box-border">
-      <NavList link="/home" title="Home" click={handleClick} />
+      <NavList link="/" title="Home" click={handleClick} />
       <a
         href="#kategori"
         className="text-lg lg:text-base relative group"

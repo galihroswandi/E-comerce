@@ -4,7 +4,7 @@ import toRupiah from "@develoka/angka-rupiah-js";
 import { useSelector } from "react-redux";
 
 const Ringkasan = () => {
-  const cartsData = useSelector((state) => state.cartId.carts);
+  const cartsData = useSelector((state) => state.cart.carts);
 
   const totalHarga = cartsData.reduce(
     (total, num) => total + num.data.totalHarga,

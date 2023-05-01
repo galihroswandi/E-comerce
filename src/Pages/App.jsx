@@ -12,17 +12,13 @@ import Login from "./Login";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ErrorPage />,
+    element: <Home />,
     errorElement: <ErrorPage />,
   },
   {
     path: "/signin",
     element: <Login />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/home",
-    element: <Home />,
   },
   {
     path: "/product/:id_product",

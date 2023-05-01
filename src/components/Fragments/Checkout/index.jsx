@@ -13,10 +13,10 @@ const CheckoutTemplate = () => {
   const [ongkir, setOngkir] = useState(0);
   const [biayaLayanan] = useState(500);
 
-  const hitungTotal = (floatingPoint) => {
-    return data.length === 1
+  const hitungTotal = () => {
+    return data.length >= 1
       ? data
-          .map((el) => el.data.subtotal)
+          .map((checkout) => checkout.data.subtotal)
           .reduce((acc, currentVal) => acc + currentVal)
       : 0;
   };
