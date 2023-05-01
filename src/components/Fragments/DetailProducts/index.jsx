@@ -19,7 +19,7 @@ const DetailProducts = () => {
 
   return (
     <div className="relative">
-      <div className="card mt-[5.7rem] mx-2 py-5 px-5 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-8 sm:container md:px-0">
+      <div className="card mt-[9rem] mx-2 py-5 px-5 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-8 sm:container md:px-0">
         <MainCardDetail />
       </div>
       <AllProducts title="Rekomendasi" />

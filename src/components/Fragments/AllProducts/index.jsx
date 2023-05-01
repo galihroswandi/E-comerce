@@ -22,26 +22,6 @@ const AllProducts = ({ title }) => {
         </h1>
         <Hr width="9rem" />
       </div>
-      <form
-        // className="search flex justify-center items-center min-w-full my-12 mb-16"
-        className="w-full flex justify-center items-center my-6 mb-9"
-      >
-        <input
-          type="search"
-          name="search"
-          id="search"
-          autoComplete="off"
-          placeholder="Cari product..."
-          className="max-w-[75%] py-1 px-2 text-xs rounded-l-md border border-green-500 outline-none text-slate-700"
-          // className="my-1 py-2 px-4 max-w-[50%] w-[40%] rounded-l-md border border-green-500 outline-none text-slate-700 placeholder:text-base placeholder:font-extralight placeholder:text-slate-300"
-        />
-        <button
-          type="submit"
-          // className="bg-green-500 py-[.55rem] px-3 rounded-r-md text-white"
-        >
-          Search
-        </button>
-      </form>
       <section
         className="products grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 justify-center items-center mt-5"
         id="product-wrapper"

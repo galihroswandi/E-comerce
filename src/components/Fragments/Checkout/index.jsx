@@ -32,7 +32,7 @@ const CheckoutTemplate = () => {
   return (
     <Fragment>
       <div className="wrapper overflow-hidden">
-        <main className="min-h-[100vh] mt-[5rem] mx-2 py-5 box-border mb-8 sm:container md:px-3 lg:px-5 relative">
+        <main className="min-h-[100vh] mt-[7rem] mx-2 py-5 box-border mb-8 sm:container md:px-3 lg:px-5 relative">
           <img
             src={Checkout1}
             alt="Ellipse"

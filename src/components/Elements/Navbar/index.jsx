@@ -36,16 +36,11 @@ const Navbar = (props) => {
             <div className="nav-link hidden lg:flex">
               <NavLink />
             </div>
-            {/* <div className="cart justify-self-center ml-10 lg:hidden">
-              <Link to="/cart">
-                <Cart />
-              </Link>
-            </div> */}
             <div className="hamburger justify-self-end">
               <Hamburger />
             </div>
             <div
-              className="hidden transition-all duration-500 ease-in-out relative min-w-[300%] lg:hidden"
+              className="hidden transition-all duration-500 ease-in-out relative min-w-[200%] lg:hidden"
               id="nav-menu"
             >
               <NavLink />
@@ -66,6 +61,30 @@ const Navbar = (props) => {
                 </Link>
               </div>
             </div>
+            <form
+              className="w-[170%] sm:w-[200%] flex justify-center items-center gap-1 my-[.5rem] mt-[.9rem] mx-2 sm:mt-5"
+              id="form"
+            >
+              <div className="search flex justify-center gap-0 max-w-[90%] sm:max-w-[200%] sm:w-[80%]">
+                <input
+                  type="search"
+                  name="search"
+                  id="search"
+                  autoComplete="off"
+                  placeholder="Cari product..."
+                  className="max-w-[78%] sm:w-[70%] py-[.40rem] px-2 text-sm rounded-l-md border border-green-500 outline-none text-slate-700"
+                />
+                <button
+                  type="submit"
+                  className="bg-green-500 py-[.rem] px-2 sm:px-3 rounded-r-md flex justify-center items-center"
+                >
+                  <img src={SearchIcon} alt="Search Icon" width="15" />
+                </button>
+              </div>
+              <Link to="/cart" className="min-w-[1.5rem] ml-3">
+                <Cart />
+              </Link>
+            </form>
           </>
         ) : (
           <>
@@ -78,28 +97,6 @@ const Navbar = (props) => {
             </div>
           </>
         )}
-
-        <form className="w-[170%] flex justify-center items-center gap-1 my-[.5rem] mt-[.9rem] mx-2">
-          <div className="search flex justify-center gap-0 max-w-[90%]">
-            <input
-              type="search"
-              name="search"
-              id="search"
-              autoComplete="off"
-              placeholder="Cari product..."
-              className="max-w-[78%] py-[.40rem] px-2 text-sm rounded-l-md border border-green-500 outline-none text-slate-700"
-            />
-            <button
-              type="submit"
-              className="bg-green-500 py-[.rem] px-2 rounded-r-md flex justify-center items-center"
-            >
-              <img src={SearchIcon} alt="Search Icon" width="15" />
-            </button>
-          </div>
-          <Link to="/cart" className="min-w-[1.5rem] ml-3">
-            <Cart />
-          </Link>
-        </form>
       </nav>
     </div>
   );
