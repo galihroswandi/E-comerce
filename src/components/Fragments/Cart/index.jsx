@@ -42,7 +42,7 @@ const CartProductsOrgs = () => {
 
   return (
     <Fragment>
-      <div className="mt-[4rem] card-wrapper sm:px-5 md:px-9 lg:flex lg:justify-between lg:w-[100%] items-start gap-4 xl:container mb-8">
+      <div className="lg:mt-[4rem] mt-[9.5rem] card-wrapper sm:px-5 md:px-9 lg:flex lg:justify-between lg:w-[100%] items-start gap-4 xl:container mb-8">
         <div className="card mt-[5.7rem] mx-2 py-5 px-5 pb-8 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-5 sm:container xl:px-10 xl:box-border">
           <h1 className="text-sm lg:text-lg text-slate-700 font-semibold mt-2">
             Keranjang
