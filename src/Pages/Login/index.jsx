@@ -14,6 +14,8 @@ import OTPInput from "react-otp-input";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from "react-router";
+import { addUser } from "../../config/users";
 
 const Login = () => {
   const [ph, setPh] = useState("");
@@ -22,11 +24,37 @@ const Login = () => {
   const [usePhone, setUsePhone] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
 
+  const navigate = useNavigate();
+
   const onOTPVerify = () => {
     setLoading(true);
-    window.confirmationResult.confirm(otp).then(async (res) => {
-      alert("Anda Berhasil Login");
-    });
+    window.confirmationResult
+      .confirm(otp)
+      .then(async (res) => {
+        setLoading(false);
+        toast.success("Verifikasi berhasil...");
+
+        const data = {
+          uid: res.user.uid,
+          noHP: res.user.phoneNumber,
+          username: "-",
+          email: "-",
+          alamat: "-",
+        };
+
+        try {
+          await addUser(data);
+          setTimeout(() => {
+            navigate("/");
+          }, 700);
+        } catch (err) {
+          console.error(err);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   };
 
   const onCaptchVerify = () => {
@@ -238,7 +266,11 @@ const Login = () => {
                           containerStyle="otp-container"
                         />
                       </div>
-                      <button className="w-[98%] py-2 text-white text-base bg-[#22C55E] rounded-[5px] mt-[20px] md:mt-[40px] hover:cursor-pointer">
+                      <button
+                        onClick={onOTPVerify}
+                        type="button"
+                        className="w-[98%] py-2 text-white text-base bg-[#22C55E] rounded-[5px] mt-[20px] md:mt-[40px] hover:cursor-pointer"
+                      >
                         <div className="flex justify-center items-center gap-1 w-[100%] box-border">
                           {loading && (
                             <CgSpinner size={20} className=" animate-spin" />

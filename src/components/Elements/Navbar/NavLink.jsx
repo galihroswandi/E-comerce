@@ -25,8 +25,8 @@ const NavLink = () => {
       </a>
       <NavList link="/about" title="Tentang Kami" click={handleClick} />
       <div className="lg:hidden block">
-        <NavList link="/signin" title="Sign In" />
-        <NavList link="/signup" title="Sign Up" />
+        <NavList link="/signin" title="Sign In" click={handleClick} />
+        <NavList link="/signup" title="Sign Up" click={handleClick} />
       </div>
     </ul>
   );
