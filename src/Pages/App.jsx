@@ -9,6 +9,7 @@ import CartProducts from "./Cart";
 import Checkout from "./Checkout";
 import Login from "./Login";
 import Profile from "./Profile";
+import Login_phone from "./Login/Login_phone";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <Login />,
-    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/signin.phone",
+    element: <Login_phone />,
   },
   {
     path: "/product/:id_product",

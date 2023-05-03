@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.react-tel-input .form-control {
+    @apply !w-full py-6 !text-base;
+}
+
+.otp-container {
+    @apply w-[100%] flex justify-between gap-1;
+}
+
+.otp-container input {
+    @apply !mr-0 flex-1 py-3 outline-none;
+}
+
 .navbar-fixed {
     @apply fixed z-[999] bg-white bg-opacity-50;
     backdrop-filter: blur(10px);

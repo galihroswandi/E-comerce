@@ -30,6 +30,12 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Style Untuk Menghilangkan Arrow di input number */
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 @media screen and (min-width: 400px) {
   #cart {
     display: grid;
