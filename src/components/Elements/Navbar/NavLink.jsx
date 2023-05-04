@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import NavList from "./NavList";
-import Cart from "./Cart";
 import { Link } from "react-router-dom";
 import Logo from "./../../../assets/img/Logo.png";
 import checkLogin from "../../../utils/loginCheck.util";
+import logout from "../../../utils/logout.util";
+import { Toaster, toast } from "react-hot-toast";
 
 const handleClick = () => {
   const navMenu = document.querySelector("#nav-menu");
@@ -16,6 +17,13 @@ const handleClick = () => {
 const NavLink = () => {
   const [login, setLogin] = useState(false);
 
+  const handleLogout = async () => {
+    const res = await logout();
+    !res.status
+      ? toast.error("Sign out gagal")
+      : toast.success("Sign out berhasil");
+  };
+
   useEffect(() => {
     checkLogin().then((res) => {
       setLogin(res.status);
@@ -25,6 +33,7 @@ const NavLink = () => {
   // Halaman Versi Android
   return (
     <ul className="justify-center items-center mt-5 transition-all duration-500 lg:flex lg:gap-5 lg:mt-0 lg:pt-1 box-border text-slate-700">
+      <Toaster toastOptions={{ duration: 4000 }} />
       <div className="lg:hidden block">
         {login ? (
           <>
@@ -66,7 +75,7 @@ const NavLink = () => {
         <>
           <Link
             className="text-lg lg:text-base relative group lg:hidden"
-            onClick={handleClick}
+            onClick={handleLogout}
           >
             <li className="text-center mb-1 lg:justify-self-end group-hover:text-green-600 text-sm md:text-base">
               SignOut
