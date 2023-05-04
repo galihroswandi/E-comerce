@@ -1,11 +1,11 @@
 import React from "react";
-import { Carousel, initTE } from "tw-elements";
+// import { Carousel, initTE } from "tw-elements";
 import { Link } from "react-router-dom";
 
 import FlatDesign from "../../../assets/img/flat-design.png";
 
 const Banner = () => {
-  initTE({ Carousel });
+  // initTE({ Carousel });
   return (
     // <div className="mt-[9rem] lg:py-24 py-12 px-4 bg-green-500 lg:px-10">
     //   <div className="container flex justify-between items-center">
