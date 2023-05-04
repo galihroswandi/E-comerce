@@ -8,7 +8,6 @@ import DescText from "./DescText";
 import { addCart, getAllCartByUser } from "../../../config/cart";
 import Counter from "../Counter";
 import { setTotalCart } from "./../../../config/redux/reducer/cartSlice";
-import Button from "../Button";
 
 const MainCardDetail = () => {
   const dispatch = useDispatch();

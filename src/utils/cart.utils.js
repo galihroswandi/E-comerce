@@ -1,4 +1,4 @@
-import { setData, setCarts } from "../config/redux/reducer/cartSlice";
+import { setCarts } from "../config/redux/reducer/cartSlice";
 import { getAllCartByUser } from "../config/cart";
 
 export const HandleCheked = (dispacth) => {
@@ -15,7 +15,7 @@ export const HandleCheked = (dispacth) => {
                 const newData = [];
                 idData.forEach((id) => {
                     res.filter((re) => {
-                        if (re.data.id_cart == id) {
+                        if (re.data.id_cart === id) {
                             newData.push(re);
                         }
                     });

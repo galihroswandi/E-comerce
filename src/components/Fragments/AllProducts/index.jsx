@@ -15,7 +15,7 @@ const AllProducts = ({ title }) => {
   }, []);
 
   return (
-    <div className="container mb-20 px-7">
+    <div className="container mt-8 mb-20 px-7">
       <div className="title">
         <h1 className="text-lg md:text-2xl text-slate-700 font-medium">
           {title}

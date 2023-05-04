@@ -10,6 +10,8 @@ import Logo from "./../../../assets/img/Logo.png";
 import Profile from "./../../../assets/icons/Profile.svg";
 import PesananSaya from "./../../../assets/icons/Pesanan_saya.svg";
 import checkLogin from "../../../utils/loginCheck.util";
+import logout from "../../../utils/logout.util";
+import { Toaster, toast } from "react-hot-toast";
 
 window.onscroll = () => {
   const nav = document.querySelector("nav");
@@ -54,6 +56,13 @@ const Navbar = (props) => {
     target.style.transition = "all 2s ease";
   };
 
+  const handleLogout = async () => {
+    const res = await logout();
+    !res.status
+      ? toast.error("Sign out gagal")
+      : toast.success("Sign out berhasil");
+  };
+
   useEffect(() => {
     checkLogin().then((res) => {
       setLogin(res.status);
@@ -61,6 +70,7 @@ const Navbar = (props) => {
   }, []);
   return (
     <div className="container">
+      <Toaster toastOptions={{ duration: 4000 }} />
       <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 lg:flex lg:py-3 lg:flex-wrap box-border">
         {content !== "login" ? (
           <>
@@ -142,6 +152,19 @@ const Navbar = (props) => {
                         />
                         <span className="text-white group-hover:text-slate-200">
                           Pesanan Saya
+                        </span>
+                      </Link>
+                      <Link
+                        onClick={handleLogout}
+                        className="flex items-center gap-2 group"
+                      >
+                        <img
+                          src={Profile}
+                          alt="Profile Icon"
+                          className="group-hover:text-slate-2"
+                        />
+                        <span className="text-white group-hover:text-slate-200">
+                          SignOut
                         </span>
                       </Link>
                     </div>
