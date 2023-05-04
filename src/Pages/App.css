@@ -36,6 +36,11 @@ input[type=number]::-webkit-inner-spin-button {
   -moz-appearance: none;
 }
 
+#dropdown-target.active {
+  opacity: 1;
+  display: flex;
+}
+
 @media screen and (min-width: 400px) {
   #cart {
     display: grid;

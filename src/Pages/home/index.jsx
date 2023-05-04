@@ -8,14 +8,14 @@ import { auth } from "../../config/firebase";
 
 const HomePages = () => {
   useEffect(() => {
-    auth.onAuthStateChanged(function (user) {
-      if (user) {
-        var uid = user.uid;
-        // console.log("UID pengguna yang sedang login: " + uid);
-      } else {
-        // console.log("Tidak ada pengguna yang terautentikasi.");
-      }
-    });
+    // auth.onAuthStateChanged(function (user) {
+    //   if (user) {
+    //     var uid = user.uid;
+    //     console.log("UID pengguna yang sedang login: " + uid);
+    //   } else {
+    //     console.log("Tidak ada pengguna yang terautentikasi.");
+    //   }
+    // });
   });
 
   return (
