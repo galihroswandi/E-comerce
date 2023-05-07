@@ -57,67 +57,7 @@ const Pesanan = () => {
                   <span className="text-[.6rem] text-slate-500">(X1)</span>
                 </section>
                 <section className="total mt-2 flex justify-between items-center gap-2.5">
-                  <button className="border border-green-500 text-xs py-1 px-5 rounded-sm text-green-500 mt-2">
-                    Batal
-                  </button>
-                  <p className="text-slate-700 text-xs">
-                    Total :{" "}
-                    <span className="text-base text-green-600">
-                      Rp30.000.000
-                    </span>
-                  </p>
-                </section>
-              </div>
-
-              <div className="bg-slate-100 w-[100%] wrapper px-2 py-1.5 rounded-md overflow-x-hidden">
-                <section className="flex items-center gap-3 border-b border-b-green-500 py-2">
-                  <img
-                    src={NoPesanan}
-                    alt="Product"
-                    className="w-[2.5rem] border rounded-md p-[.30rem]"
-                  />
-                  <div className="keterangan flex flex-col gap-1">
-                    <span className="name text-xs text-slate-700">
-                      Laptop Asus ROG Strix 1 Terabite Ram 8GB
-                    </span>
-                    <span className="price text-xs text-green-500">
-                      Rp30.000.000
-                    </span>
-                  </div>
-                  <span className="text-[.6rem] text-slate-500">(X1)</span>
-                </section>
-                <section className="total mt-2 flex justify-between items-center gap-2.5">
-                  <button className="border border-green-500 text-xs py-1 px-5 rounded-sm text-green-500 mt-2">
-                    Batal
-                  </button>
-                  <p className="text-slate-700 text-xs">
-                    Total :{" "}
-                    <span className="text-base text-green-600">
-                      Rp30.000.000
-                    </span>
-                  </p>
-                </section>
-              </div>
-
-              <div className="bg-slate-100 w-[100%] wrapper px-2 py-1.5 rounded-md overflow-x-hidden">
-                <section className="flex items-center gap-3 border-b border-b-green-500 py-2">
-                  <img
-                    src={NoPesanan}
-                    alt="Product"
-                    className="w-[2.5rem] border rounded-md p-[.30rem]"
-                  />
-                  <div className="keterangan flex flex-col gap-1">
-                    <span className="name text-xs text-slate-700">
-                      Laptop Asus ROG Strix 1 Terabite Ram 8GB
-                    </span>
-                    <span className="price text-xs text-green-500">
-                      Rp30.000.000
-                    </span>
-                  </div>
-                  <span className="text-[.6rem] text-slate-500">(X1)</span>
-                </section>
-                <section className="total mt-2 flex justify-between items-center gap-2.5">
-                  <button className="border border-green-500 text-xs py-1 px-5 rounded-sm text-green-500 mt-2">
+                  <button className="border border-green-500 text-sm py-1 px-5 rounded-sm text-green-500 mt-2">
                     Batal
                   </button>
                   <p className="text-slate-700 text-xs">
