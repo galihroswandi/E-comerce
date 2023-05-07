@@ -37,7 +37,7 @@ const NavLink = () => {
       <div className="lg:hidden block">
         {login ? (
           <>
-            <Link>
+            <Link to="/profil">
               <div className="flex items-center justify-center gap-2 mb-1 border-b border-green-500 py-2">
                 <img
                   src={Logo}

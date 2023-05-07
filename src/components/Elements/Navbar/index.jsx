@@ -128,7 +128,7 @@ const Navbar = (props) => {
                       id="dropdown-target"
                     >
                       <Link
-                        to="/profile"
+                        to="/profil"
                         className="flex items-center gap-2 group"
                         id="dropdown"
                       >

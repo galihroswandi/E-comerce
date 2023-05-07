@@ -10,6 +10,7 @@ import Checkout from "./Checkout";
 import Login from "./Login";
 import Profile from "./Profile";
 import Login_phone from "./Login/Login_phone";
+import Pesanan from "./Pesanan";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: "/profil",
     element: <Profile />,
+  },
+  {
+    path: "/pesanan",
+    element: <Pesanan />,
   },
 ]);
 
