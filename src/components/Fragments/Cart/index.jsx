@@ -5,11 +5,14 @@ import Ringkasan from "../../Elements/RingkasanCart";
 import { getAllCartByUser } from "../../../config/cart";
 import CardKeranjang from "../../Elements/CardKeranjang";
 import { HandleCheked } from "../../../utils/cart.utils";
+import checkLogin from "../../../utils/loginCheck.util";
 
 const CartProductsOrgs = () => {
   const dispacth = useDispatch();
 
   const [dataCart, setDataCart] = useState([]);
+  const [login, setLogin] = useState(true);
+  const [id_user, setIdUser] = useState();
 
   const handleAllChecked = (target) => {
     const allCheckbox = document.querySelectorAll(".checked");
@@ -21,10 +24,12 @@ const CartProductsOrgs = () => {
     setCartGlobal();
   };
 
-  const getAllCarts = (id_user) => {
-    getAllCartByUser(1).then((res) => {
-      setDataCart(res);
-      setCartGlobal();
+  const getAllCarts = () => {
+    checkLogin().then((user) => {
+      getAllCartByUser(user.uid).then((res) => {
+        setDataCart(res);
+        setCartGlobal();
+      });
     });
   };
 
@@ -33,8 +38,13 @@ const CartProductsOrgs = () => {
   };
 
   useEffect(() => {
-    getAllCartByUser(1).then((res) => {
-      setDataCart(res);
+    checkLogin().then((user) => {
+      !user.status
+        ? setLogin(false)
+        : getAllCartByUser(user.uid).then((res) => {
+            setIdUser(res.uid);
+            setDataCart(res);
+          });
     });
 
     setCartGlobal();
@@ -47,32 +57,45 @@ const CartProductsOrgs = () => {
           <h1 className="text-sm lg:text-lg text-slate-700 font-semibold mt-2">
             Keranjang
           </h1>
-          <div className="flex justify-between items-center gap-2 mt-5">
-            <div className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                name="pilih"
-                id="pilih"
-                className="checked parent-checked w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-md focus:ring-blue-500"
-                onChange={(e) => handleAllChecked(e)}
-              />
-              <label htmlFor="pilih" className="text-xs md:text-sm">
-                Pilih Semua
-              </label>
-            </div>
-          </div>
-          <div className="cart-wrapper -mt-3">
-            {dataCart.map((cart, index) => {
-              return (
-                <div key={index}>
-                  <CardKeranjang
-                    getCarts={() => getAllCarts()}
-                    cartData={cart}
+          {!login ? (
+            <>
+              <div className="min-h-[2rem] flex justify-center items-center">
+                <span className="text-slate-400">
+                  Login untuk melihat daftar keranjang...
+                </span>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="flex justify-between items-center gap-2 mt-5">
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    name="pilih"
+                    id="pilih"
+                    className="checked parent-checked w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-md focus:ring-blue-500"
+                    onChange={(e) => handleAllChecked(e)}
                   />
+                  <label htmlFor="pilih" className="text-xs md:text-sm">
+                    Pilih Semua
+                  </label>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+              <div className="cart-wrapper -mt-3">
+                {dataCart.map((cart, index) => {
+                  return (
+                    <div key={index}>
+                      <CardKeranjang
+                        getCarts={() => getAllCarts()}
+                        cartData={cart}
+                        id_user={id_user}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
         <Ringkasan data_cart={dataCart} />
       </div>

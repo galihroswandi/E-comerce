@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { setTotalCart } from "../../../config/redux/reducer/cartSlice";
 import { getProducts } from "../../../config/products/products";
 
-const CardKeranjang = ({ cartData, getCarts }) => {
+const CardKeranjang = ({ cartData, getCarts, id_user }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState();
 
@@ -18,9 +18,9 @@ const CardKeranjang = ({ cartData, getCarts }) => {
       await removeCart(id_cart);
 
       // instansiasi total keranjang berdasarkan id_user
-      getCarts(1);
+      getCarts();
 
-      const res = await getAllCartByUser(1);
+      const res = await getAllCartByUser(id_user);
       dispatch(setTotalCart(res.length));
     } catch (err) {
       console.error(err);

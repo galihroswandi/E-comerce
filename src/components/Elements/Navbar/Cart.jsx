@@ -4,14 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import CartImage from "../../../assets/icons/Cart.svg";
 import { getAllCartByUser } from "../../../config/cart";
 import { setTotalCart as total } from "./../../../config/redux/reducer/cartSlice";
+import checkLogin from "./../../../utils/loginCheck.util";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const totalCarts = useSelector((state) => state);
 
-  const getAllCarts = async () => {
-    getAllCartByUser(1).then((res) => {
-      dispatch(total(res.length));
+  const getAllCarts = () => {
+    checkLogin().then((res) => {
+      !res.status
+        ? dispatch(total(0))
+        : getAllCartByUser(res.uid).then((res) => {
+            dispatch(total(res.length));
+          });
     });
   };
 

@@ -3,9 +3,25 @@ import Hr from "./../../components/Elements/Hr";
 import Footer from "./../../components/Elements/Footer";
 import ProfileDummy from "./../../assets/img/Profile Dummy.svg";
 import Paperclip from "./../../assets/icons/Paperclip.svg";
+import { useEffect, useState } from "react";
+import checkLogin from "../../utils/loginCheck.util";
+import { useNavigate } from "react-router";
 
 const Profile = () => {
-  return (
+  const [login, setLogin] = useState(undefined);
+  const navigate = useNavigate();
+
+  const handleFileChange = () => {};
+
+  useEffect(() => {
+    checkLogin().then((res) => {
+      setLogin(res);
+    });
+  }, []);
+
+  return login !== undefined && !login.status ? (
+    navigate("/")
+  ) : (
     <>
       <Navbar />
       <header className="container mt-36 mb-5 px-7 lg:px-20">
@@ -35,7 +51,13 @@ const Profile = () => {
                   </span>
                 </a>
               </label>
-              <input type="file" name="image" id="image" className="hidden" />
+              <input
+                type="file"
+                name="image"
+                id="image"
+                onChange={handleFileChange}
+                className="hidden"
+              />
             </div>
           </section>
           <section className="sm:w-[65%] md:flex md:flex-col md:gap-4">
@@ -50,7 +72,6 @@ const Profile = () => {
                 type="text"
                 name="username"
                 id="username"
-                value="galihroswandi"
                 className="w-full bg-transparent border border-slate-200 py-1 px-2 rounded-lg text-slate-500 text-sm font-extralight md:py-2 md:text-base md:px-5"
                 disabled
               />
@@ -66,7 +87,6 @@ const Profile = () => {
                 type="text"
                 name="nama"
                 id="nama"
-                value="Galih Roswandi"
                 className="w-full bg-transparent border border-slate-200 py-1 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
                 autoComplete="off"
               />
@@ -82,7 +102,6 @@ const Profile = () => {
                 type="text"
                 name="email"
                 id="email"
-                value="sh****.com"
                 className="w-full bg-transparent border border-slate-200 py-1 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
                 autoComplete="off"
               />
@@ -98,7 +117,6 @@ const Profile = () => {
                 type="text"
                 name="noTelepon"
                 id="noTelepon"
-                value="+6281******85"
                 className="w-full bg-transparent border border-slate-200 py-1 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
                 autoComplete="off"
               />
@@ -114,7 +132,6 @@ const Profile = () => {
                 type="text"
                 name="alamat"
                 id="alamat"
-                value="Tasikmalaya"
                 className="w-full bg-transparent border border-slate-200 py-1 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
                 autoComplete="off"
               />

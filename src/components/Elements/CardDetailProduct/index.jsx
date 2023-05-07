@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import toRupiah from "@develoka/angka-rupiah-js";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import DescText from "./DescText";
 import { addCart, getAllCartByUser } from "../../../config/cart";
 import Counter from "../Counter";
 import { setTotalCart } from "./../../../config/redux/reducer/cartSlice";
+import checkLogin from "../../../utils/loginCheck.util";
 
 const MainCardDetail = () => {
   const dispatch = useDispatch();
@@ -68,30 +69,43 @@ const MainCardDetail = () => {
 
     const hitungHarga = filter[0].harga * globelCounter;
 
-    // Siapkan data untuk di post ke API
-    const data = {
-      id_cart: makeNumber(12),
-      id_product,
-      id_user: 1,
-      kuantitas: globelCounter,
-      tanggal: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()}_${new Date().getHours()}:${new Date().getMinutes()}`,
-      totalHarga: hitungHarga,
-      uid,
-    };
+    checkLogin().then((res) => {
+      let id_user = !res.uid ? undefined : res.uid;
 
-    addCart(data, dispatch).then(async (res) => {
-      try {
-        const res = await getAllCartByUser(1);
-        dispatch(setTotalCart(res.length));
-      } catch (err) {
-        console.log(err);
+      if (id_user === undefined) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Anda belum login, Silahkan login terlebih dahulu...",
+        });
+        return false;
       }
 
-      Swal.fire(
-        "Success",
-        "1 data berhasil ditambahkan ke keranjang",
-        "success"
-      );
+      // Siapkan data untuk di post ke API
+      const data = {
+        id_cart: makeNumber(12),
+        id_product,
+        id_user,
+        kuantitas: globelCounter,
+        tanggal: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()}_${new Date().getHours()}:${new Date().getMinutes()}`,
+        totalHarga: hitungHarga,
+        uid,
+      };
+
+      addCart(data, dispatch).then(async (res) => {
+        try {
+          const res = await getAllCartByUser(id_user);
+          dispatch(setTotalCart(res.length));
+        } catch (err) {
+          console.log(err);
+        }
+
+        Swal.fire(
+          "Success",
+          "1 data berhasil ditambahkan ke keranjang",
+          "success"
+        );
+      });
     });
   };
 
@@ -139,7 +153,7 @@ const MainCardDetail = () => {
             </p>
           </button>
           <button className="text-center text-md rounded-sm py-2 font-extralight leading-5 border border-green-500 px-4 text-green-500">
-            <p className="lg:py-[.35rem] lg:px-2">Beli Langsung</p>
+            <p className="lg:py-[.35rem] lg:px-2">Checkout Shopee</p>
           </button>
         </div>
       </div>

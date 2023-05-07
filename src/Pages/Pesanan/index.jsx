@@ -1,10 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Elements/Footer";
 import Navbar from "../../components/Elements/Navbar";
 import NoPesanan from "./../../assets/img/No Pesanan.svg";
+import { useEffect, useState } from "react";
+import checkLogin from "../../utils/loginCheck.util";
 
 const Pesanan = () => {
-  return (
+  const [login, setLogin] = useState(undefined);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    checkLogin().then((res) => {
+      setLogin(res);
+    }, []);
+  }, []);
+
+  return login !== undefined && !login.status ? (
+    navigate("/")
+  ) : (
     <>
       <Navbar />
       <main className="container mt-[9.5rem] mb-10 flex items-start gap-5">

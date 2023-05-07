@@ -12,6 +12,7 @@ import PesananSaya from "./../../../assets/icons/Pesanan_saya.svg";
 import checkLogin from "../../../utils/loginCheck.util";
 import logout from "../../../utils/logout.util";
 import { Toaster, toast } from "react-hot-toast";
+import Swal from "sweetalert2";
 
 window.onscroll = () => {
   const nav = document.querySelector("nav");
@@ -59,8 +60,12 @@ const Navbar = (props) => {
   const handleLogout = async () => {
     const res = await logout();
     !res.status
-      ? toast.error("Sign out gagal")
-      : toast.success("Sign out berhasil");
+      ? Swal.fire({
+          icon: "error",
+          title: "Oops",
+          text: "Internal Server Error",
+        })
+      : window.location.reload();
   };
 
   useEffect(() => {
@@ -68,10 +73,11 @@ const Navbar = (props) => {
       setLogin(res.status);
     });
   }, []);
+
   return (
     <div className="container">
-      <Toaster toastOptions={{ duration: 4000 }} />
       <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 lg:flex lg:py-3 lg:flex-wrap box-border">
+        <Toaster toastOptions={{ duration: 4000 }} />
         {content !== "login" ? (
           <>
             <Brand />
