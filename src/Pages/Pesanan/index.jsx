@@ -68,15 +68,163 @@ const Pesanan = () => {
                   </p>
                 </section>
               </div>
+
+              <div className="bg-slate-100 w-[100%] wrapper px-2 py-1.5 rounded-md overflow-x-hidden">
+                <section className="flex items-center gap-3 border-b border-b-green-500 py-2">
+                  <img
+                    src={NoPesanan}
+                    alt="Product"
+                    className="w-[2.5rem] border rounded-md p-[.30rem]"
+                  />
+                  <div className="keterangan flex flex-col gap-1">
+                    <span className="name text-xs text-slate-700">
+                      Laptop Asus ROG Strix 1 Terabite Ram 8GB
+                    </span>
+                    <span className="price text-xs text-green-500">
+                      Rp30.000.000
+                    </span>
+                  </div>
+                  <span className="text-[.6rem] text-slate-500">(X1)</span>
+                </section>
+                <section className="total mt-2 flex justify-between items-center gap-2.5">
+                  <button className="border border-green-500 text-sm py-1 px-5 rounded-sm text-green-500 mt-2">
+                    Batal
+                  </button>
+                  <p className="text-slate-700 text-xs">
+                    Total :{" "}
+                    <span className="text-base text-green-600">
+                      Rp30.000.000
+                    </span>
+                  </p>
+                </section>
+              </div>
+
+              <div className="bg-slate-100 w-[100%] wrapper px-2 py-1.5 rounded-md overflow-x-hidden">
+                <section className="flex items-center gap-3 border-b border-b-green-500 py-2">
+                  <img
+                    src={NoPesanan}
+                    alt="Product"
+                    className="w-[2.5rem] border rounded-md p-[.30rem]"
+                  />
+                  <div className="keterangan flex flex-col gap-1">
+                    <span className="name text-xs text-slate-700">
+                      Laptop Asus ROG Strix 1 Terabite Ram 8GB
+                    </span>
+                    <span className="price text-xs text-green-500">
+                      Rp30.000.000
+                    </span>
+                  </div>
+                  <span className="text-[.6rem] text-slate-500">(X1)</span>
+                </section>
+                <section className="total mt-2 flex justify-between items-center gap-2.5">
+                  <button className="border border-green-500 text-sm py-1 px-5 rounded-sm text-green-500 mt-2">
+                    Batal
+                  </button>
+                  <p className="text-slate-700 text-xs">
+                    Total :{" "}
+                    <span className="text-base text-green-600">
+                      Rp30.000.000
+                    </span>
+                  </p>
+                </section>
+              </div>
             </>
           </section>
         </section>
-        <section className="md:flex md:flex-col md:gap-3 md:justify-center md:items-center hidden border border-green-500 bg-white bg-opacity-50 backdrop-blur-sm py-3 px-5 rounded-md min-w-[70%] lg:min-w-[80%] min-h-[50vh]">
+        <section className="md:flex md:flex-col md:gap-2.5 hidden border border-green-500 bg-white bg-opacity-50 backdrop-blur-sm p-3 rounded-md min-w-[70%] lg:min-w-[80%]">
+          {/* <>
+            <div className="wrapper md:flex md:flex-col md:gap-3 md:justify-center md:items-center min-h-[40vh]">
+              <img src={NoPesanan} alt="Icon Default No Pesanan" />
+              <figcaption className="text-slate-500">
+                Tidak Ada Pesanan
+              </figcaption>
+            </div>
+          </> */}
+
           <>
-            <img src={NoPesanan} alt="Icon Default No Pesanan" />
-            <figcaption className="text-slate-500">
-              Tidak Ada Pesanan
-            </figcaption>
+            <div className="bg-slate-100 w-[100%] wrapper px-2 py-1.5 rounded-md overflow-x-hidden">
+              <section className="flex items-center gap-4 border-b border-b-green-500 py-2">
+                <img
+                  src={NoPesanan}
+                  alt="Product"
+                  className="w-[2.5rem] border rounded-md p-[.30rem]"
+                />
+                <div className="keterangan flex flex-col gap-1">
+                  <span className="name text-base text-slate-700">
+                    Laptop Asus ROG Strix 1 Terabite Ram 8GB
+                  </span>
+                  <span className="price text-base text-green-500">
+                    Rp30.000.000
+                  </span>
+                </div>
+                <span className="text-sm text-slate-500">(X1)</span>
+              </section>
+              <section className="total mt-2 flex justify-between items-center gap-2.5">
+                <button className="border border-green-500 text-base py-1 px-8 rounded-sm text-green-500 mt-2">
+                  Batal
+                </button>
+                <p className="text-slate-700 text-base">
+                  Total :{" "}
+                  <span className="text-xl text-green-600">Rp30.000.000</span>
+                </p>
+              </section>
+            </div>
+
+            <div className="bg-slate-100 w-[100%] wrapper px-2 py-1.5 rounded-md overflow-x-hidden">
+              <section className="flex items-center gap-4 border-b border-b-green-500 py-2">
+                <img
+                  src={NoPesanan}
+                  alt="Product"
+                  className="w-[2.5rem] border rounded-md p-[.30rem]"
+                />
+                <div className="keterangan flex flex-col gap-1">
+                  <span className="name text-base text-slate-700">
+                    Laptop Asus ROG Strix 1 Terabite Ram 8GB
+                  </span>
+                  <span className="price text-base text-green-500">
+                    Rp30.000.000
+                  </span>
+                </div>
+                <span className="text-sm text-slate-500">(X1)</span>
+              </section>
+              <section className="total mt-2 flex justify-between items-center gap-2.5">
+                <button className="border border-green-500 text-base py-1 px-8 rounded-sm text-green-500 mt-2">
+                  Batal
+                </button>
+                <p className="text-slate-700 text-base">
+                  Total :{" "}
+                  <span className="text-xl text-green-600">Rp30.000.000</span>
+                </p>
+              </section>
+            </div>
+
+            <div className="bg-slate-100 w-[100%] wrapper px-2 py-1.5 rounded-md overflow-x-hidden">
+              <section className="flex items-center gap-4 border-b border-b-green-500 py-2">
+                <img
+                  src={NoPesanan}
+                  alt="Product"
+                  className="w-[2.5rem] border rounded-md p-[.30rem]"
+                />
+                <div className="keterangan flex flex-col gap-1">
+                  <span className="name text-base text-slate-700">
+                    Laptop Asus ROG Strix 1 Terabite Ram 8GB
+                  </span>
+                  <span className="price text-base text-green-500">
+                    Rp30.000.000
+                  </span>
+                </div>
+                <span className="text-sm text-slate-500">(X1)</span>
+              </section>
+              <section className="total mt-2 flex justify-between items-center gap-2.5">
+                <button className="border border-green-500 text-base py-1 px-8 rounded-sm text-green-500 mt-2">
+                  Batal
+                </button>
+                <p className="text-slate-700 text-base">
+                  Total :{" "}
+                  <span className="text-xl text-green-600">Rp30.000.000</span>
+                </p>
+              </section>
+            </div>
           </>
         </section>
       </main>
