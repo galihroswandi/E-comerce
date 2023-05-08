@@ -1,6 +1,7 @@
 import { setLoading } from "../redux/reducer/loading";
 import { getDatabase, ref, push, onValue, remove, update } from "firebase/database";
 import { app } from "./../firebase/index";
+import checkLogin from "../../utils/loginCheck.util";
 
 const db = getDatabase(app);
 
@@ -74,7 +75,8 @@ export const removeCart = (id_cart) => {
 
 export const updateKuantitas = (id, kuantitas, products) => {
     return new Promise(async (resolve, reject) => {
-        const res = await getAllCartByUser(1);
+        const user = await checkLogin();
+        const res = await getAllCartByUser(user.uid);
         const filter = res.find(el => el.id === id);
 
         const [product] = products[0].filter(el => parseInt(el.id_product) === parseInt(filter.data.id_product));

@@ -41,6 +41,23 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
 }
 
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4b5563;
+  border-radius: 6px;
+  border: 2px solid #fff;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f3f4f6;
+  border-radius: 6px;
+  border: 2px solid #fff;
+}
+
 @media screen and (min-width: 400px) {
   #cart {
     display: grid;

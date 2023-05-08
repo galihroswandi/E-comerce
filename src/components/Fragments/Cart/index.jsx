@@ -24,12 +24,11 @@ const CartProductsOrgs = () => {
     setCartGlobal();
   };
 
-  const getAllCarts = () => {
-    checkLogin().then((user) => {
-      getAllCartByUser(user.uid).then((res) => {
-        setDataCart(res);
-        setCartGlobal();
-      });
+  const getAllCarts = async () => {
+    const user = await checkLogin();
+    getAllCartByUser(user.uid).then((res) => {
+      setDataCart(res);
+      setCartGlobal();
     });
   };
 

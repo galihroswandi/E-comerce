@@ -1,4 +1,4 @@
-import { getDatabase, onValue, push, ref } from "firebase/database";
+import { getDatabase, onValue, push, ref, update } from "firebase/database";
 import { app } from "../firebase";
 
 const db = getDatabase(app);
@@ -9,13 +9,19 @@ export const getAllUser = () => {
         onValue(starRef, (snapshot) => {
             const data = snapshot.val();
             const dataArray = [];
-            Object.keys(data).map(res => {
-                dataArray.push({
-                    id: res,
-                    data: data[res]
+
+            if (!data) {
+                resolve(undefined);
+            } else {
+                Object.keys(data).map(res => {
+                    dataArray.push({
+                        id: res,
+                        data: data[res]
+                    })
                 })
-            })
-            resolve(dataArray);
+                resolve(dataArray);
+            }
+
         })
 
     })
@@ -25,7 +31,7 @@ export const addUser = async (data) => {
     const startRef = ref(db, "users");
     const users = await getAllUser();
 
-    const find = users.find(user => user.data.noHP === data.noHP);
+    const find = users !== undefined ? users.find(user => user.data.noHP === data.noHP) : undefined;
 
     return new Promise((resolve, reject) => {
         if (find === undefined) {
@@ -41,4 +47,16 @@ export const addUser = async (data) => {
 
         resolve(true);
     })
-} 
+}
+
+export const updateUser = (data, id) => {
+    const starRef = ref(db, `users/${id}`);
+
+    return new Promise((resolve, reject) => {
+        update(starRef, data).then(() => {
+            resolve({ status: "ok" });
+        }, err => {
+            reject(err);
+        })
+    })
+}

@@ -7,6 +7,7 @@ import loadingReducer from "../reducer/loading";
 import counterReducer from "../reducer/counterSlice";
 import checkoutReducer from "../reducer/checkoutSlice";
 import loginReducer from "../reducer/loginSlice";
+import profilReducer from "../reducer/profilSlice";
 
 export const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
         loading: loadingReducer,
         counter: counterReducer,
         checkout: checkoutReducer,
-        login: loginReducer
+        login: loginReducer,
+        profil: profilReducer
     },
     middleware: [thunkMiddleware]
 })

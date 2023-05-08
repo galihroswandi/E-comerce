@@ -5,6 +5,7 @@ import toRupiah from "@develoka/angka-rupiah-js";
 import Checkout1 from "./../../../assets/ellipse/Checkout-1.svg";
 import { getAllCheckout } from "../../../config/checkout";
 import Address from "../../Elements/Address";
+import checkLogin from "./../../../utils/loginCheck.util";
 
 const CheckoutTemplate = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,9 @@ const CheckoutTemplate = () => {
   };
 
   useEffect(() => {
-    getAllCheckout(1, dispatch);
+    checkLogin().then((user) => {
+      getAllCheckout(user.uid, dispatch);
+    });
   }, []);
 
   return (

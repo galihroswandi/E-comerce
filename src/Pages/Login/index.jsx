@@ -37,19 +37,23 @@ const Login = () => {
         const data = {
           uid: res.user.uid,
           noHP: res.user.phoneNumber,
+          nama: "-",
           username: "-",
           email: "-",
           alamat: "-",
+          gambar: "-",
         };
 
-        try {
-          await addUser(data);
-          setTimeout(() => {
-            navigate("/");
-          }, 700);
-        } catch (err) {
-          console.error(err);
-        }
+        await addUser(data)
+          .then((res) => {
+            setTimeout(() => {
+              navigate("/");
+            }, 700);
+          })
+          .catch((err) => {
+            alert("Verifikasi gagal");
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.error(err);
@@ -116,6 +120,7 @@ const Login = () => {
           <h1 className="text-xl text-slate-700">Sign In</h1>
         </div>
       </Navbar>
+      <Toaster toastOptions={{ duration: 4000 }} />
       <div className="bg-gradient-to-r from-[#DCFCE7] to-white md:p-[100px]. border-b border-slate-200 py-5 md:py-20">
         <div className="flex-div md:flex justify-evenly">
           <img
@@ -137,7 +142,6 @@ const Login = () => {
               />
             </div>
             <div className="kiri z-10">
-              <Toaster toastOptions={{ duration: 4000 }} />
               <div id="recaptcha-container"></div>
               {!usePhone ? (
                 <>
