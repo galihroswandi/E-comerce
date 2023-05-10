@@ -9,6 +9,7 @@ import SearchIcon from "./../../../assets/icons/Search.svg";
 import Logo from "./../../../assets/img/Logo.png";
 import Profile from "./../../../assets/icons/Profile.svg";
 import PesananSaya from "./../../../assets/icons/Pesanan_saya.svg";
+import SignOut from "./../../../assets/icons/log-out.svg";
 import checkLogin from "../../../utils/loginCheck.util";
 import logout from "../../../utils/logout.util";
 import { Toaster, toast } from "react-hot-toast";
@@ -165,8 +166,8 @@ const Navbar = (props) => {
                         className="flex items-center gap-2 group"
                       >
                         <img
-                          src={Profile}
-                          alt="Profile Icon"
+                          src={SignOut}
+                          alt="Signout Icon"
                           className="group-hover:text-slate-2"
                         />
                         <span className="text-white group-hover:text-slate-200">

@@ -7,7 +7,7 @@ import { getProducts } from "../products/products";
 const db = getDatabase(app);
 
 export const addCheckout = (data) => {
-    const starRef = ref(db, "checkout");
+    const starRef = ref(db, "pesanan");
     return new Promise((resolve, reject) => {
         push(starRef, data)
             .then(() => {
@@ -19,7 +19,7 @@ export const addCheckout = (data) => {
 }
 
 export const getAllCheckout = (id_user, dispacth) => {
-    const starRef = ref(db, "checkout");
+    const starRef = ref(db, "pesanan");
 
     return new Promise((resolve, reject) => {
         onValue(starRef, async (snapshot) => {
@@ -43,6 +43,8 @@ export const getAllCheckout = (id_user, dispacth) => {
                     }
                 })
             })
+
+            resolve(dataArray);
 
             try {
                 dispacth(setDataCheckout(dataArray));

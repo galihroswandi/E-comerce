@@ -6,6 +6,7 @@ import { getAllCartByUser } from "../../../config/cart";
 import CardKeranjang from "../../Elements/CardKeranjang";
 import { HandleCheked } from "../../../utils/cart.utils";
 import checkLogin from "../../../utils/loginCheck.util";
+import CheckoutTemplate from "../Checkout";
 
 const CartProductsOrgs = () => {
   const dispacth = useDispatch();
@@ -13,6 +14,7 @@ const CartProductsOrgs = () => {
   const [dataCart, setDataCart] = useState([]);
   const [login, setLogin] = useState(true);
   const [id_user, setIdUser] = useState();
+  const [checkout, setCheckout] = useState(false);
 
   const handleAllChecked = (target) => {
     const allCheckbox = document.querySelectorAll(".checked");
@@ -49,8 +51,8 @@ const CartProductsOrgs = () => {
     setCartGlobal();
   }, []);
 
-  return (
-    <Fragment>
+  return !checkout ? (
+    <>
       <div className="lg:mt-[4rem] mt-[9.5rem] card-wrapper sm:px-5 md:px-9 lg:flex lg:justify-between lg:w-[100%] items-start gap-4 xl:container mb-8">
         <div className="card mt-[5.7rem] mx-2 py-5 px-5 pb-8 box-border bg-white rounded-xl shadow-lg shadow-slate-200 overflow-hidden mb-5 sm:container xl:px-10 xl:box-border">
           <h1 className="text-sm lg:text-lg text-slate-700 font-semibold mt-2">
@@ -96,9 +98,11 @@ const CartProductsOrgs = () => {
             </>
           )}
         </div>
-        <Ringkasan data_cart={dataCart} />
+        <Ringkasan changeCheckout={setCheckout} data_cart={dataCart} />
       </div>
-    </Fragment>
+    </>
+  ) : (
+    <CheckoutTemplate changeCheckout={setCheckout} />
   );
 };
 

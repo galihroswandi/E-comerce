@@ -5,7 +5,7 @@ import { addCheckout } from "../../../config/checkout";
 import { useNavigate } from "react-router-dom";
 import { removeCart } from "../../../config/cart";
 
-const Button = () => {
+const Button = ({ setCheckout }) => {
   const dataCart = useSelector((state) => state.cart.carts);
   const navigate = useNavigate();
 
@@ -29,9 +29,10 @@ const Button = () => {
   };
 
   const handleClickCheckout = () => {
-    if (dataCart.length >= 1) {
-      postApi(dataCart);
-    }
+    // if (dataCart.length >= 1) {
+    //   postApi(dataCart);
+    // }
+    setCheckout(true);
   };
 
   return (

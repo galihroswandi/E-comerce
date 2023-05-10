@@ -1,10 +1,13 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { HandleCheked } from "../../../utils/cart.utils";
+import { setCarts } from "../../../config/redux/reducer/cartSlice";
 
 const InputField = ({ dataId }) => {
   const dispacth = useDispatch();
+
+  const cartGlobal = useSelector((state) => state.cart.carts);
 
   const checkChecked = (e) => {
     const checkedChild = document.querySelectorAll(".checked-child");
@@ -18,6 +21,10 @@ const InputField = ({ dataId }) => {
   const handleChange = () => {
     HandleCheked(dispacth);
   };
+
+  useEffect(() => {
+    dispacth(setCarts([]));
+  }, []);
 
   return (
     <input

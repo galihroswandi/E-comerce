@@ -22,12 +22,20 @@ import {
 } from "../../config/redux/reducer/profilSlice";
 import { Toaster, toast } from "react-hot-toast";
 import { updateUser } from "../../config/users";
+import { CgSpinner } from "react-icons/cg";
 
 const Profile = () => {
   const [login, setLogin] = useState(undefined);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const profil = useSelector((state) => state.profil);
+  const [loading, setLoading] = useState(false);
+
+  const handleVerify = () => {
+    toast.error(
+      "Mohon maaf, fitur ini masih dalam pengembangan dan akan segera tersedia."
+    );
+  };
 
   const handleCekUsername = async () => {
     const check = await submitUsernameCheck(profil.username, profil.id);
@@ -45,6 +53,7 @@ const Profile = () => {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     const data = {
       noHP: profil.noHP,
       nama: profil.nama,
@@ -55,12 +64,15 @@ const Profile = () => {
 
     const check = await submitUsernameCheck(data.username, profil.id);
     if (check.status === "not oke") {
+      setLoading(false);
       toast.error("Username sudah tersedia, Silahkan pilih username lain");
       return false;
     }
 
     const res = await updateUser(data, profil.id);
-    res.status === "ok" && toast.success("Data berhasil diubah !");
+    res.status === "ok" &&
+      toast.success("Data berhasil diubah !") &&
+      setLoading(false);
   };
 
   const handleChange = (e) => {
@@ -189,18 +201,26 @@ const Profile = () => {
               >
                 Email
               </label>
-              <input
-                type="text"
-                name="email"
-                id="email"
-                value="Fitur Belum Tersedia"
-                onChange={handleChange}
-                required
-                className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 bg-slate-300"
-                autoComplete="off"
-                disabled
-                title="Sementara fitur belum tersedia"
-              />
+              <div className="flex items-center w-full gap-1">
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  onChange={handleChange}
+                  value="Mohon maaf, fitur belum tersedia."
+                  required
+                  className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 bg-gray-300"
+                  autoComplete="off"
+                  disabled
+                  title="Sementara fitur belum tersedia"
+                />
+                <small
+                  onClick={handleVerify}
+                  className="cursor-pointer hover:text-green-500"
+                >
+                  Verifikasi
+                </small>
+              </div>
             </section>
             <section className="flex flex-col md:flex-row md:justify-start md:items-start md:gap-10 gap-1 mb-3">
               <label
@@ -209,16 +229,25 @@ const Profile = () => {
               >
                 No Telepon
               </label>
-              <input
-                type="text"
-                name="noTelepon"
-                id="noTelepon"
-                value={profil.noHP}
-                onChange={handleChange}
-                required
-                className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
-                autoComplete="off"
-              />
+              <div className="flex items-center w-full gap-1">
+                <input
+                  type="text"
+                  name="noTelepon"
+                  id="noTelepon"
+                  value={profil.noHP}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
+                  autoComplete="off"
+                  disabled
+                />
+                <small
+                  onClick={handleVerify}
+                  className="cursor-pointer hover:text-green-500"
+                >
+                  Verifikasi
+                </small>
+              </div>
             </section>
             <section className="flex flex-col md:flex-row md:justify-start md:items-start md:gap-10 gap-1 mb-3">
               <label
@@ -252,7 +281,10 @@ const Profile = () => {
                 className="w-full border border-slate-200 bg-green-500 text-slate-100 py-1.5 px-2 rounded-lg text-sm outline-none md:py-2 md:text-base md:w-[30%] md:-translate-x-16"
                 type="button"
               >
-                Simpan
+                <span className="flex justify-center items-center gap-1">
+                  {loading && <CgSpinner size={20} className=" animate-spin" />}
+                  Simpan
+                </span>
               </button>
             </section>
           </section>

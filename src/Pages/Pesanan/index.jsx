@@ -24,6 +24,12 @@ const Pesanan = () => {
         <section className="bg-white bg-opacity-50 backdrop-blur-sm border border-green-500 py-3 px-5 rounded-md w-full min-h-[40vh] md:min-h-fit overflow-x-hidden">
           <h1 className="text-lg text-slate-700">Pesanan Saya</h1>
           <div className="sidebar flex md:flex-col flex-row md:gap-1.5 gap-5 items-start md:ml-5 md:mt-3 mt-5 border-b border-b-slate-300 pb-1 md:border-none mb-5">
+            <Link to="/checkout" className="text-slate-700 text-sm">
+              <span className="hidden md:inline-block text-slate-500 mb-1">
+                Proses Checkout
+              </span>
+              <span className="md:hidden">Dikirim</span>
+            </Link>
             <Link className="text-slate-500. text-sm text-slate-800">
               <span className="hidden md:inline-block mb-1 text-green-500">
                 Sedang Dikemas
@@ -33,6 +39,12 @@ const Pesanan = () => {
             <Link className="text-slate-700 text-sm">
               <span className="hidden md:inline-block text-slate-500 mb-1">
                 Dalam Pengiriman
+              </span>
+              <span className="md:hidden">Dikirim</span>
+            </Link>
+            <Link className="text-slate-700 text-sm">
+              <span className="hidden md:inline-block text-slate-500 mb-1">
+                Selesai
               </span>
               <span className="md:hidden">Dikirim</span>
             </Link>

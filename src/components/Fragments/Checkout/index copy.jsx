@@ -3,70 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import toRupiah from "@develoka/angka-rupiah-js";
 
 import Checkout1 from "./../../../assets/ellipse/Checkout-1.svg";
-import { addCheckout } from "../../../config/checkout";
+import { getAllCheckout } from "../../../config/checkout";
 import Address from "../../Elements/Address";
 import checkLogin from "./../../../utils/loginCheck.util";
-import { getAllCartByUser, removeCart } from "../../../config/cart";
-import { getProducts } from "../../../config/products/products";
-import { Link, useNavigate } from "react-router-dom";
-import { makeId } from "../../../utils/generateId.util";
-import { Toaster, toast } from "react-hot-toast";
-import { CgSpinner } from "react-icons/cg";
-import Swal from "sweetalert2";
 
-const CheckoutTemplate = ({ changeCheckout }) => {
+const CheckoutTemplate = () => {
+  const dispatch = useDispatch();
   const data = useSelector((state) => state.checkout.data);
-  const dataKeranjang = useSelector((state) => state.cart.carts);
-  const navigate = useNavigate();
 
   const [ongkir, setOngkir] = useState(0);
-  const [metodePembayaran, setMetodePembayaran] = useState();
   const [biayaLayanan] = useState(500);
-  const [dataCarts, setDataCarts] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const hapusDataKeranjang = () => {
-    dataKeranjang.forEach(async (el) => {
-      await removeCart(el.id);
-    });
-    Swal.fire("Success", "Pesnan berhasil dibuat", "success").finally(() => {
-      setLoading(false);
-      setTimeout(() => {
-        navigate("/pesanan");
-      }, 1100);
-    });
-  };
-
-  const handleCheckout = async () => {
-    setLoading(true);
-    const user = await checkLogin();
-
-    const data = {
-      id_pesanan: "IBRSHOP" + makeId(17).toUpperCase() + new Date().getTime(),
-      id_user: user.uid,
-      products: dataKeranjang,
-      hargaPengiriman: ongkir,
-      metodePembayaran,
-      subtotal: hitungTotal(),
-      totalPembayaran: hitungTotalPembayaran(),
-      status: "Dikemas",
-    };
-
-    hapusDataKeranjang();
-
-    const postData = await addCheckout(data);
-    if (!postData) {
-      toast.error("Pesanan gagal dibuat");
-      setLoading(false);
-    } else {
-      hapusDataKeranjang();
-    }
-  };
 
   const hitungTotal = () => {
-    return dataKeranjang.length >= 1
-      ? dataKeranjang
-          .map((checkout) => checkout.data.totalHarga)
+    return data.length >= 1
+      ? data
+          .map((checkout) => checkout.data.subtotal)
           .reduce((acc, currentVal) => acc + currentVal)
       : 0;
   };
@@ -77,16 +28,13 @@ const CheckoutTemplate = ({ changeCheckout }) => {
 
   useEffect(() => {
     checkLogin().then((user) => {
-      getAllCartByUser(user.uid).then((result) => {
-        setDataCarts(result);
-      });
+      getAllCheckout(user.uid, dispatch);
     });
   }, []);
 
   return (
     <Fragment>
       <div className="wrapper overflow-hidden">
-        <Toaster toastOptions={{ duration: 4000 }} />
         <main className="min-h-[100vh] mt-[7rem] mx-2 py-5 box-border mb-8 sm:container md:px-3 lg:px-5 relative">
           <img
             src={Checkout1}
@@ -105,19 +53,59 @@ const CheckoutTemplate = ({ changeCheckout }) => {
                 </span>
               </h1>
               <div className="main-products">
-                {!dataKeranjang
+                {!data
                   ? "Data gagal di load..."
-                  : dataKeranjang.map((ch, index) => {
+                  : data.map((ch, index) => {
                       return (
-                        <div key={index}>
-                          <ProductCheckout dataCheckout={ch} />
+                        <div
+                          className="border-b border-b-green-500 mb-4"
+                          key={index}
+                        >
+                          <div className="main flex gap-3 mt-1">
+                            <img
+                              src={`${ch.product.gambar_product.imgUrl}`}
+                              alt={ch.product.nama_product}
+                              className="w-16 lg:w-24 border p-0.5 rounded-md"
+                            />
+                            <div className="desc flex flex-col gap-1 text-slate-600">
+                              <p className="text-sm sm:text-base lg:text-lg">
+                                {ch.product.nama_product}
+                              </p>
+                              <p>{ch.product.deskripsi}</p>
+                              <p className="text-xs sm:text-sm lg:text-lg text-slate-500">
+                                {toRupiah(ch.product.harga, {
+                                  floatingPoint: 0,
+                                })}
+                                <span className="lg:absolute lg:right-5 lg:-translate-y-5">
+                                  (x{ch.data.kuantitas})
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                          <div className="message mt-2 mb-5 lg:mt-5">
+                            <label
+                              htmlFor="pesan"
+                              className=" flex items-center gap-2"
+                            >
+                              <span className="text-xs sm:text-sm lg:text-lg text-slate-500">
+                                Pesan:
+                              </span>
+                              <input
+                                type="text"
+                                name="pesan"
+                                id="pesan"
+                                placeholder={ch.pesan}
+                                className="py-1 lg:py-2 px-3 border-none outline-none focus:ring-1 focus:ring-green-500 rounded-md text-xs lg:text-sm lg:font-extralight text-slate-700 ring-1 ring-slate-200 md:max-w-full mr-1 max-w-[80%]"
+                              />
+                            </label>
+                          </div>
                         </div>
                       );
                     })}
               </div>
               <div className="total flex justify-between items-center border-t. border-t-green-500. mt-2 lg:mt-5 lg:text-lg text-sm text-slate-700">
                 <h1>Subtotal:</h1>
-                <h1>{dataCarts && toRupiah(hitungTotal())}</h1>
+                <h1>{data && toRupiah(hitungTotal())}</h1>
               </div>
             </div>
             <div className="lg:flex lg:flex-col lg:justify-evenly lg:ml-28">
@@ -148,7 +136,6 @@ const CheckoutTemplate = ({ changeCheckout }) => {
                 <select
                   name="opsi-pengiriman"
                   id="opsi-pengiriman"
-                  onChange={(e) => setMetodePembayaran(e.target.value)}
                   className="block px-1.5 py-2.5 w-full text-sm text-slate-600 bg-transparent border-0 border-b border-green-500 appearance-none focus:outline-none focus:ring-0 focus:border-green-500 peer"
                 >
                   <option value="">Pilih Metode Pembayaran</option>
@@ -189,20 +176,11 @@ const CheckoutTemplate = ({ changeCheckout }) => {
               </div>
             </div>
             <div className="submit flex justify-end gap-2 my-2">
-              <Link
-                onClick={() => changeCheckout(false)}
-                className="text-xs sm:text-sm lg:text-lg border border-green-500 px-5 lg:px-12 py-[.4rem] rounded-sm text-green-500"
-              >
+              <button className="text-xs sm:text-sm lg:text-lg border border-green-500 px-5 lg:px-12 py-[.4rem] rounded-sm text-green-500">
                 Batal
-              </Link>
-              <button
-                onClick={handleCheckout}
-                className="text-xs sm:text-sm lg:text-lg border px-5 py-[.4rem] rounded-sm text-green-100 bg-green-500 leading-4"
-              >
-                <span className="flex items-center gap-1">
-                  {loading && <CgSpinner size={20} className=" animate-spin" />}
-                  Buat Pesanan
-                </span>
+              </button>
+              <button className="text-xs sm:text-sm lg:text-lg border px-5 py-[.4rem] rounded-sm text-green-100 bg-green-500 leading-4">
+                Buat Pesanan
               </button>
             </div>
           </section>
@@ -214,70 +192,6 @@ const CheckoutTemplate = ({ changeCheckout }) => {
         </main>
       </div>
     </Fragment>
-  );
-};
-
-const ProductCheckout = (props) => {
-  const { dataCheckout } = props;
-
-  const dispatch = useDispatch();
-
-  const [data, setData] = useState();
-
-  const filterProductWhereId = async (id_product) => {
-    try {
-      const res = await getProducts(dispatch);
-      const [filteredProducts] = res.filter(
-        (el) => el.id_product === parseInt(id_product)
-      );
-      setData(filteredProducts);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    filterProductWhereId(dataCheckout.data.id_product);
-  }, []);
-
-  return !dataCheckout || !data ? (
-    <></>
-  ) : (
-    <div className="border-b border-b-green-500 mb-4">
-      <div className="main flex gap-3 mt-1">
-        <img
-          src={`${data.gambar_product.imgUrl}`}
-          alt={data.nama_product}
-          className="w-16 lg:w-24 border p-0.5 rounded-md"
-        />
-        <div className="desc flex flex-col gap-1 text-slate-600">
-          <p className="text-sm sm:text-base lg:text-lg">{data.nama_product}</p>
-          <small>{data.deskripsi}</small>
-          <p className="text-xs sm:text-sm lg:text-lg text-slate-500">
-            {toRupiah(data.harga, {
-              floatingPoint: 0,
-            })}
-            <span className="lg:absolute lg:right-5 lg:-translate-y-5">
-              (x{dataCheckout.data.kuantitas})
-            </span>
-          </p>
-        </div>
-      </div>
-      <div className="message mt-2 mb-5 lg:mt-5">
-        <label htmlFor="pesan" className=" flex items-center gap-2">
-          <span className="text-xs sm:text-sm lg:text-lg text-slate-500">
-            Pesan:
-          </span>
-          <input
-            type="text"
-            name="pesan"
-            id="pesan"
-            placeholder={dataCheckout.pesan}
-            className="py-1 lg:py-2 px-3 border-none outline-none focus:ring-1 focus:ring-green-500 rounded-md text-xs lg:text-sm lg:font-extralight text-slate-700 ring-1 ring-slate-200 md:max-w-full mr-1 max-w-[80%]"
-          />
-        </label>
-      </div>
-    </div>
   );
 };
 

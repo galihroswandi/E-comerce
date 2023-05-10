@@ -48,7 +48,7 @@ const Login = () => {
           .then((res) => {
             setTimeout(() => {
               navigate("/");
-            }, 700);
+            }, 500);
           })
           .catch((err) => {
             alert("Verifikasi gagal");

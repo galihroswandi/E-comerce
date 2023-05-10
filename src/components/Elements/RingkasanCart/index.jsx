@@ -3,7 +3,7 @@ import Button from "./Button";
 import toRupiah from "@develoka/angka-rupiah-js";
 import { useSelector } from "react-redux";
 
-const Ringkasan = () => {
+const Ringkasan = ({ changeCheckout }) => {
   const cartsData = useSelector((state) => state.cart.carts);
 
   const totalHarga = cartsData.reduce(
@@ -35,7 +35,7 @@ const Ringkasan = () => {
             Total Bayar{" "}
             <span>{toRupiah(totalHarga, { floatingPoint: 0 })}</span>
           </p>
-          <Button />
+          <Button setCheckout={changeCheckout} />
         </div>
       </div>
     </Fragment>

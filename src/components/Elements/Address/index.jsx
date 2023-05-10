@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Pensil from "./../../../assets/icons/Pencil.svg";
 import MapIcon from "./../../../assets/icons/map.svg";
 import ImgIcon from "./ImgIcon";
 import DashedAmplop from "./DashedAmplop";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../../config/profil";
 
 const Address = () => {
-  const dataUser = useSelector((state) => state.checkout.data);
+  const dispacth = useDispatch();
+  const profil = useSelector((state) => state.profil);
+
+  useEffect(() => {
+    getUser(dispacth);
+  }, []);
 
   return (
     <section className="address bg-white rounded-sm  px-5 py-4 bg-opacity-70 backdrop-blur-[7.5px] flex flex-col gap-2 overflow-hidden mb-5">
@@ -29,16 +35,18 @@ const Address = () => {
       </h1>
       <p className="text-slate-600 mt-1 flex justify-between md:justify-start md:gap-5 items-center">
         <span className="flex flex-wrap items-center gap-1 text-sm lg:text-lg">
-          {!dataUser.user ? "Username" : dataUser.user[0].nama}
-          <span>
-            +(62) {!dataUser.user ? "12345678" : dataUser.user[0].no_hp}
+          {!profil.nama
+            ? "user" + Math.floor(Math.random() * 1000)
+            : profil.nama}
+          <span className="ml-1">
+            +(62) {!profil.noHP ? "12345678" : profil.noHP}
           </span>
         </span>
         <ImgIcon imgUrl={Pensil} />
       </p>
       <p className="flex gap-1 justify-between md:justify-start md:gap-5 items-center mt-2">
         <span className="text-slate-500 text-sm lg:text-lg">
-          {!dataUser.user ? "Alamat...." : dataUser.user[0].alamat}
+          {!profil.alamat ? "Alamat...." : profil.alamat}
         </span>
         <ImgIcon imgUrl={Pensil} />
       </p>

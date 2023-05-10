@@ -110,7 +110,7 @@ const MainCardDetail = () => {
   };
 
   return (
-    <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-5 lg:px-[2rem] xl:px-[5rem] py-5">
+    <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-5 lg:px-[2rem] xl:px-[5rem] py-5 xl:gap-20">
       <div className="img mb-5 mt-10">
         <img
           src={`${
@@ -119,10 +119,10 @@ const MainCardDetail = () => {
               : null
           }`}
           alt="Images"
-          className="w-full -mt-5 sm:w-[20rem] lg:w-[30rem] border rounded-md p-2 box-border"
+          className="w-full -mt-5 sm:w-[20rem] lg:w-[50rem] border rounded-md p-2 box-border"
         />
       </div>
-      <div className="desc sm:mr-10 xl:mr-20">
+      <div className="desc sm:mr-10. xl:mr-20. align-top">
         <h1 className="text-xl text-slate-800 mb-5 font-extralight lg:text-4xl">
           {dataDetail !== undefined && dataDetail.length !== 0
             ? dataDetail.nama_product
