@@ -1,17 +1,14 @@
 import React from "react";
-import Navbar from "./../../components/Elements/Navbar";
-import Banner from "../../components/Fragments/Banner";
+import Banner from "../../components/Elements/Banner";
 import AllProducts from "../../components/Fragments/AllProducts";
-import Footer from "../../components/Elements/Footer";
+import PageLayout from "../../components/Layouts/PageLayout";
 
 const HomePages = () => {
   return (
-    <div>
-      <Navbar />
+    <PageLayout>
       <Banner />
       <AllProducts />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 

@@ -41,7 +41,7 @@ const AllProducts = ({ title }) => {
             })
           : null}
       </section>
-      <div className="button mt-10 flex justify-center">
+      <div className="mt-10 flex justify-center">
         <Link
           to="/all-product"
           className="bg-green-500 py-3 px-5 text-white rounded-3xl font-light hover:shadow-lg hover:-translate-y-[.1rem] transition duration-200"

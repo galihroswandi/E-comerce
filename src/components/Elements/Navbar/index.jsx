@@ -78,7 +78,6 @@ const Navbar = (props) => {
   return (
     <div className="container">
       <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 lg:flex lg:py-3 lg:flex-wrap box-border">
-        <Toaster toastOptions={{ duration: 4000 }} />
         {content !== "login" ? (
           <>
             <Brand />

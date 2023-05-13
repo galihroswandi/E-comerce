@@ -1,5 +1,4 @@
-import React, { Fragment, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { Fragment } from "react";
 
 import Navbar from "../../Elements/Navbar";
 import Footer from "../../Elements/Footer";
