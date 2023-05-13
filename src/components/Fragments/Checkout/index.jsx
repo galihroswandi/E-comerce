@@ -87,7 +87,7 @@ const CheckoutTemplate = ({ changeCheckout }) => {
     <Fragment>
       <div className="wrapper overflow-hidden">
         <Toaster toastOptions={{ duration: 4000 }} />
-        <main className="min-h-[100vh] mt-[7rem] mx-2 py-5 box-border mb-8 sm:container md:px-3 lg:px-5 relative">
+        <main className="min-h-[100vh] mt-[7rem] mx-auto py-5 box-border mb-8 sm:container md:px-3 lg:px-5 relative">
           <img
             src={Checkout1}
             alt="Ellipse"

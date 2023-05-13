@@ -1,20 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    container: {
-      center: true,
-      padding: '16px',
-    },
-    extend: {
-      colors: {
-        dark: '#0f172a'
-      },
-    },
+    extend: {},
   },
-  plugins: [
-    require('tailwind-scrollbar'),
-  ],
+  plugins: [],
 }
+

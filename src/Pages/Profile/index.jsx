@@ -23,6 +23,9 @@ import {
 import { Toaster, toast } from "react-hot-toast";
 import { updateUser } from "../../config/users";
 import { CgSpinner } from "react-icons/cg";
+import { getCities, getProvinsi } from "../../config/rajaongkir";
+import IconEdit from "./../../assets/icons/edit.svg";
+import SaveEdit from "./../../assets/icons/check-square.svg";
 
 const Profile = () => {
   const [login, setLogin] = useState(undefined);
@@ -30,6 +33,21 @@ const Profile = () => {
   const dispatch = useDispatch();
   const profil = useSelector((state) => state.profil);
   const [loading, setLoading] = useState(false);
+  const [changeAlamat, setChangeAlamat] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [provinsi, setProvinsi] = useState();
+
+  const handleSaveAlamat = () => {
+    setChangeAlamat(false);
+  };
+
+  const handlePropinsi = (e) => {
+    setProvinsi(cleanInput(e.target.value));
+  };
+
+  const handleAlamat = () => {
+    setChangeAlamat(true);
+  };
 
   const handleVerify = () => {
     toast.error(
@@ -105,6 +123,9 @@ const Profile = () => {
     checkLogin().then((res) => {
       setLogin(res);
     });
+
+    // getProvinsi();
+    // getCities(9);
   }, []);
 
   return login !== undefined && !login.status ? (
@@ -112,15 +133,15 @@ const Profile = () => {
   ) : (
     <>
       <Navbar />
-      <header className="container mt-36 mb-5 px-7 lg:px-20">
+      <header className="container mx-auto mt-36 mb-5 px-7 lg:px-20">
         <h1 className="text-lg md:text-2xl text-slate-700 font-medium">
           Profil
         </h1>
         <Hr width="3.5rem" />
       </header>
       <Toaster toastOptions={{ duration: 4000 }} />
-      <main className="container px-7 mb-10 lg:px-20">
-        <div className="container border bg-white bg-opacity-5 backdrop-blur-md border-green-500 min-h-[50vh] py-4 rounded-lg flex flex-col gap-3 sm:flex-row-reverse sm:justify-between sm:px-7 md:p-8 md:max-w-[90%]">
+      <main className="container px-7 mx-auto mb-10 lg:px-20">
+        <div className="container mx-auto border bg-white bg-opacity-5 backdrop-blur-md border-green-500 min-h-[50vh] py-4 rounded-lg flex flex-col gap-3 sm:flex-row-reverse sm:justify-between sm:px-7 md:p-8 md:max-w-[90%]">
           <section className="foto flex flex-col justify-center items-center lg:mr-10">
             <img
               src={!profil.gambar ? ProfileDummy : profil.gambar}
@@ -256,23 +277,64 @@ const Profile = () => {
               >
                 Alamat
               </label>
-              <div>
-                <textarea
-                  name="alamat"
-                  id="alamat"
-                  value={profil.alamat}
-                  onChange={handleChange}
-                  required
-                  className="w-full h-20 bg-transparent border border-slate-200 py-2 px-2 rounded-md text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 scrollbar-thin"
-                  autoComplete="off"
-                  maxLength={200}
-                  style={{ resize: "none" }}
-                  rows="2"
-                ></textarea>
-                <small className="text-red-500">
-                  Note: Silakan susun alamat dengan format: Jalan/Nama Jalan
-                  RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi
-                </small>
+              <div className="flex items-center w-full gap-4">
+                {/* <>
+                    <textarea
+                      name="alamat"
+                      id="alamat"
+                      cols="45"
+                      rows="4"
+                      value={profil.alamat}
+                      className="w-full h-20 bg-transparent border border-slate-200 py-2 px-2 rounded-md text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 scrollbar-thin"
+                      style={{ resize: "none" }}
+                      disabled
+                    ></textarea>
+                  </> */}
+
+                <>
+                  <select
+                    name="provinsi"
+                    id="provinsi"
+                    onChange={handlePropinsi}
+                    className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 appearance-none."
+                  >
+                    <option value="">Pilih Propinsi</option>
+                    <option value="1">Jawabarat</option>
+                  </select>
+                </>
+
+                <>
+                  <select
+                    name="kota"
+                    id="kota"
+                    className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 appearance-none."
+                    disabled={isDisabled}
+                  >
+                    <option value="">Pilih Kota</option>
+                    <option value="1">Tasikmalaya</option>
+                    <option value="1">Bandung</option>
+                  </select>
+                </>
+
+                {!changeAlamat ? (
+                  <>
+                    <small
+                      onClick={handleAlamat}
+                      className="cursor-pointer hover:text-green-500 text-sm"
+                    >
+                      <img src={IconEdit} alt="Icon Edit" className="w-14" />
+                    </small>
+                  </>
+                ) : (
+                  <>
+                    <small
+                      onClick={handleSaveAlamat}
+                      className="cursor-pointer hover:text-green-500 text-sm"
+                    >
+                      <img src={SaveEdit} alt="Icon Save" className="w-14" />
+                    </small>
+                  </>
+                )}
               </div>
             </section>
             <section className="flex flex-col md:flex-row md:justify-center md:items-start md:gap-10 gap-1 mt-6 md:mt-1">
