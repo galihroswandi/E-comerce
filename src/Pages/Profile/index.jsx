@@ -277,21 +277,25 @@ const Profile = () => {
               >
                 Alamat
               </label>
-              <div className="flex items-center w-full gap-4">
-                {/* <>
-                    <textarea
-                      name="alamat"
-                      id="alamat"
-                      cols="45"
-                      rows="4"
-                      value={profil.alamat}
-                      className="w-full h-20 bg-transparent border border-slate-200 py-2 px-2 rounded-md text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 scrollbar-thin"
-                      style={{ resize: "none" }}
-                      disabled
-                    ></textarea>
-                  </> */}
-
+              <div className="flex items-center flex-col w-full gap-4">
                 <>
+                  <textarea
+                    name="alamat"
+                    id="alamat"
+                    cols="45"
+                    rows="4"
+                    className="w-full h-20 bg-transparent border border-slate-200 py-2 px-2 rounded-md text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 scrollbar-thin"
+                    style={{ resize: "none" }}
+                  >
+                    {profil.alamat}
+                  </textarea>
+                  <small className="text-red-500">
+                    Note: Silakan susun alamat dengan format: Jalan/Nama Jalan
+                    RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi
+                  </small>
+                </>
+
+                {/* <>
                   <select
                     name="provinsi"
                     id="provinsi"
@@ -314,9 +318,9 @@ const Profile = () => {
                     <option value="1">Tasikmalaya</option>
                     <option value="1">Bandung</option>
                   </select>
-                </>
+                </> */}
 
-                {!changeAlamat ? (
+                {/* {!changeAlamat ? (
                   <>
                     <small
                       onClick={handleAlamat}
@@ -334,7 +338,7 @@ const Profile = () => {
                       <img src={SaveEdit} alt="Icon Save" className="w-14" />
                     </small>
                   </>
-                )}
+                )} */}
               </div>
             </section>
             <section className="flex flex-col md:flex-row md:justify-center md:items-start md:gap-10 gap-1 mt-6 md:mt-1">

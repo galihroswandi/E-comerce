@@ -39,7 +39,7 @@ const Address = () => {
             ? "user" + Math.floor(Math.random() * 1000)
             : profil.nama}
           <span className="ml-1">
-            +(62) {!profil.noHP ? "12345678" : profil.noHP}
+            {!profil.noHP ? "12345678" : profil.noHP}
           </span>
         </span>
         <ImgIcon imgUrl={Pensil} />
