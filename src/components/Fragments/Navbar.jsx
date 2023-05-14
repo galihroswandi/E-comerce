@@ -149,6 +149,7 @@ const Navbar = (props) => {
                       <Link
                         onClick={handleLogout}
                         className="flex items-center gap-2 group"
+                        id="large"
                       >
                         <img
                           src={SignOut}

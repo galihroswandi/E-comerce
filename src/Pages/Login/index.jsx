@@ -5,7 +5,7 @@ import Navbar from "./../../components/Fragments/Navbar";
 import Footer from "./../../components/Elements/Footer";
 import Logo from "./../../assets/img/Logo.png";
 import Ellipse from "./../../assets/ellipse/Checkout-1.svg";
-import Brand from "../../components/Elements/Navbar/Brand";
+import Brand from "../../components/Elements/Brand";
 import Google from "./../../assets/icons/google.svg";
 import { BsTelephoneFill } from "react-icons/bs";
 import PhoneInput from "react-phone-input-2";

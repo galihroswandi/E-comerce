@@ -20,8 +20,12 @@ const NavLink = () => {
   const handleLogout = async () => {
     const res = await logout();
     !res.status
-      ? toast.error("Sign out gagal")
-      : toast.success("Sign out berhasil");
+      ? Swal.fire({
+          icon: "error",
+          title: "Oops",
+          text: "Internal Server Error",
+        })
+      : window.location.reload();
   };
 
   useEffect(() => {
@@ -61,7 +65,10 @@ const NavLink = () => {
       </div>
       <List link="/" title="Home" click={handleClick} />
       <List link="/about" title="Tentang Kami" click={handleClick} />
-      <List link="/pesanan" title="Pesanan Saya" click={handleClick} />
+      {login && (
+        <List link="/pesanan" title="Pesanan Saya" click={handleClick} />
+      )}
+
       {login && (
         <>
           <Link

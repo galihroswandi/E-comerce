@@ -55,22 +55,25 @@ input[type=number]::-webkit-inner-spin-button {
   }
 }
 
-@media screen and (max-width: 330px) {
-  #product-wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
+@media screen and (max-width: 376px) {
   #footer-add-cart {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
     gap: .4rem;
   }
 
-  #footer-add-cart>button {
+  #footer-add-cart button {
     min-width: 100%;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  #product-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
   #categori-wrapper {

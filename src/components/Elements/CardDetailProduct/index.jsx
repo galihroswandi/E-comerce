@@ -110,7 +110,7 @@ const MainCardDetail = () => {
   };
 
   return (
-    <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-5 lg:px-[2rem] xl:px-[5rem] py-5 xl:gap-20">
+    <div className="mb-3 sm:flex sm:gap-5 md:gap-0 sm:justify-between sm:items-center md:px-5 lg:px-[2rem] xl:px-[5rem] py-5 xl:gap-20 lg:gap-10">
       <div className="img mb-5 mt-10">
         <img
           src={`${
@@ -119,7 +119,7 @@ const MainCardDetail = () => {
               : null
           }`}
           alt="Images"
-          className="w-full -mt-5 sm:w-[20rem] lg:w-[50rem] border rounded-md p-2 box-border"
+          className="w-full -mt-5 sm:w-[20rem] lg:w-[40rem] xl:w-[50rem] border rounded-md p-2 box-border"
         />
       </div>
       <div className="desc sm:mr-10. xl:mr-20. align-top">
@@ -140,7 +140,7 @@ const MainCardDetail = () => {
           <Counter global={true} />
         </div>
         <div
-          className="footer fixed bg-white bg-opacity-5 backdrop-blur-md bottom-0 z-10 left-0 right-0 py-4 px-7 border-t-[.1rem] flex justify-between items-center sm:static sm:px-0 sm:gap-0 lg:gap-2"
+          className="fixed bg-white bg-opacity-5 backdrop-blur-md bottom-0 z-10 left-0 right-0 py-4 px-7 border-t-[.1rem] flex justify-between items-center sm:static sm:px-0 gap-x-2 sm:gap-0 lg:gap-2"
           id="footer-add-cart"
         >
           <button

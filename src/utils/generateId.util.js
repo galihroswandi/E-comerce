@@ -1,6 +1,6 @@
 export const makeId = (length) => {
     let result = "";
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
     const charactersLength = characters.length;
     let counter = 0;
     while (counter < length) {

@@ -42,12 +42,13 @@ const CheckoutTemplate = ({ changeCheckout }) => {
     const user = await checkLogin();
 
     const data = {
-      id_pesanan: "IBRSHOP" + makeId(17).toUpperCase() + new Date().getTime(),
+      id_pesanan: "IBR" + makeId(11).toUpperCase(),
       id_user: user.uid,
       product: dataKeranjang,
       hargaPengiriman: ongkir,
       metodePembayaran,
       subtotal: hitungTotal(),
+      waktuPemesanan: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()}-${new Date().getHours()}:${new Date().getMinutes()}`,
       totalPembayaran: hitungTotalPembayaran(),
       status: "Dikemas",
     };
@@ -222,7 +223,6 @@ const ProductCheckout = (props) => {
   const { dataCheckout } = props;
 
   const dispatch = useDispatch();
-
   const [data, setData] = useState();
 
   const filterProductWhereId = async (id_product) => {
