@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import _ from "lodash";
 
 import Navbar from "./../../components/Fragments/Navbar";
 import Footer from "./../../components/Elements/Footer";
@@ -32,7 +33,6 @@ const Login = () => {
       .confirm(otp)
       .then(async (res) => {
         setLoading(false);
-        toast.success("Verifikasi berhasil...");
 
         const data = {
           uid: res.user.uid,
@@ -46,6 +46,7 @@ const Login = () => {
 
         await addUser(data)
           .then((res) => {
+            toast.success("Verifikasi berhasil...");
             setTimeout(() => {
               navigate("/");
             }, 500);
@@ -60,6 +61,11 @@ const Login = () => {
         setLoading(false);
       });
   };
+
+  const handleOTPSubmit = () => {
+    throttledHandleSubmit();
+  };
+  const throttledHandleSubmit = _.throttle(onOTPVerify, 10000);
 
   const onCaptchVerify = () => {
     if (!window.recaptchaVerifier) {
@@ -111,6 +117,11 @@ const Login = () => {
         setLoading(false);
       });
   };
+
+  const handleSendOTP = () => {
+    throttledHandleSendOTP();
+  };
+  const throttledHandleSendOTP = _.throttle(onSendOTP, 10000);
 
   return (
     <>
@@ -234,7 +245,7 @@ const Login = () => {
                         />
                       </div>
                       <button
-                        onClick={onSendOTP}
+                        onClick={handleSendOTP}
                         type="button"
                         className="w-[98%] py-2 text-white text-base bg-[#22C55E] rounded-[5px] mt-[20px] md:mt-[40px] hover:cursor-pointer"
                       >
@@ -271,7 +282,7 @@ const Login = () => {
                         />
                       </div>
                       <button
-                        onClick={onOTPVerify}
+                        onClick={handleOTPSubmit}
                         type="button"
                         className="w-[98%] py-2 text-white text-base bg-[#22C55E] rounded-[5px] mt-[20px] md:mt-[40px] hover:cursor-pointer"
                       >

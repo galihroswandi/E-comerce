@@ -1,5 +1,6 @@
 import { getDatabase, onValue, push, ref, update } from "firebase/database";
 import { app } from "../firebase";
+import checkLogin from "../../utils/loginCheck.util";
 
 const db = getDatabase(app);
 
@@ -30,19 +31,22 @@ export const getAllUser = () => {
 export const addUser = async (data) => {
     const startRef = ref(db, "users");
     const users = await getAllUser();
+    const uid = await checkLogin();
 
     const find = users !== undefined ? users.find(user => user.data.noHP === data.noHP) : undefined;
 
     return new Promise((resolve, reject) => {
         if (find === undefined) {
-            push(startRef, data)
-                .then(() => {
-                    resolve(true);
-                })
-                .catch(err => {
-                    reject(err);
-                })
-            return false;
+            if (uid.status) {
+                push(startRef, data)
+                    .then(() => {
+                        resolve(true);
+                    })
+                    .catch(err => {
+                        reject(err);
+                    })
+                return false;
+            }
         }
 
         resolve(true);
