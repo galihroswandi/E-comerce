@@ -5,28 +5,14 @@
 }
 
 @font-face {
-  font-family: 'Poppins-300';
-  src: url('./../../public/assets/fonts/Poppins/Poppins-Light.ttf');
+  font-family: 'Inter-400';
+  src: url('./../assets/fonts/Inter/static/Inter-Regular.ttf');
 }
 
-@font-face {
-  font-family: 'Poppins-400';
-  src: url('./../assets/fonts/Poppins/Poppins-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'Poppins-500';
-  src: url('./../../public/assets/fonts/Poppins/Poppins-Medium.ttf');
-}
-
-@font-face {
-  font-family: 'Poppins-600';
-  src: url('./../../public/assets/fonts/Poppins/Poppins-SemiBold.ttf');
-}
 
 body {
   background-color: var(--background);
-  font-family: 'Poppins-400', sans-serif;
+  font-family: 'Inter-400', sans-serif;
   scroll-behavior: smooth;
 }
 

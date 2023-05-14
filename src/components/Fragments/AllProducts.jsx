@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import Hr from "./../../Elements/Hr";
-import CardProduct from "../../Elements/CardProduct";
-import { getProducts } from "../../../config/products/products";
+import Hr from "./../Elements/Hr";
+import CardProduct from "../Elements/CardProduct";
+import { getProducts } from "../../config/products/products";
 
 const AllProducts = ({ title }) => {
   const dispatch = useDispatch();

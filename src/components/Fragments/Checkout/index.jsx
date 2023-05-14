@@ -44,7 +44,7 @@ const CheckoutTemplate = ({ changeCheckout }) => {
     const data = {
       id_pesanan: "IBRSHOP" + makeId(17).toUpperCase() + new Date().getTime(),
       id_user: user.uid,
-      products: dataKeranjang,
+      product: dataKeranjang,
       hargaPengiriman: ongkir,
       metodePembayaran,
       subtotal: hitungTotal(),
@@ -52,9 +52,8 @@ const CheckoutTemplate = ({ changeCheckout }) => {
       status: "Dikemas",
     };
 
-    hapusDataKeranjang();
-
     const postData = await addCheckout(data);
+    hapusDataKeranjang();
     if (!postData) {
       toast.error("Pesanan gagal dibuat");
       setLoading(false);
@@ -152,7 +151,9 @@ const CheckoutTemplate = ({ changeCheckout }) => {
                   className="block px-1.5 py-2.5 w-full text-sm text-slate-600 bg-transparent border-0 border-b border-green-500 appearance-none focus:outline-none focus:ring-0 focus:border-green-500 peer"
                 >
                   <option value="">Pilih Metode Pembayaran</option>
-                  <option value="COD">COD (Bayar Ditempat)</option>
+                  <option value="COD ( Bayar Ditempat )">
+                    COD (Bayar Ditempat)
+                  </option>
                 </select>
               </div>
             </div>

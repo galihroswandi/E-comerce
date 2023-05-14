@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Navbar from "./../../components/Elements/Navbar";
+import Navbar from "./../../components/Fragments/Navbar";
 import Footer from "./../../components/Elements/Footer";
 import Logo from "./../../assets/img/Logo.png";
 import Ellipse from "./../../assets/ellipse/Checkout-1.svg";

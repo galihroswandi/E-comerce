@@ -5,12 +5,13 @@ import checkLogin from "../../utils/loginCheck.util";
 
 const db = getDatabase(app);
 
-export const addCart = (data, dispatch) => {
+export const addCart = async (data, dispatch) => {
     dispatch(setLoading(true));
+    const login = await checkLogin();
     return new Promise((resolve, reject) => {
         const cartRef = ref(db, "keranjang");
 
-        getAllCartByUser(1).then(res => {
+        getAllCartByUser(login.uid).then(res => {
             const check = res.length > 0 && res.find(el => el.data.id_product === data.id_product);
             if (check) {
                 data.kuantitas += 1;

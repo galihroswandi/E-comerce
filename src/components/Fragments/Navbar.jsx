@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import Cart from "./Cart";
-import Hamburger from "./Hamburger";
-import Brand from "./Brand";
-import NavLink from "./NavLink";
-import SearchIcon from "./../../../assets/icons/Search.svg";
-import Logo from "./../../../assets/img/Logo.png";
-import Profile from "./../../../assets/icons/Profile.svg";
-import PesananSaya from "./../../../assets/icons/Pesanan_saya.svg";
-import SignOut from "./../../../assets/icons/log-out.svg";
-import checkLogin from "../../../utils/loginCheck.util";
-import logout from "../../../utils/logout.util";
+import Cart from "./../Elements/CartImage";
+import Hamburger from "./../Elements/Hamburger";
+import Brand from "./../Elements/Brand";
+import NavLink from "./../Elements/NavLink";
+import SearchIcon from "../../assets/icons/Search.svg";
+import Logo from "./../../assets/img/Logo.png";
+import Profile from "./../../assets/icons/Profile.svg";
+import PesananSaya from "./../../assets/icons/Pesanan_saya.svg";
+import SignOut from "./../../assets/icons/log-out.svg";
+import checkLogin from "../../utils/loginCheck.util";
+import logout from "../../utils/logout.util";
 import Swal from "sweetalert2";
 
 window.onscroll = () => {
@@ -144,19 +144,6 @@ const Navbar = (props) => {
                         />
                         <span className="text-white group-hover:text-slate-200">
                           Profile
-                        </span>
-                      </Link>
-                      <Link
-                        to="/pesanan"
-                        className="flex items-center gap-2 group"
-                      >
-                        <img
-                          src={PesananSaya}
-                          alt="Pesanan Saya Icon"
-                          className="group-hover:text-slate-2"
-                        />
-                        <span className="text-white group-hover:text-slate-200">
-                          Pesanan Saya
                         </span>
                       </Link>
                       <Link

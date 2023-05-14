@@ -1,4 +1,4 @@
-import Navbar from "./../../components/Elements/Navbar";
+import Navbar from "./../../components/Fragments/Navbar";
 import Hr from "./../../components/Elements/Hr";
 import Footer from "./../../components/Elements/Footer";
 import ProfileDummy from "./../../assets/img/Profile Dummy.svg";

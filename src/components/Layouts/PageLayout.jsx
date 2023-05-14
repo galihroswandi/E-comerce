@@ -1,5 +1,5 @@
 import Footer from "../Elements/Footer";
-import Navbar from "../Elements/Navbar";
+import Navbar from "../Fragments/Navbar";
 
 const PageLayout = (props) => {
   const { children } = props;

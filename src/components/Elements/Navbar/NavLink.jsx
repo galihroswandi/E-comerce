@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Logo from "./../../../assets/img/Logo.png";
 import checkLogin from "../../../utils/loginCheck.util";
 import logout from "../../../utils/logout.util";
-import { Toaster, toast } from "react-hot-toast";
 
 const handleClick = () => {
   const navMenu = document.querySelector("#nav-menu");
@@ -33,7 +32,6 @@ const NavLink = () => {
   // Halaman Versi Android
   return (
     <ul className="justify-center items-center mt-5 transition-all duration-500 lg:flex lg:gap-5 lg:mt-0 lg:pt-1 box-border text-slate-700">
-      <Toaster toastOptions={{ duration: 4000 }} />
       <div className="lg:hidden block">
         {login ? (
           <>

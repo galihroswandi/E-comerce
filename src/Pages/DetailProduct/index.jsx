@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Navbar from "../../components/Elements/Navbar";
+import Navbar from "../../components/Fragments/Navbar";
 import DetailProductOrgs from "../../components/Fragments/DetailProducts";
 import Footer from "../../components/Elements/Footer";
 
