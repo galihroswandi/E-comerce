@@ -8,7 +8,6 @@ import NavLink from "./../Elements/NavLink";
 import SearchIcon from "../../assets/icons/Search.svg";
 import Logo from "./../../assets/img/Logo.png";
 import Profile from "./../../assets/icons/Profile.svg";
-import PesananSaya from "./../../assets/icons/Pesanan_saya.svg";
 import SignOut from "./../../assets/icons/log-out.svg";
 import checkLogin from "../../utils/loginCheck.util";
 import logout from "../../utils/logout.util";
@@ -16,7 +15,6 @@ import Swal from "sweetalert2";
 
 window.onscroll = () => {
   const nav = document.querySelector("nav");
-  const navMenu = document.querySelector("#nav-menu");
 
   if (nav) {
     const fix_nav = nav.offsetTop;
@@ -24,9 +22,7 @@ window.onscroll = () => {
     if (window.pageYOffset > fix_nav) {
       nav.classList.add("navbar-fixed");
     } else {
-      if (navMenu.classList.contains("hidden")) {
-        nav.classList.remove("navbar-fixed");
-      }
+      nav.classList.remove("navbar-fixed");
     }
   }
 };
@@ -76,25 +72,26 @@ const Navbar = (props) => {
 
   return (
     <div className="container">
-      <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 lg:flex lg:py-3 lg:flex-wrap box-border">
+      <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 md:flex md:py-3 md:flex-wrap box-border">
         {content !== "login" ? (
           <>
             <Brand />
-            <div className="nav-link hidden lg:flex">
+            <div className="nav-link hidden md:flex">
               <NavLink />
             </div>
             <div className="hamburger justify-self-end">
               <Hamburger />
             </div>
             <div
-              className="hidden transition-all duration-500 ease-in-out relative min-w-[200%] lg:hidden"
+              className="absolute min-w-[47%] sm:min-w-[30%] min-h-screen top-[8.8rem] sm:top-[9.1rem] left-full -right-0 opacity-0 bg-white transition-all duration-500 ease-in-out md:hidden px-5"
               id="nav-menu"
             >
               <NavLink />
             </div>
-            <div className="lg:flex justify-center items-center gap-2 hidden">
+
+            <div className="md:flex justify-center items-center gap-2 hidden">
               {login === undefined || login === false ? (
-                <div className="lg:flex justify-center items-center gap-2 hidden">
+                <div className="md:flex justify-center items-center gap-2 hidden">
                   <Link
                     to="/signin"
                     className="bg-transparent border border-green-500 py-[.4rem] px-[1.2rem] rounded-md text-green-500 font-medium"
@@ -165,6 +162,7 @@ const Navbar = (props) => {
                 </>
               )}
             </div>
+
             <form
               className="w-[170%] sm:w-[200%] flex justify-center items-center gap-1 my-[.5rem] mt-[.9rem] mx-2 sm:mt-5"
               id="form"

@@ -4,13 +4,12 @@ const hamburgerClick = () => {
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.querySelector("#nav-menu");
   const nav = document.querySelector("nav");
-  const form = document.getElementById("form");
+
+  nav.classList.add("navbar-fixed");
 
   hamburger.classList.toggle("hamburger-active");
-  navMenu.classList.toggle("hidden");
-  form.classList.toggle("hidden");
-  nav.classList.add("navbar-fixed");
-  navMenu.style.transition = "all .5s ease-in-out";
+  navMenu.classList.toggle("active-menu");
+  navMenu.style.transition = "all .5s";
 };
 
 const Hamburger = () => {
@@ -19,7 +18,7 @@ const Hamburger = () => {
       id="hamburger"
       name="button"
       type="button"
-      className="max-w-xs block absolute. right-4 lg:hidden"
+      className="max-w-xs block absolute. right-4 md:hidden"
       aria-label="button"
       onClick={hamburgerClick}
     >

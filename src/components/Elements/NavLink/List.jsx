@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const List = ({ link, title, click, classname }) => {
+const List = ({ link, children, click, classname }) => {
   return (
     <Link
       to={link}
-      className={`text-lg lg:text-base relative group ${classname}`}
+      className={`relative ${classname} pl-5 mb-1 lg:justify-self-end text-sm md:text-base md:border-none w-full`}
       onClick={() => click()}
     >
-      <li className="text-center mb-1 border-b border-green-500 py-2 lg:border-none lg:justify-self-end group-hover:text-green-600 text-sm md:text-base">
-        {title}
-      </li>
+      {children}
     </Link>
   );
 };

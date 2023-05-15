@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import List from "./List";
-import { Link } from "react-router-dom";
 import Logo from "./../../../assets/img/Logo.png";
 import checkLogin from "../../../utils/loginCheck.util";
 import logout from "../../../utils/logout.util";
-import { toast } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser } from "../../../config/profil";
 
 const handleClick = () => {
   const navMenu = document.querySelector("#nav-menu");
   const hamburger = document.getElementById("hamburger");
 
-  navMenu.classList.add("hidden");
+  navMenu.classList.remove("active-menu");
   hamburger.classList.remove("hamburger-active");
 };
 
 const NavLink = () => {
   const [login, setLogin] = useState(false);
+  const profil = useSelector((state) => state.profil);
+  const dispatch = useDispatch();
 
   const handleLogout = async () => {
     const res = await logout();
@@ -32,56 +34,79 @@ const NavLink = () => {
     checkLogin().then((res) => {
       setLogin(res.status);
     });
+    getUser(dispatch);
   }, []);
 
-  // Halaman Versi Android
   return (
-    <ul className="justify-center items-center mt-5 transition-all duration-500 lg:flex lg:gap-5 lg:mt-0 lg:pt-1 box-border text-slate-700">
-      <div className="lg:hidden block">
-        {login ? (
-          <>
-            <Link to="/profil">
-              <div className="flex items-center justify-center gap-2 mb-1 border-b border-green-500 py-2">
-                <img
-                  src={Logo}
-                  alt="Profile"
-                  width="26"
-                  height="28"
-                  className="rounded-full border bg-slate-100"
-                />
-                <div className="username">
-                  <span className="text-sm">Profile</span>
-                </div>
-              </div>
-            </Link>
-            <List link="/pesanan" title="Pesanan Saya" click={handleClick} />
-          </>
-        ) : (
-          <>
-            <List link="/signin" title="Sign In" click={handleClick} />
-            <List link="/signup" title="Sign Up" click={handleClick} />
-          </>
-        )}
-      </div>
-      <List link="/" title="Home" click={handleClick} />
-      <List link="/about" title="Tentang Kami" click={handleClick} />
-      {login && (
-        <List link="/pesanan" title="Pesanan Saya" click={handleClick} />
-      )}
-
+    <div className="justify-center items-center mt-5 transition-all duration-500 flex flex-col md:flex-row lg:mt-0 lg:pt-1 box-border text-slate-700 md:gap-1">
       {login && (
         <>
-          <Link
-            className="text-lg lg:text-base relative group lg:hidden"
-            onClick={handleLogout}
+          <List
+            link="/profil"
+            classname="md:hidden border-b border-slate-200 py-2 hover:bg-slate-200 md:px-3 rounded-md flex items-center gap-2 mb-1"
+            click={handleClick}
           >
-            <li className="text-center mb-1 lg:justify-self-end group-hover:text-green-600 text-sm md:text-base">
-              SignOut
-            </li>
-          </Link>
+            <img
+              src={Logo}
+              alt="Profile"
+              width="31"
+              height="31"
+              className="rounded-full border border-slate-200 p-1"
+            />
+            <span className="text-sm">{profil.username}</span>
+          </List>
         </>
       )}
-    </ul>
+      <List
+        link="/"
+        classname="border-b border-slate-200 py-2 hover:bg-slate-200 md:px-3 rounded-md"
+        click={handleClick}
+      >
+        Beranda
+      </List>
+      <List
+        link="/about"
+        classname="border-b border-slate-200 py-2 min-w-max hover:bg-slate-200 md:px-3 rounded-md"
+        click={handleClick}
+      >
+        Tentang Kami
+      </List>
+
+      {login ? (
+        <>
+          <List
+            link="/pesanan"
+            classname="border-b border-slate-200 py-2 min-w-max hover:bg-slate-200 md:px-3 rounded-md"
+            click={handleClick}
+          >
+            Pesanan Saya
+          </List>
+          <List
+            click={handleLogout}
+            classname="md:hidden py-2 min-w-max bg-slate-200 hover:bg-slate-300 md:px-3 rounded-md text-center"
+          >
+            SignOut
+          </List>
+        </>
+      ) : (
+        <>
+          <List
+            link="/signin"
+            classname="text-center bg-transparent border border-green-500 py-1.5 rounded-md text-green-500"
+            click={handleClick}
+          >
+            Sign In
+          </List>
+          <List
+            link="/signup"
+            classname="text-center bg-green-500 py-1.5 rounded-md text-slate-50"
+            click={handleClick}
+          >
+            Sign Up
+          </List>
+        </>
+      )}
+    </div>
   );
 };
 

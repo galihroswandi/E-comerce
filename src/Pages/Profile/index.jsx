@@ -284,6 +284,7 @@ const Profile = () => {
                     id="alamat"
                     cols="45"
                     rows="4"
+                    onChange={handleChange}
                     className="w-full h-20 bg-transparent border border-slate-200 py-2 px-2 rounded-md text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 scrollbar-thin"
                     style={{ resize: "none" }}
                   >

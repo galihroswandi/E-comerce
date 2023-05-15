@@ -164,7 +164,7 @@ const Pesanan = () => {
                           </div>
                         </section>
 
-                        <section className="total mt-2 flex justify-between items-center gap-2.5">
+                        <section className="total mt-2 flex justify-between items-center gap-2">
                           {statusActive === "Pengiriman" ? (
                             <Link className="hidden"></Link>
                           ) : (
@@ -173,7 +173,7 @@ const Pesanan = () => {
                               statusActive === "Dibatalkan" ? (
                                 <Link
                                   to={`/product/${el.product[0].id_product}`}
-                                  className="border border-green-500 text-sm py-1 px-5 rounded-sm text-green-500 mt-2"
+                                  className="border border-green-500 text-sm py-1 px-5 min-w-max rounded-sm text-green-500 mt-2"
                                 >
                                   Beli Lagi
                                 </Link>
@@ -190,7 +190,9 @@ const Pesanan = () => {
                           <p className="text-slate-700 text-xs">
                             Total :{" "}
                             <span className="text-base text-green-600">
-                              {toRupiah(el.data.totalPembayaran)}
+                              {toRupiah(el.data.totalPembayaran, {
+                                floatingPoint: 0,
+                              })}
                             </span>
                           </p>
                         </section>
