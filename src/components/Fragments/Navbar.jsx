@@ -72,7 +72,7 @@ const Navbar = (props) => {
 
   return (
     <div className="container">
-      <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 md:flex md:py-3 md:flex-wrap box-border overflow-x-hidden">
+      <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 md:flex md:py-3 md:flex-wrap box-border">
         {content !== "login" ? (
           <>
             <Brand />
@@ -83,8 +83,9 @@ const Navbar = (props) => {
               <Hamburger />
             </div>
             <div
-              className="absolute min-w-[47%] sm:min-w-[30%] min-h-screen top-[8.8rem] sm:top-[9.1rem] left-full -right-0 opacity-0 bg-white transition-all duration-500 ease-in-out md:hidden px-5"
+              className="absolute min-w-full min-h-screen top-[8.8rem] sm:top-[9.1rem] left-full right-0 opacity-0 bg-white transition-all duration-500 ease-in-out md:hidden px-5 overflow-hidden hidden"
               id="nav-menu"
+              style={{ width: "0", height: "0" }}
             >
               <NavLink />
             </div>

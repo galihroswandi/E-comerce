@@ -8,7 +8,19 @@ const hamburgerClick = () => {
   nav.classList.add("navbar-fixed");
 
   hamburger.classList.toggle("hamburger-active");
-  navMenu.classList.toggle("active-menu");
+
+  if (!navMenu.classList.contains("hidden")) {
+    navMenu.classList.toggle("active-menu");
+    setTimeout(() => {
+      navMenu.classList.toggle("hidden");
+    }, 200);
+  } else {
+    navMenu.classList.toggle("hidden");
+    setTimeout(() => {
+      navMenu.classList.toggle("active-menu");
+    }, 200);
+  }
+
   navMenu.style.transition = "all .5s";
 };
 
