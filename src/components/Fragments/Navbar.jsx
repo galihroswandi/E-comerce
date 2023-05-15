@@ -72,7 +72,7 @@ const Navbar = (props) => {
 
   return (
     <div className="container">
-      <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 md:flex md:py-3 md:flex-wrap box-border">
+      <nav className="grid grid-cols-2 grid-rows-1 justify-between items-center px-5 lg:px-20 py-6 bg-transparent absolute top-0 left-0 w-full z-10 md:flex md:py-3 md:flex-wrap box-border overflow-x-hidden">
         {content !== "login" ? (
           <>
             <Brand />
