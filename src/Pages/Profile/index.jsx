@@ -105,16 +105,16 @@ const Profile = () => {
         dispatch(setUsername(cleanInput(encryptData(value))));
         break;
       case "nama":
-        dispatch(setNama(cleanInput(value)));
+        dispatch(setNama(cleanInput(encryptData(value))));
         break;
       case "email":
-        dispatch(setEmail(cleanInput(value)));
+        dispatch(setEmail(cleanInput(encryptData(value))));
         break;
       case "noHP":
-        dispatch(setNoHP(cleanInput(value)));
+        dispatch(setNoHP(cleanInput(encryptData(value))));
         break;
       case "alamat":
-        dispatch(setAlamat(cleanInput(value)));
+        dispatch(setAlamat(cleanInput(encryptData(value))));
         break;
       default:
         break;
