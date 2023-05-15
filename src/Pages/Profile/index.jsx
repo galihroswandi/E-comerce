@@ -81,7 +81,7 @@ const Profile = () => {
       noHP: decryptedData(profil.noHP),
       nama: decryptedData(profil.nama),
       username: decryptedData(profil.username),
-      email: profil.email,
+      email: decryptedData(profil.email),
       alamat: decryptedData(profil.alamat),
     };
 
