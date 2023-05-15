@@ -92,14 +92,14 @@ const NavLink = () => {
         <>
           <List
             link="/signin"
-            classname="text-center bg-transparent border border-green-500 py-1.5 rounded-md text-green-500"
+            classname="md:hidden text-center bg-transparent border border-green-500 py-1.5 rounded-md text-green-500"
             click={handleClick}
           >
             Sign In
           </List>
           <List
             link="/signup"
-            classname="text-center bg-green-500 py-1.5 rounded-md text-slate-50"
+            classname="md:hidden text-center bg-green-500 py-1.5 rounded-md text-slate-50"
             click={handleClick}
           >
             Sign Up
