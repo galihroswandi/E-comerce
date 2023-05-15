@@ -10,26 +10,28 @@ import Logo from "./../../assets/img/Logo.png";
 import Profile from "./../../assets/icons/Profile.svg";
 import SignOut from "./../../assets/icons/log-out.svg";
 import checkLogin from "../../utils/loginCheck.util";
-import logout from "../../utils/logout.util";
-import Swal from "sweetalert2";
-
-window.onscroll = () => {
-  const nav = document.querySelector("nav");
-
-  if (nav) {
-    const fix_nav = nav.offsetTop;
-
-    if (window.pageYOffset > fix_nav) {
-      nav.classList.add("navbar-fixed");
-    } else {
-      nav.classList.remove("navbar-fixed");
-    }
-  }
-};
+import { handleLogout } from "../../utils/navbarUtil";
+import ButtonAuth from "../Elements/ButtonAuth";
+import { useSelector } from "react-redux";
 
 const Navbar = (props) => {
   const { content, children } = props;
   const [login, setLogin] = useState(false);
+  const profil = useSelector((state) => state.profil);
+
+  window.onscroll = () => {
+    const nav = document.querySelector("nav");
+
+    if (nav) {
+      const fix_nav = nav.offsetTop;
+
+      if (window.pageYOffset > fix_nav) {
+        nav.classList.add("navbar-fixed");
+      } else {
+        nav.classList.remove("navbar-fixed");
+      }
+    }
+  };
 
   const showDropdown = () => {
     const target = document.getElementById("dropdown-target");
@@ -53,16 +55,7 @@ const Navbar = (props) => {
     target.style.transition = "all 2s ease";
   };
 
-  const handleLogout = async () => {
-    const res = await logout();
-    !res.status
-      ? Swal.fire({
-          icon: "error",
-          title: "Oops",
-          text: "Internal Server Error",
-        })
-      : window.location.reload();
-  };
+  // console.log(profil);
 
   useEffect(() => {
     checkLogin().then((res) => {
@@ -76,36 +69,19 @@ const Navbar = (props) => {
         {content !== "login" ? (
           <>
             <Brand />
-            <div className="nav-link hidden md:flex">
-              <NavLink />
-            </div>
-            <div className="hamburger justify-self-end">
-              <Hamburger />
-            </div>
-            <div
-              className="absolute min-w-full min-h-screen top-[8.8rem] sm:top-[9.1rem] left-full right-0 opacity-0 bg-white transition-all duration-500 ease-in-out md:hidden px-5 overflow-hidden hidden"
+            <NavLink classname="hidden md:flex" />
+            <Hamburger classname="justify-self-end" />
+            <NavLink
               id="nav-menu"
-              style={{ width: "0", height: "0" }}
-            >
-              <NavLink />
-            </div>
+              classname="absolute min-w-full min-h-screen top-[8.8rem] sm:top-[9.1rem] left-full right-0 opacity-0 bg-white transition-all duration-500 ease-in-out md:hidden px-5 overflow-hidden hidden"
+            />
 
             <div className="md:flex justify-center items-center gap-2 hidden">
               {login === undefined || login === false ? (
-                <div className="md:flex justify-center items-center gap-2 hidden">
-                  <Link
-                    to="/signin"
-                    className="bg-transparent border border-green-500 py-[.4rem] px-[1.2rem] rounded-md text-green-500 font-medium"
-                  >
-                    Sign In
-                  </Link>
-                  <Link
-                    to="signup"
-                    className="bg-green-500 border border-green-500 py-[.4rem] px-[1.2rem] rounded-md text-slate-100 font-medium"
-                  >
-                    Sign Up
-                  </Link>
-                </div>
+                <ButtonAuth
+                  classWrapper="md:flex justify-center items-center gap-2 hidden"
+                  classButton="py-[.4rem] font-medium"
+                />
               ) : (
                 <>
                   <div className="wrapper relative">

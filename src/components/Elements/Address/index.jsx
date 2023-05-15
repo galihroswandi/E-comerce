@@ -6,6 +6,7 @@ import ImgIcon from "./ImgIcon";
 import DashedAmplop from "./DashedAmplop";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../../../config/profil";
+import { decryptedData } from "./../../../utils/decryptedData";
 
 const Address = () => {
   const dispacth = useDispatch();
@@ -35,18 +36,22 @@ const Address = () => {
       </h1>
       <p className="text-slate-600 mt-1 flex justify-between md:justify-start md:gap-5 items-center">
         <span className="flex flex-wrap items-center gap-1 text-sm lg:text-lg">
-          {!profil.nama
+          {!decryptedData(profil.nama)
             ? "user" + Math.floor(Math.random() * 1000)
-            : profil.nama}
+            : decryptedData(profil.nama)}
           <span className="ml-1">
-            {!profil.noHP ? "12345678" : profil.noHP}
+            {!decryptedData(profil.noHP)
+              ? "12345678"
+              : decryptedData(profil.noHP)}
           </span>
         </span>
         <ImgIcon imgUrl={Pensil} />
       </p>
       <p className="flex gap-1 justify-between md:justify-start md:gap-5 items-center mt-2">
         <span className="text-slate-500 text-sm lg:text-lg">
-          {!profil.alamat ? "Alamat...." : profil.alamat}
+          {!decryptedData(profil.alamat)
+            ? "Alamat...."
+            : decryptedData(profil.alamat)}
         </span>
         <ImgIcon imgUrl={Pensil} />
       </p>

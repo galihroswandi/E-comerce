@@ -23,9 +23,11 @@ import {
 import { Toaster, toast } from "react-hot-toast";
 import { updateUser } from "../../config/users";
 import { CgSpinner } from "react-icons/cg";
+import { decryptedData } from "../../utils/decryptedData";
 import { getCities, getProvinsi } from "../../config/rajaongkir";
 import IconEdit from "./../../assets/icons/edit.svg";
 import SaveEdit from "./../../assets/icons/check-square.svg";
+import { encryptData } from "../../utils/encryptedData";
 
 const Profile = () => {
   const [login, setLogin] = useState(undefined);
@@ -56,7 +58,10 @@ const Profile = () => {
   };
 
   const handleCekUsername = async () => {
-    const check = await submitUsernameCheck(profil.username, profil.id);
+    const check = await submitUsernameCheck(
+      decryptedData(profil.username),
+      profil.id
+    );
     check.status === "oke"
       ? toast.success("Username dapat digunakan.")
       : toast.error("Username sudah tersedia, Silahkan pilih username lain");
@@ -73,11 +78,11 @@ const Profile = () => {
   const handleSubmit = async () => {
     setLoading(true);
     const data = {
-      noHP: profil.noHP,
-      nama: profil.nama,
-      username: profil.username,
+      noHP: decryptedData(profil.noHP),
+      nama: decryptedData(profil.nama),
+      username: decryptedData(profil.username),
       email: profil.email,
-      alamat: profil.alamat,
+      alamat: decryptedData(profil.alamat),
     };
 
     const check = await submitUsernameCheck(data.username, profil.id);
@@ -97,7 +102,7 @@ const Profile = () => {
     const { name, value } = e.target;
     switch (name) {
       case "username":
-        dispatch(setUsername(cleanInput(value)));
+        dispatch(setUsername(cleanInput(encryptData(value))));
         break;
       case "nama":
         dispatch(setNama(cleanInput(value)));
@@ -183,7 +188,7 @@ const Profile = () => {
                   type="text"
                   name="username"
                   id="username"
-                  value={profil.username}
+                  value={decryptedData(profil.username)}
                   onChange={handleChange}
                   autoComplete="off"
                   required
@@ -208,7 +213,7 @@ const Profile = () => {
                 type="text"
                 name="nama"
                 id="nama"
-                value={profil.nama}
+                value={decryptedData(profil.nama)}
                 onChange={handleChange}
                 required
                 className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
@@ -255,7 +260,7 @@ const Profile = () => {
                   type="text"
                   name="noTelepon"
                   id="noTelepon"
-                  value={profil.noHP}
+                  value={decryptedData(profil.noHP)}
                   onChange={handleChange}
                   required
                   className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
@@ -284,12 +289,11 @@ const Profile = () => {
                     id="alamat"
                     cols="45"
                     rows="4"
+                    value={decryptedData(profil.alamat)}
                     onChange={handleChange}
                     className="w-full h-20 bg-transparent border border-slate-200 py-2 px-2 rounded-md text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 scrollbar-thin"
                     style={{ resize: "none" }}
-                  >
-                    {profil.alamat}
-                  </textarea>
+                  ></textarea>
                   <small className="text-red-500">
                     Note: Silakan susun alamat dengan format: Jalan/Nama Jalan
                     RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi
