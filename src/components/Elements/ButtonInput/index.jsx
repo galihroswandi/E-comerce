@@ -1,4 +1,4 @@
-import SearchIcon from "./../../../assets/icons/Search.Svg";
+import SearchIcon from "../../../assets/icons/Search.Svg";
 
 const ButtonInput = () => {
   return (
