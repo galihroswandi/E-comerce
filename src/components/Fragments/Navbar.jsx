@@ -1,66 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
-import Cart from "./../Elements/CartImage";
 import Hamburger from "./../Elements/Hamburger";
 import Brand from "./../Elements/Brand";
 import NavLink from "./../Elements/NavLink";
-import SearchIcon from "../../assets/icons/Search.svg";
-import Logo from "./../../assets/img/Logo.png";
-import Profile from "./../../assets/icons/Profile.svg";
-import SignOut from "./../../assets/icons/log-out.svg";
 import checkLogin from "../../utils/loginCheck.util";
-import { handleLogout } from "../../utils/navbarUtil";
 import ButtonAuth from "../Elements/ButtonAuth";
-import { useSelector } from "react-redux";
+import NavProfile from "../Elements/NavProfile";
+import NavDropdown from "../Elements/NavDropdown";
+import FormSearch from "./FormSearch";
 
 const Navbar = (props) => {
   const { content, children } = props;
   const [login, setLogin] = useState(false);
-  const profil = useSelector((state) => state.profil);
 
-  window.onscroll = () => {
+  const scrolWindow = () => {
     const nav = document.querySelector("nav");
 
     if (nav) {
-      const fix_nav = nav.offsetTop;
-
-      if (window.pageYOffset > fix_nav) {
+      if (window.pageYOffset > 30) {
         nav.classList.add("navbar-fixed");
+        nav.style.top = "-2rem";
       } else {
         nav.classList.remove("navbar-fixed");
+        nav.style.top = "0";
       }
     }
   };
 
-  const showDropdown = () => {
-    const target = document.getElementById("dropdown-target");
-    target.classList.add("active");
-    target.style.opacity = "1";
-    target.style.display = "flex";
-    target.style.transform = "scale(1)";
-    target.style.transform = "translateY(0)";
-    target.style.transform = "translateX(0)";
-    target.style.transition = "all 2s ease";
+  window.onscroll = () => {
+    scrolWindow();
   };
-
-  const hideDropdown = () => {
-    const target = document.getElementById("dropdown-target");
-    target.classList.add("active");
-    target.style.opacity = "0";
-    target.style.display = "none";
-    target.style.transform = "scale(.5)";
-    target.style.transform = "translateY(-2.5rem)";
-    target.style.transform = "translateX(2.5rem)";
-    target.style.transition = "all 2s ease";
-  };
-
-  // console.log(profil);
 
   useEffect(() => {
     checkLogin().then((res) => {
       setLogin(res.status);
     });
+    window.pageYOffset > 30 && scrolWindow();
   }, []);
 
   return (
@@ -83,87 +58,14 @@ const Navbar = (props) => {
                   classButton="py-[.4rem] font-medium"
                 />
               ) : (
-                <>
-                  <div className="wrapper relative">
-                    <div
-                      onMouseEnter={showDropdown}
-                      className="flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      <img
-                        src={Logo}
-                        alt="Profile"
-                        width="26"
-                        height="28"
-                        className="rounded-full border bg-slate-100"
-                      />
-                      <div className="username">
-                        <span className="text-sm">galihroswandi</span>
-                      </div>
-                    </div>
-                    <div
-                      onMouseEnter={showDropdown}
-                      onMouseLeave={hideDropdown}
-                      className="absolute top-9 -left-24 z-50 bg-green-500 min-w-[140%] px-5 py-5 rounded-br-xl rounded-l-xl flex-col gap-3 hidden    opacity-0 scale-50 -translate-y-10 translate-x-10"
-                      id="dropdown-target"
-                    >
-                      <Link
-                        to="/profil"
-                        className="flex items-center gap-2 group"
-                        id="dropdown"
-                      >
-                        <img
-                          src={Profile}
-                          alt="Profile Icon"
-                          className="group-hover:text-slate-2"
-                        />
-                        <span className="text-white group-hover:text-slate-200">
-                          Profile
-                        </span>
-                      </Link>
-                      <Link
-                        onClick={handleLogout}
-                        className="flex items-center gap-2 group"
-                        id="large"
-                      >
-                        <img
-                          src={SignOut}
-                          alt="Signout Icon"
-                          className="group-hover:text-slate-2"
-                        />
-                        <span className="text-white group-hover:text-slate-200">
-                          SignOut
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-                </>
+                <div className="wrapper relative">
+                  <NavProfile />
+                  <NavDropdown />
+                </div>
               )}
             </div>
 
-            <form
-              className="w-[170%] sm:w-[200%] flex justify-center items-center gap-1 my-[.5rem] mt-[.9rem] mx-2 sm:mt-5"
-              id="form"
-            >
-              <div className="search flex justify-center gap-0 max-w-[90%] sm:max-w-[200%] sm:w-[80%]">
-                <input
-                  type="search"
-                  name="search"
-                  id="search"
-                  autoComplete="off"
-                  placeholder="Cari product..."
-                  className="max-w-[78%] sm:w-[70%] py-[.40rem] px-2 text-sm rounded-l-md border border-green-500 outline-none text-slate-700"
-                />
-                <button
-                  type="submit"
-                  className="bg-green-500 py-[.rem] px-2 sm:px-3 rounded-r-md flex justify-center items-center"
-                >
-                  <img src={SearchIcon} alt="Search Icon" width="15" />
-                </button>
-              </div>
-              <Link to="/cart" className="min-w-[1.5rem] ml-3">
-                <Cart />
-              </Link>
-            </form>
+            <FormSearch />
           </>
         ) : (
           <>

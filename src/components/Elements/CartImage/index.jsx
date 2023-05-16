@@ -6,7 +6,7 @@ import { getAllCartByUser } from "../../../config/cart";
 import { setTotalCart as total } from "./../../../config/redux/reducer/cartSlice";
 import checkLogin from "./../../../utils/loginCheck.util";
 
-const Cart = () => {
+const NavbarCart = () => {
   const dispatch = useDispatch();
   const totalCarts = useSelector((state) => state);
 
@@ -36,4 +36,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default NavbarCart;
