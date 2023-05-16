@@ -5,9 +5,6 @@ const Hamburger = (props) => {
   const hamburgerClick = () => {
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.querySelector("#nav-menu");
-    const nav = document.querySelector("nav");
-
-    nav.classList.add("navbar-fixed");
 
     hamburger.classList.toggle("hamburger-active");
 
