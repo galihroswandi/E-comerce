@@ -1,14 +1,14 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import Ringkasan from "../../Elements/RingkasanCart";
-import { getAllCartByUser } from "../../../config/cart";
-import CardKeranjang from "../../Elements/CardKeranjang";
-import { HandleCheked } from "../../../utils/cart.utils";
-import checkLogin from "../../../utils/loginCheck.util";
-import CheckoutTemplate from "../Checkout";
+import Ringkasan from "../Elements/RingkasanCart";
+import { getAllCartByUser } from "../../config/cart";
+import CardKeranjang from "../Elements/CardKeranjang";
+import { HandleCheked } from "../../utils/cart.utils";
+import checkLogin from "../../utils/loginCheck.util";
+import CheckoutTemplate from "./Checkout";
 
-const CartProductsOrgs = () => {
+const Keranjang = () => {
   const dispacth = useDispatch();
 
   const [dataCart, setDataCart] = useState([]);
@@ -106,4 +106,4 @@ const CartProductsOrgs = () => {
   );
 };
 
-export default CartProductsOrgs;
+export default Keranjang;
