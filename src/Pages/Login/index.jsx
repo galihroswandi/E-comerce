@@ -39,7 +39,7 @@ const Login = () => {
           uid: res.user.uid,
           noHP: res.user.phoneNumber,
           nama: "-",
-          username: "-",
+          username: "username",
           email: "-",
           alamat: "-",
           gambar: "-",
