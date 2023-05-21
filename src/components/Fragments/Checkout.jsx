@@ -14,6 +14,8 @@ import { getProducts } from "../../config/products/products";
 import { Link, useNavigate } from "react-router-dom";
 import { makeId } from "../../utils/generateId.util";
 import { setTitle } from "../../utils/title.util";
+import SubtotalCheckout from "../Elements/SubtotalCheckout";
+import { hitungTotalBayar } from "../../utils/checkout.util";
 
 const Checkout = ({ changeCheckout }) => {
   const data = useSelector((state) => state.checkout.data);
@@ -30,12 +32,20 @@ const Checkout = ({ changeCheckout }) => {
     dataKeranjang.forEach(async (el) => {
       await removeCart(el.id);
     });
-    Swal.fire("Success", "Pesnan berhasil dibuat", "success").finally(() => {
+    Swal.fire("Success", "Pesanan berhasil dibuat", "success").finally(() => {
       setLoading(false);
       setTimeout(() => {
         navigate("/pesanan");
-      }, 1100);
+      }, 600);
     });
+  };
+
+  const hitungTotal = () => {
+    return dataKeranjang.length >= 1
+      ? dataKeranjang
+          .map((checkout) => checkout.data.totalHarga)
+          .reduce((acc, currentVal) => acc + currentVal)
+      : 0;
   };
 
   const handleCheckout = async () => {
@@ -50,7 +60,7 @@ const Checkout = ({ changeCheckout }) => {
       metodePembayaran,
       subtotal: hitungTotal(),
       waktuPemesanan: `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDay()}-${new Date().getHours()}:${new Date().getMinutes()}`,
-      totalPembayaran: hitungTotalPembayaran(),
+      totalPembayaran: hitungTotalBayar(ongkir, biayaLayanan, hitungTotal()),
       status: "Dikemas",
     };
 
@@ -62,18 +72,6 @@ const Checkout = ({ changeCheckout }) => {
     } else {
       hapusDataKeranjang();
     }
-  };
-
-  const hitungTotal = () => {
-    return dataKeranjang.length >= 1
-      ? dataKeranjang
-          .map((checkout) => checkout.data.totalHarga)
-          .reduce((acc, currentVal) => acc + currentVal)
-      : 0;
-  };
-
-  const hitungTotalPembayaran = () => {
-    return parseInt(ongkir) + parseInt(biayaLayanan) + parseInt(hitungTotal());
   };
 
   useEffect(() => {
@@ -95,17 +93,19 @@ const Checkout = ({ changeCheckout }) => {
           alt="Ellipse"
           className="w-[4rem] lg:w-[5.5rem] absolute -z-[1] -left-5"
         />
+
         <h1 className="mx-2 font-semibold text-xl lg:text-2xl text-slate-700 mb-2">
           Checkout
         </h1>
+
         <Address />
+
         <section className="detail bg-white rounded-sm mb-5 px-5 py-4 bg-opacity-70 backdrop-blur-[7.5px] flex flex-col md:flex-row lg:grid lg:grid-cols-3 lg:gap-0 gap-2 overflow-hidden">
           <div className="mb-3 md:mb-0 lg:col-span-2 lg:relative">
-            <h1 className="text-green-500 flex items-center gap-1">
-              <span className="text-base lg:text-xl mb-2 lg:mb-5">
-                Barang Yang Dipesan
-              </span>
+            <h1 className="text-green-500 flex items-center gap-1 text-base lg:text-xl mb-2 lg:mb-5">
+              Barang Yang Dipesan
             </h1>
+
             <div className="main-products">
               {!dataKeranjang
                 ? "Data gagal di load..."
@@ -117,11 +117,10 @@ const Checkout = ({ changeCheckout }) => {
                     );
                   })}
             </div>
-            <div className="total flex justify-between items-center border-t. border-t-green-500. mt-2 lg:mt-5 lg:text-lg text-sm text-slate-700">
-              <h1>Subtotal:</h1>
-              <h1>{dataCarts && toRupiah(hitungTotal())}</h1>
-            </div>
+
+            <SubtotalCheckout dataCarts={dataCarts} />
           </div>
+
           <div className="lg:flex lg:flex-col lg:justify-evenly lg:ml-28">
             <div className="opsi-pengiriman">
               <h1 className="text-green-500 flex items-center gap-1">
@@ -161,6 +160,7 @@ const Checkout = ({ changeCheckout }) => {
             </div>
           </div>
         </section>
+
         <img
           src={Checkout1}
           alt="Ellipse"
@@ -188,7 +188,10 @@ const Checkout = ({ changeCheckout }) => {
               <p className="lg:ml-[65%]">Total Pembayaran:</p>
               <p className="text-sm lg:text-2xl text-green-500">
                 {data &&
-                  toRupiah(hitungTotalPembayaran(), { floatingPoint: 0 })}
+                  toRupiah(
+                    hitungTotalBayar(ongkir, biayaLayanan, hitungTotal()),
+                    { floatingPoint: 0 }
+                  )}
               </p>
             </div>
           </div>
