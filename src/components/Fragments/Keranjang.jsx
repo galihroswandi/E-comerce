@@ -6,7 +6,7 @@ import { getAllCartByUser } from "../../config/cart";
 import CardKeranjang from "../Elements/CardKeranjang";
 import { HandleCheked } from "../../utils/cart.utils";
 import checkLogin from "../../utils/loginCheck.util";
-import CheckoutTemplate from "./Checkout";
+import Checkout from "./Checkout";
 
 const Keranjang = () => {
   const dispacth = useDispatch();
@@ -50,6 +50,12 @@ const Keranjang = () => {
 
     setCartGlobal();
   }, []);
+
+  if (document.getElementById("all-product")) {
+    !checkout
+      ? document.getElementById("all-product").classList.remove("hidden")
+      : document.getElementById("all-product").classList.add("hidden");
+  }
 
   return !checkout ? (
     <>
@@ -102,7 +108,7 @@ const Keranjang = () => {
       </div>
     </>
   ) : (
-    <CheckoutTemplate changeCheckout={setCheckout} />
+    <Checkout changeCheckout={setCheckout} />
   );
 };
 

@@ -2,11 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import AllProducts from "../AllProducts";
-import MainCardDetail from "../../Elements/CardDetailProduct";
-import { filterDataByAmount } from "../../../config/redux/reducer/ProductsSlice";
+import AllProducts from "./AllProducts";
+import MainCardDetail from "../Elements/CardDetailProduct";
+import { filterDataByAmount } from "../../config/redux/reducer/ProductsSlice";
 
-const DetailProducts = () => {
+const DetailProduk = () => {
   const dispatch = useDispatch();
   const dataProduct = useSelector((state) => state.products.data)[0];
 
@@ -27,4 +27,4 @@ const DetailProducts = () => {
   );
 };
 
-export default DetailProducts;
+export default DetailProduk;

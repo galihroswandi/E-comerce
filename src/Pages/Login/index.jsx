@@ -45,7 +45,7 @@ const Login = () => {
         };
 
         await addUser(data)
-          .then((res) => {
+          .then(() => {
             toast.success("Verifikasi berhasil...");
             setTimeout(() => {
               navigate("/");
@@ -115,6 +115,7 @@ const Login = () => {
       .catch((error) => {
         console.error(error);
         setLoading(false);
+        toast.error("OTP gagal dikirim refresh dan coba lagi");
       });
   };
 
@@ -131,7 +132,7 @@ const Login = () => {
           <h1 className="text-xl text-slate-700">Sign In</h1>
         </div>
       </Navbar>
-      <Toaster toastOptions={{ duration: 4000 }} />
+      <Toaster toastOptions={{ duration: 2000 }} />
       <div className="bg-gradient-to-r from-[#DCFCE7] to-white md:p-[100px]. border-b border-slate-200 py-5 md:py-20">
         <div className="flex-div md:flex justify-evenly">
           <img
@@ -227,7 +228,7 @@ const Login = () => {
                 </>
               ) : !showOTP ? (
                 <>
-                  <div className="form w-[85%] md:w-[77%] m-auto bg-white/25 backdrop-blur-sm border-[1px] rounded-[5px] border-[#22C55E] h-auto my-[20px] drop-shadow-lg px-2 md:px-7 box-border">
+                  <div className="form w-[85%] md:w-[100%] m-auto bg-white/25 backdrop-blur-sm border-[1px] rounded-[5px] border-[#22C55E] h-auto my-[20px] drop-shadow-lg px-2 md:px-7 box-border">
                     <h1 className="text-center font-semibold text-xl my-[20px] text-slate-500 px-2">
                       Verifikasi nomor telepon Anda
                     </h1>
@@ -261,7 +262,7 @@ const Login = () => {
                 </>
               ) : (
                 <>
-                  <div className="form w-[85%] md:w-[110%] m-auto bg-white/25 backdrop-blur-sm border-[1px] rounded-[5px] border-[#22C55E] h-auto my-[20px] drop-shadow-lg px-2 md:px-7 box-border.">
+                  <div className="form w-[85%] md:w-[150%] m-auto bg-white/25 backdrop-blur-sm border-[1px] rounded-[5px] border-[#22C55E] h-auto my-[20px] drop-shadow-lg px-2 md:px-7 box-border">
                     <h1 className="text-center font-semibold text-xl my-[20px] text-slate-500 px-2">
                       Masukan OTP Anda
                     </h1>

@@ -1,15 +1,12 @@
-import React, { Fragment } from "react";
-import Navbar from "../../components/Fragments/Navbar";
-import DetailProductOrgs from "../../components/Fragments/DetailProducts";
-import Footer from "../../components/Elements/Footer";
+import React from "react";
+import DetailProduk from "../../components/Fragments/DetailProduk";
+import PageLayout from "../../components/Layouts/PageLayout";
 
 const DetailProduct = () => {
   return (
-    <Fragment>
-      <Navbar />
-      <DetailProductOrgs />
-      <Footer />
-    </Fragment>
+    <PageLayout>
+      <DetailProduk />
+    </PageLayout>
   );
 };
 
