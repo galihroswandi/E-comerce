@@ -1,4 +1,4 @@
-import Navbar from "./../../components/Elements/Navbar";
+import Navbar from "./../../components/Fragments/Navbar";
 import Hr from "./../../components/Elements/Hr";
 import Footer from "./../../components/Elements/Footer";
 import ProfileDummy from "./../../assets/img/Profile Dummy.svg";
@@ -23,6 +23,12 @@ import {
 import { Toaster, toast } from "react-hot-toast";
 import { updateUser } from "../../config/users";
 import { CgSpinner } from "react-icons/cg";
+import { decryptedData } from "../../utils/decryptedData";
+import { getCities, getProvinsi } from "../../config/rajaongkir";
+import IconEdit from "./../../assets/icons/edit.svg";
+import SaveEdit from "./../../assets/icons/check-square.svg";
+import { encryptData } from "../../utils/encryptedData";
+import { setTitle } from "../../utils/title.util";
 
 const Profile = () => {
   const [login, setLogin] = useState(undefined);
@@ -30,6 +36,21 @@ const Profile = () => {
   const dispatch = useDispatch();
   const profil = useSelector((state) => state.profil);
   const [loading, setLoading] = useState(false);
+  const [changeAlamat, setChangeAlamat] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [provinsi, setProvinsi] = useState();
+
+  const handleSaveAlamat = () => {
+    setChangeAlamat(false);
+  };
+
+  const handlePropinsi = (e) => {
+    setProvinsi(cleanInput(e.target.value));
+  };
+
+  const handleAlamat = () => {
+    setChangeAlamat(true);
+  };
 
   const handleVerify = () => {
     toast.error(
@@ -38,7 +59,10 @@ const Profile = () => {
   };
 
   const handleCekUsername = async () => {
-    const check = await submitUsernameCheck(profil.username, profil.id);
+    const check = await submitUsernameCheck(
+      decryptedData(profil.username),
+      profil.id
+    );
     check.status === "oke"
       ? toast.success("Username dapat digunakan.")
       : toast.error("Username sudah tersedia, Silahkan pilih username lain");
@@ -55,11 +79,11 @@ const Profile = () => {
   const handleSubmit = async () => {
     setLoading(true);
     const data = {
-      noHP: profil.noHP,
-      nama: profil.nama,
-      username: profil.username,
-      email: profil.email,
-      alamat: profil.alamat,
+      noHP: decryptedData(profil.noHP),
+      nama: decryptedData(profil.nama),
+      username: decryptedData(profil.username),
+      email: decryptedData(profil.email),
+      alamat: decryptedData(profil.alamat),
     };
 
     const check = await submitUsernameCheck(data.username, profil.id);
@@ -79,19 +103,19 @@ const Profile = () => {
     const { name, value } = e.target;
     switch (name) {
       case "username":
-        dispatch(setUsername(cleanInput(value)));
+        dispatch(setUsername(cleanInput(encryptData(value))));
         break;
       case "nama":
-        dispatch(setNama(cleanInput(value)));
+        dispatch(setNama(cleanInput(encryptData(value))));
         break;
       case "email":
-        dispatch(setEmail(cleanInput(value)));
+        dispatch(setEmail(cleanInput(encryptData(value))));
         break;
       case "noHP":
-        dispatch(setNoHP(cleanInput(value)));
+        dispatch(setNoHP(cleanInput(encryptData(value))));
         break;
       case "alamat":
-        dispatch(setAlamat(cleanInput(value)));
+        dispatch(setAlamat(cleanInput(encryptData(value))));
         break;
       default:
         break;
@@ -105,6 +129,10 @@ const Profile = () => {
     checkLogin().then((res) => {
       setLogin(res);
     });
+
+    // getProvinsi();
+    // getCities(9);
+    setTitle("Profil");
   }, []);
 
   return login !== undefined && !login.status ? (
@@ -112,15 +140,15 @@ const Profile = () => {
   ) : (
     <>
       <Navbar />
-      <header className="container mt-36 mb-5 px-7 lg:px-20">
+      <header className="container mx-auto mt-36 mb-5 px-7 lg:px-20">
         <h1 className="text-lg md:text-2xl text-slate-700 font-medium">
           Profil
         </h1>
         <Hr width="3.5rem" />
       </header>
       <Toaster toastOptions={{ duration: 4000 }} />
-      <main className="container px-7 mb-10 lg:px-20">
-        <div className="container border bg-white bg-opacity-5 backdrop-blur-md border-green-500 min-h-[50vh] py-4 rounded-lg flex flex-col gap-3 sm:flex-row-reverse sm:justify-between sm:px-7 md:p-8 md:max-w-[90%]">
+      <main className="container px-7 mx-auto mb-10 lg:px-20">
+        <div className="container mx-auto border bg-white bg-opacity-5 backdrop-blur-md border-green-500 min-h-[50vh] py-4 rounded-lg flex flex-col gap-3 sm:flex-row-reverse sm:justify-between sm:px-7 md:p-8 md:max-w-[90%]">
           <section className="foto flex flex-col justify-center items-center lg:mr-10">
             <img
               src={!profil.gambar ? ProfileDummy : profil.gambar}
@@ -162,7 +190,7 @@ const Profile = () => {
                   type="text"
                   name="username"
                   id="username"
-                  value={profil.username}
+                  value={decryptedData(profil.username)}
                   onChange={handleChange}
                   autoComplete="off"
                   required
@@ -187,7 +215,7 @@ const Profile = () => {
                 type="text"
                 name="nama"
                 id="nama"
-                value={profil.nama}
+                value={decryptedData(profil.nama)}
                 onChange={handleChange}
                 required
                 className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
@@ -234,7 +262,7 @@ const Profile = () => {
                   type="text"
                   name="noTelepon"
                   id="noTelepon"
-                  value={profil.noHP}
+                  value={decryptedData(profil.noHP)}
                   onChange={handleChange}
                   required
                   className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5"
@@ -256,23 +284,68 @@ const Profile = () => {
               >
                 Alamat
               </label>
-              <div>
-                <textarea
-                  name="alamat"
-                  id="alamat"
-                  value={profil.alamat}
-                  onChange={handleChange}
-                  required
-                  className="w-full h-20 bg-transparent border border-slate-200 py-2 px-2 rounded-md text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 scrollbar-thin"
-                  autoComplete="off"
-                  maxLength={200}
-                  style={{ resize: "none" }}
-                  rows="2"
-                ></textarea>
-                <small className="text-red-500">
-                  Note: Silakan susun alamat dengan format: Jalan/Nama Jalan
-                  RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi
-                </small>
+              <div className="flex items-center flex-col w-full gap-4">
+                <>
+                  <textarea
+                    name="alamat"
+                    id="alamat"
+                    cols="45"
+                    rows="4"
+                    value={decryptedData(profil.alamat)}
+                    onChange={handleChange}
+                    className="w-full h-20 bg-transparent border border-slate-200 py-2 px-2 rounded-md text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 scrollbar-thin"
+                    style={{ resize: "none" }}
+                  ></textarea>
+                  <small className="text-red-500">
+                    Note: Silakan susun alamat dengan format: Jalan/Nama Jalan
+                    RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi
+                  </small>
+                </>
+
+                {/* <>
+                  <select
+                    name="provinsi"
+                    id="provinsi"
+                    onChange={handlePropinsi}
+                    className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 appearance-none."
+                  >
+                    <option value="">Pilih Propinsi</option>
+                    <option value="1">Jawabarat</option>
+                  </select>
+                </>
+
+                <>
+                  <select
+                    name="kota"
+                    id="kota"
+                    className="w-full bg-transparent border border-slate-200 py-2 px-2 rounded-lg text-slate-500 text-sm outline-none focus:ring-1 ring-green-400 font-extralight md:py-2 md:text-base md:px-5 appearance-none."
+                    disabled={isDisabled}
+                  >
+                    <option value="">Pilih Kota</option>
+                    <option value="1">Tasikmalaya</option>
+                    <option value="1">Bandung</option>
+                  </select>
+                </> */}
+
+                {/* {!changeAlamat ? (
+                  <>
+                    <small
+                      onClick={handleAlamat}
+                      className="cursor-pointer hover:text-green-500 text-sm"
+                    >
+                      <img src={IconEdit} alt="Icon Edit" className="w-14" />
+                    </small>
+                  </>
+                ) : (
+                  <>
+                    <small
+                      onClick={handleSaveAlamat}
+                      className="cursor-pointer hover:text-green-500 text-sm"
+                    >
+                      <img src={SaveEdit} alt="Icon Save" className="w-14" />
+                    </small>
+                  </>
+                )} */}
               </div>
             </section>
             <section className="flex flex-col md:flex-row md:justify-center md:items-start md:gap-10 gap-1 mt-6 md:mt-1">

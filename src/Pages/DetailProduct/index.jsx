@@ -1,15 +1,16 @@
-import React, { Fragment } from "react";
-import Navbar from "../../components/Elements/Navbar";
-import DetailProductOrgs from "../../components/Fragments/DetailProducts";
-import Footer from "../../components/Elements/Footer";
+import React, { useEffect } from "react";
+import DetailProduk from "../../components/Fragments/DetailProduk";
+import PageLayout from "../../components/Layouts/PageLayout";
+import { setTitle } from "../../utils/title.util";
 
 const DetailProduct = () => {
+  useEffect(() => {
+    setTitle("Detail Produk");
+  }, []);
   return (
-    <Fragment>
-      <Navbar />
-      <DetailProductOrgs />
-      <Footer />
-    </Fragment>
+    <PageLayout>
+      <DetailProduk />
+    </PageLayout>
   );
 };
 

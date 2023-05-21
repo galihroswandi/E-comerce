@@ -1,18 +1,19 @@
-import React, { Fragment } from "react";
+import React, { useEffect } from "react";
 
-import Navbar from "../../components/Elements/Navbar";
-import Footer from "../../components/Elements/Footer";
 import AllProducts from "../../components/Fragments/AllProducts";
-import CartProductsOrgs from "../../components/Fragments/Cart";
+import Keranjang from "../../components/Fragments/Keranjang";
+import PageLayout from "../../components/Layouts/PageLayout";
+import { setTitle } from "../../utils/title.util";
 
 const CartProducts = () => {
+  useEffect(() => {
+    setTitle("Keranjang");
+  }, []);
   return (
-    <Fragment>
-      <Navbar />
-      <CartProductsOrgs />
+    <PageLayout>
+      <Keranjang />
       <AllProducts title="Rekomendasi" />
-      <Footer />
-    </Fragment>
+    </PageLayout>
   );
 };
 

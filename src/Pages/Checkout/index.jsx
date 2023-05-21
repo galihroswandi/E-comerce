@@ -1,20 +1,13 @@
-import React, { Fragment } from "react";
+import React from "react";
 
-import Navbar from "../../components/Elements/Navbar";
-import Footer from "../../components/Elements/Footer";
+import PageLayout from "../../components/Layouts/PageLayout";
 import CheckoutFragment from "./../../components/Fragments/Checkout";
-import CheckoutTemplate from "./../../components/Layouts/Checkout";
 
 const Checkout = () => {
   return (
-    <>
-      <Navbar />
+    <PageLayout>
       <CheckoutFragment />
-      <Footer />
-    </>
-    // <>
-    //   <CheckoutTemplate />
-    // </>
+    </PageLayout>
   );
 };
 export default Checkout;

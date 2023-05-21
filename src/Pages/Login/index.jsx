@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import _ from "lodash";
 
-import Navbar from "./../../components/Elements/Navbar";
+import Navbar from "./../../components/Fragments/Navbar";
 import Footer from "./../../components/Elements/Footer";
 import Logo from "./../../assets/img/Logo.png";
 import Ellipse from "./../../assets/ellipse/Checkout-1.svg";
-import Brand from "../../components/Elements/Navbar/Brand";
+import Brand from "../../components/Elements/Brand";
 import Google from "./../../assets/icons/google.svg";
 import { BsTelephoneFill } from "react-icons/bs";
 import PhoneInput from "react-phone-input-2";
@@ -16,6 +17,7 @@ import { auth } from "../../config/firebase";
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router";
 import { addUser } from "../../config/users";
+import { setTitle } from "../../utils/title.util";
 
 const Login = () => {
   const [ph, setPh] = useState("");
@@ -32,7 +34,6 @@ const Login = () => {
       .confirm(otp)
       .then(async (res) => {
         setLoading(false);
-        toast.success("Verifikasi berhasil...");
 
         const data = {
           uid: res.user.uid,
@@ -45,7 +46,8 @@ const Login = () => {
         };
 
         await addUser(data)
-          .then((res) => {
+          .then(() => {
+            toast.success("Verifikasi berhasil...");
             setTimeout(() => {
               navigate("/");
             }, 500);
@@ -60,6 +62,11 @@ const Login = () => {
         setLoading(false);
       });
   };
+
+  const handleOTPSubmit = () => {
+    throttledHandleSubmit();
+  };
+  const throttledHandleSubmit = _.throttle(onOTPVerify, 10000);
 
   const onCaptchVerify = () => {
     if (!window.recaptchaVerifier) {
@@ -109,8 +116,18 @@ const Login = () => {
       .catch((error) => {
         console.error(error);
         setLoading(false);
+        toast.error("OTP gagal dikirim refresh dan coba lagi");
       });
   };
+
+  const handleSendOTP = () => {
+    throttledHandleSendOTP();
+  };
+  const throttledHandleSendOTP = _.throttle(onSendOTP, 10000);
+
+  useEffect(() => {
+    setTitle("Login");
+  }, []);
 
   return (
     <>
@@ -120,7 +137,7 @@ const Login = () => {
           <h1 className="text-xl text-slate-700">Sign In</h1>
         </div>
       </Navbar>
-      <Toaster toastOptions={{ duration: 4000 }} />
+      <Toaster toastOptions={{ duration: 2000 }} />
       <div className="bg-gradient-to-r from-[#DCFCE7] to-white md:p-[100px]. border-b border-slate-200 py-5 md:py-20">
         <div className="flex-div md:flex justify-evenly">
           <img
@@ -216,7 +233,7 @@ const Login = () => {
                 </>
               ) : !showOTP ? (
                 <>
-                  <div className="form w-[85%] md:w-[77%] m-auto bg-white/25 backdrop-blur-sm border-[1px] rounded-[5px] border-[#22C55E] h-auto my-[20px] drop-shadow-lg px-2 md:px-7 box-border">
+                  <div className="form w-[85%] md:w-[100%] m-auto bg-white/25 backdrop-blur-sm border-[1px] rounded-[5px] border-[#22C55E] h-auto my-[20px] drop-shadow-lg px-2 md:px-7 box-border">
                     <h1 className="text-center font-semibold text-xl my-[20px] text-slate-500 px-2">
                       Verifikasi nomor telepon Anda
                     </h1>
@@ -234,7 +251,7 @@ const Login = () => {
                         />
                       </div>
                       <button
-                        onClick={onSendOTP}
+                        onClick={handleSendOTP}
                         type="button"
                         className="w-[98%] py-2 text-white text-base bg-[#22C55E] rounded-[5px] mt-[20px] md:mt-[40px] hover:cursor-pointer"
                       >
@@ -250,7 +267,7 @@ const Login = () => {
                 </>
               ) : (
                 <>
-                  <div className="form w-[85%] md:w-[110%] m-auto bg-white/25 backdrop-blur-sm border-[1px] rounded-[5px] border-[#22C55E] h-auto my-[20px] drop-shadow-lg px-2 md:px-7 box-border.">
+                  <div className="form w-[85%] md:w-[150%] m-auto bg-white/25 backdrop-blur-sm border-[1px] rounded-[5px] border-[#22C55E] h-auto my-[20px] drop-shadow-lg px-2 md:px-7 box-border">
                     <h1 className="text-center font-semibold text-xl my-[20px] text-slate-500 px-2">
                       Masukan OTP Anda
                     </h1>
@@ -271,7 +288,7 @@ const Login = () => {
                         />
                       </div>
                       <button
-                        onClick={onOTPVerify}
+                        onClick={handleOTPSubmit}
                         type="button"
                         className="w-[98%] py-2 text-white text-base bg-[#22C55E] rounded-[5px] mt-[20px] md:mt-[40px] hover:cursor-pointer"
                       >

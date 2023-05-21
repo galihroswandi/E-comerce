@@ -5,6 +5,7 @@ import Email from "../../../assets/icons/email.svg";
 import Ellipse from "../../../assets/img/ellipse.svg";
 import LinkFooter from "./LinkFooter";
 import LinkFooterKontak from "./LinkFooterKontak";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -13,15 +14,17 @@ const Footer = () => {
         <h1 className="text-xl sm:text-3xl font-semibold text-green-500 mb-1">
           GarudaStore
         </h1>
-        <p className="text-base font-ligh text-green-400">
-          Copyright &copy; 2023
+        <p className="text-base font-ligh text-green-500">
+          Copyright &copy; 2023 by{" "}
+          <Link to="https://www.instagram.com/galih_roswandi/" target="_blank">
+            GalihRoswandi
+          </Link>
         </p>
       </section>
       <section className="inform-1 flex flex-col mb-5 lg:ml-72">
         <h1 className="text-2xl font-semibold text-green-500 mb-3">
           GarudaStore
         </h1>
-        <LinkFooter to="#kategori" title="Kategori" />
         <LinkFooter to="#all-produk" title="Produk" />
         <LinkFooter to="/about" title="Tentang Kami" />
       </section>

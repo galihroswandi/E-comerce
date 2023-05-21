@@ -19,11 +19,32 @@ const CardProduct = ({ id, image, title, kategori, harga }) => {
     }
   };
 
+  const mouseEnter = (e) => {
+    const target = e.target;
+    if (e.target.id === "card-product") {
+      target.style.transform = "scale(1.05)";
+      target.style.transition = "all .5s ease-in-out";
+    }
+  };
+
+  const mouseLeave = (e) => {
+    const target = e.target;
+    if (e.target.id === "card-product") {
+      target.style.transform = "scale(1)";
+      target.style.transition = "all .5s ease-in-out";
+    }
+  };
+
   return (
     <Link onClick={handleClickProduct} to={`/product/${id}`}>
-      <div className="card bg-white p-3 md:p-4 box-border rounded-lg shadow-md">
-        <div className="img mb-1 md:mb-3 flex justify-center items-center">
-          <img src={image} alt={title} className="rounded-md border p-1" />
+      <div
+        className="card bg-white p-3 md:p-4 box-border rounded-lg shadow-md overflow-hidden"
+        id="card-product"
+        onMouseEnter={mouseEnter}
+        onMouseLeave={mouseLeave}
+      >
+        <div className="img mb-1 md:mb-3 flex justify-center items-center rounded-md border p-1">
+          <img src={image} alt={title} id="img-product" data-id={id} />
         </div>
         <div className="desc">
           <h3 className="text-sm text-slate-400 mb-[.1rem]">{kategori}</h3>

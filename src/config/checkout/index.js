@@ -36,14 +36,19 @@ export const getAllCheckout = (id_user, dispacth) => {
             }
 
             const products = await getProducts();
-            products.map(el => {
-                dataArray.forEach((arr, index) => {
-                    if (parseInt(arr.data.id_product) === parseInt(el.id_product)) {
-                        dataArray[index].product = el;
-                    }
-                })
-            })
-
+            dataArray.forEach((arr, index) => {
+                if (arr.data.product && arr.data.product.length > 0) {
+                    arr.data.product.forEach(prod => {
+                        const filteredProduct = products.find(el => parseInt(el.id_product) === parseInt(prod.data.id_product));
+                        if (filteredProduct) {
+                            if (!dataArray[index].product) {
+                                dataArray[index].product = [];
+                            }
+                            dataArray[index].product.push(filteredProduct);
+                        }
+                    })
+                }
+            });
             resolve(dataArray);
 
             try {
@@ -53,4 +58,8 @@ export const getAllCheckout = (id_user, dispacth) => {
             }
         })
     })
+}
+
+export const updateStatus = (id, data) => {
+
 }

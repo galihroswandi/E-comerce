@@ -1,21 +1,20 @@
+import { encryptData } from "../../utils/encryptedData";
 import checkLogin from "../../utils/loginCheck.util";
 import { setAlamat, setEmail, setId, setNama, setNoHP, setUsername } from "../redux/reducer/profilSlice";
 import { getAllUser } from "../users";
 
 export const getUser = async (dispatch) => {
-
     const user = await checkLogin();
-
     const users = await getAllUser();
     const dataArray = users.find(el => el.data.uid === user.uid);
 
     try {
         const profil = dataArray;
-        dispatch(setUsername(profil.data.username));
-        dispatch(setNama(profil.data.nama));
-        dispatch(setEmail(profil.data.email));
-        dispatch(setNoHP(profil.data.noHP));
-        dispatch(setAlamat(profil.data.alamat));
+        dispatch(setUsername(encryptData(profil.data.username)));
+        dispatch(setNama(encryptData(profil.data.nama)));
+        dispatch(setEmail(encryptData(profil.data.email)));
+        dispatch(setNoHP(encryptData(profil.data.noHP)));
+        dispatch(setAlamat(encryptData(profil.data.alamat)));
         dispatch(setId(profil.id));
     } catch (err) {
         console.log(err);
