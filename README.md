@@ -51,4 +51,4 @@ Untuk menjalankan proyek ini, Anda perlu menambahkan variabel lingkungan berikut
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT License](LICENSE)
