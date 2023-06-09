@@ -49,17 +49,11 @@ npm run dev
 Untuk menjalankan proyek ini, Anda perlu menambahkan variabel lingkungan berikut ke file .env Anda
 `VITE_SECRET_KEY`
 
-## Author
-
-Galih Roswandi
-
 ## Lisensi
 
-Proyek ini dilisensikan di bawah Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0). Lihat file LICENSE untuk detail lebih lanjut.
+Proyek ini dilisensikan di bawah Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0).
+Lisensi lengkap dan ketentuan dapat ditemukan di [Tautan ke lisensi](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 
-## Kontak
+## Atribusi
 
-Jika Anda memiliki pertanyaan atau masukan, silakan hubungi Galih Roswandi melalui:
-
-- Email: galihroswandi25@gmail.com
-- Situs web: http://www.galihroswandi.com
+Proyek ini dikembangkan oleh Galih Roswandi. Mohon memberikan atribusi jika Anda menggunakan atau mendistribusikan proyek ini.
